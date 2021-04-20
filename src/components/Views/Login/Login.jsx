@@ -1,5 +1,5 @@
 import './Login.css'
-import  { Suspense, useState } from 'react';
+import  { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useUser } from '../../../hooks/useUser';
 import { login } from '../../../services/AuthService';
@@ -144,10 +144,5 @@ const Login = () => {
     );
 };
 
-export default function App() {
-    return (
-      <Suspense fallback="loading">
-        <Login />
-      </Suspense>
-    );
-  }
+export default Login
+  
