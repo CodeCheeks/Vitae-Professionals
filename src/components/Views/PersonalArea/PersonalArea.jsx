@@ -3,7 +3,7 @@ import { UserContext } from "../../../contexts/UserContext"
 import EldersList from "../EldersList/EldersList"
 const PersonalArea = () => {
 
-    const { user, elders } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const {firstname, lastname, phonenumber, occupation, email} = user
    
 

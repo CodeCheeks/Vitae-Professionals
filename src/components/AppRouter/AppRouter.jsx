@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
+import { ElderContextProvider } from '../../contexts/ElderContext'
 import { UserContext } from "../../contexts/UserContext"
 
 //views
@@ -12,17 +13,23 @@ import PersonalArea from '../Views/PersonalArea/PersonalArea'
 const AppRouter = () => {
 
     const { user } = useContext(UserContext);
-
+    console.log(user)
+    
     return(
-        <Switch>
-            <Route exact path='/'><Redirect to ='/login'/></Route>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/personal-area" component={PersonalArea}>
-                {!user ? <Redirect to="/login" /> : <PersonalArea/>}
-            </Route>
-            
-            <Route component={NotFound} />
-        </Switch>
+        
+        <ElderContextProvider>
+            <Switch>
+                <Route exact path='/'><Redirect to ='/personal-area'/></Route>
+                <Route exact path="/login" >
+                    {user ? <Redirect to="/personal-area" /> : <Login/>}
+                </Route>
+                <Route exact path="/personal-area" >
+                    {!user ? <Redirect to="/login" /> : <PersonalArea/>}
+                </Route>
+                
+                <Route component={NotFound} />
+            </Switch>
+        </ElderContextProvider>
     )
 }
 
