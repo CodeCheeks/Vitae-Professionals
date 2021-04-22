@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { ElderContextProvider } from '../../contexts/ElderContext'
 import { UserContext } from "../../contexts/UserContext"
+import ActivitiesList from '../Views/Activities/ActivitiesList'
+import CreateActivities from '../Views/Activities/CreateActivities'
 
 //views
 
@@ -25,6 +27,12 @@ const AppRouter = () => {
                 </Route>
                 <Route exact path="/personal-area" >
                     {!user ? <Redirect to="/login" /> : <PersonalArea/>}
+                </Route>
+                <Route exact path="/activities/list" >
+                    {!user ? <Redirect to="/login" /> : <ActivitiesList/>}
+                </Route>
+                <Route exact path="/activities/create" >
+                    {!user ? <Redirect to="/login" /> : <CreateActivities/>}
                 </Route>
                 
                 <Route component={NotFound} />

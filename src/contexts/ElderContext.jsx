@@ -19,7 +19,7 @@ export function ElderContextProvider({ children }) {
 
   useEffect(() => {
       getElders()
-  }, [/*ChangeMe*/]);
+  }, [setElders]);
 
   ;
 
