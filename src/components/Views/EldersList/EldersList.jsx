@@ -7,21 +7,29 @@ const EldersList = () => {
 
     return (
         <div className='EldersList'>
-            
+            <div className="container">
+                <div className='row border'>
+                    <h5 className=' col-2 list__items'>Elder Name</h5>
+                    <h5 className='col-1 list__items'>Group</h5>
+                    <h5 className=' col-2 list__items'>Birthday</h5>
+                    <h5 className=' col-2 list__items'>Diet</h5>
+                    <h5 className=' col-1 list__items'>Relative</h5>
+                    <h5 className=' col-3 list__items'>Relative Phone</h5>
+                </div>                 
+            </div>
             { elders ? 
                 (elders.map(elder => {
                     return <div key={elder.id}>
-                            <div className='container-fluid'>
+                            <div className='container'>
                                 <div className='row border'>
                                     <Link to={`/elders/${elder.id}`} className='col-2'>{elder.firstname} {elder.lastname}</Link>
-                                    <div className='row'>
-                                    <p className='mx-2 col-1'>{elder.group}</p>
-                                    <p className='mx-2 col-2'>{elder.dateOfBirth.split('T')[0].split("-").reverse().join("-")}</p>
-                                    <p className='mx-2 col-1'>{elder.diet}</p>
-                                    <p className='mx-2 col-2'>Relative:{elder.relative.firstname} </p>
-                                    <p className='mx-2 col-4'>Contact:{elder.relative.phonenumber}</p>
+                                    <p className=' col-1 list__items'>{elder.group}</p>
+                                    <p className=' col-2 list__items'>{elder.dateOfBirth.split('T')[0].split("-").reverse().join("-")}</p>
+                                    <p className=' col-2 list__items'>{elder.diet}</p>
+                                    <p className=' col-1 list__items'>{elder.relative.firstname} </p>
+                                    <p className=' col-3 list__items'>{elder.relative.phonenumber}</p>
+                                
                                 </div>
-                            </div>
                             </div>
 
                     </div>

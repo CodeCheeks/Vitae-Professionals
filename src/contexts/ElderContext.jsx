@@ -6,9 +6,9 @@ export const ElderContext = createContext();
 
 export function ElderContextProvider({ children }) {
   const [elders, setElders] = useState(null)
-  let eldersUpdated = null
+  let eldersUpdated = false
   const getElders = () => {
-    return getEldersInfo().then((response) => setElders(response)  );
+    return getEldersInfo().then((response) => setElders(response)).then(eldersUpdated === true)  ;
   };
 
   const value = {
@@ -19,7 +19,7 @@ export function ElderContextProvider({ children }) {
 
   useEffect(() => {
       getElders()
-  }, [setElders]);
+  }, [setElders, eldersUpdated]);
 
   ;
 
