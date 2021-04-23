@@ -1,0 +1,12 @@
+.LateralBar{
+    width: 15%;
+    position: fixed;
+    margin: auto;
+}
+
+.l__bar__item{
+    padding: 30px;
+    text-align: left;
+    border: 2px solid grey;
+
+}

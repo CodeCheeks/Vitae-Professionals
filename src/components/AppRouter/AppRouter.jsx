@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { ElderContextProvider } from '../../contexts/ElderContext'
+import { ElderContextProvider, ElderContext } from '../../contexts/ElderContext'
 import { UserContext } from "../../contexts/UserContext"
 import ActivitiesList from '../Views/Activities/ActivitiesList'
 import CreateActivities from '../Views/Activities/CreateActivities'
@@ -15,7 +15,8 @@ import PersonalArea from '../Views/PersonalArea/PersonalArea'
 const AppRouter = () => {
 
     const { user } = useContext(UserContext);
-    console.log(user)
+    
+    
     
     return(
         

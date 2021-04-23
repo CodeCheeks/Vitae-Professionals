@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ElderContext } from "../../../contexts/ElderContext"
 import {Link} from 'react-router-dom'
+import './EldersList.css'
 const EldersList = () => {
     const { elders } = useContext(ElderContext);
     console.log('elders', elders)
