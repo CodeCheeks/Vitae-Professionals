@@ -1,4 +1,5 @@
 import React from 'react';
+import "./ActivitiesList.css"
 
 const ActivitiesList = () => {
     return (
