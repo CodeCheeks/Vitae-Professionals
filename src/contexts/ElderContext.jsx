@@ -6,9 +6,9 @@ export const ElderContext = createContext();
 
 export function ElderContextProvider({ children }) {
   const [elders, setElders] = useState(null)
-  let eldersUpdated = null
+  
   const getElders = () => {
-    return getEldersInfo().then((response) => setElders(response)  );
+    return getEldersInfo().then((response) => setElders(response))  ;
   };
 
   const value = {
