@@ -5,3 +5,15 @@
 .list__items{
     text-align: left;
 }
+
+.green{
+    color: green;
+}
+
+.orange{
+    color: orange;
+}
+
+.red{
+    color: red;
+}

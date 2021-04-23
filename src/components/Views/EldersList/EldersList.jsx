@@ -6,6 +6,15 @@ const EldersList = () => {
     const { elders } = useContext(ElderContext);
     console.log('elders', elders)
 
+    const groupColor = (group) => {
+        if(group === 'red'){
+            return 'col-1 list__items red'
+        }else if(group === 'orange'){
+            return 'col-1 list__items orange'  
+        }else{
+            return 'col-1 list__items green' 
+        }
+    }
     return (
         <div className='EldersList'>
             <div className="container">
@@ -23,8 +32,8 @@ const EldersList = () => {
                     return <div key={elder.id}>
                             <div className='container'>
                                 <div className='row border'>
-                                    <Link to={`/elders/${elder.id}`} className='col-2'>{elder.firstname} {elder.lastname}</Link>
-                                    <p className=' col-1 list__items'>{elder.group}</p>
+                                    <Link to={`/elders/${elder.id}`} className='col-2 list__items'>{elder.firstname} {elder.lastname}</Link>
+                                    <p className={groupColor(elder.group)}>⬤</p>
                                     <p className=' col-2 list__items'>{elder.dateOfBirth.split('T')[0].split("-").reverse().join("-")}</p>
                                     <p className=' col-2 list__items'>{elder.diet}</p>
                                     <p className=' col-1 list__items'>{elder.relative.firstname} </p>
