@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Navbar, Nav, NavDropdown, FormControl, Form, Button} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
+import { logout } from '../../../store/AccessTokenStore'
 import "./TopBar.css"
 const TopBar = () => {
 
@@ -21,7 +22,7 @@ const TopBar = () => {
                     <Nav.Link href="#link">Animación</Nav.Link>
                 </Nav>
                 <div>
-                <Nav.Link href="#home">Logout</Nav.Link>
+                <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
                 </div>
             </Navbar.Collapse>
             </Navbar>

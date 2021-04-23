@@ -9,3 +9,4 @@ export const getUserInfo = () => {
 export const getEldersInfo = () => {
   return http.get('/elders')
 }
+
