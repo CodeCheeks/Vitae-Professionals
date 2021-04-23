@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from "../../../contexts/UserContext"
-import EldersList from "../EldersList/EldersList"
+import EldersList from "../Elders/EldersList/EldersList"
 import LateralBar from '../ProfessionalsBars/LateralBar';
 import TopBar from '../ProfessionalsBars/TopBar';
 import './PersonalArea.css'

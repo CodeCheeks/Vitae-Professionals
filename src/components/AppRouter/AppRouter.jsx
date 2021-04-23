@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { ElderContextProvider, ElderContext } from '../../contexts/ElderContext'
+import { ElderContextProvider } from '../../contexts/ElderContext'
 import { UserContext } from "../../contexts/UserContext"
+import ElderProfile from '../Views/Elders/ElderProfile/ElderProfile'
 
 
 //views
@@ -35,6 +36,10 @@ const AppRouter = () => {
                 <Route exact path="/personal-area" >
                     {!user ? <Redirect to="/login" /> : <PersonalArea/>}
                 </Route>
+                {/* Elder profile */}
+                <Route exact path="/elders/:id" >
+                    {!user ? <Redirect to="/login" /> : <ElderProfile />}
+                </Route>  
                 {/* Professional sections */}
                 <Route exact path="/personal-area/reports" >
                     {!user ? <Redirect to="/login" /> : <MyReports/>}
