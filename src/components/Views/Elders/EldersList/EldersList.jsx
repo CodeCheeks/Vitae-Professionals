@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ElderContext } from "../../../../contexts/ElderContext"
 import {Link} from 'react-router-dom'
 import './EldersList.css'
+
 const EldersList = () => {
     const { elders } = useContext(ElderContext);
     
@@ -15,6 +16,8 @@ const EldersList = () => {
             return 'col-1 list__items green' 
         }
     }
+
+    
     return (
         <div className='EldersList'>
             <div className="container">
@@ -47,5 +50,6 @@ const EldersList = () => {
         </div>
     );
 };
+
 
 export default EldersList;
