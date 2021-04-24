@@ -12,14 +12,13 @@ export function ElderContextProvider({ children }) {
   };
 
   const value = {
-
     getElders,
     elders
   }
-
+  
   useEffect(() => {
       getElders()
-  }, [setElders]);
+  }, [ setElders]);
 
   ;
 
