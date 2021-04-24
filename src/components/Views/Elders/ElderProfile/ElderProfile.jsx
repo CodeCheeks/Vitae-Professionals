@@ -17,9 +17,9 @@ const ElderProfile = () => {
     const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies} = selectedElder
 
     const groupColor = (group) => {
-        if(group === 'red'){
+        if(group === 'Rojo'){
             return 'col-1 list__items red'
-        }else if(group === 'orange'){
+        }else if(group === 'Naranja'){
             return 'col-1 list__items orange'  
         }else{
             return 'col-1 list__items green' 
