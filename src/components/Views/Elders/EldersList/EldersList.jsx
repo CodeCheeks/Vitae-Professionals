@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ElderContext } from "../../../../contexts/ElderContext"
 import {Link} from 'react-router-dom'
 import './EldersList.css'
+import { Spinner } from 'react-bootstrap';
 
 const EldersList = () => {
     const { elders } = useContext(ElderContext);
@@ -45,8 +46,11 @@ const EldersList = () => {
 
                     </div>
                 })) : 
-                (<h1>Loading...</h1>)}
-            
+
+                <Spinner animation="border" role="status" variant="info">
+                    <span className="sr-only">Loading...</span>
+                 </Spinner>
+                }
         </div>
     );
 };
