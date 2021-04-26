@@ -18,7 +18,7 @@ export function ElderContextProvider({ children }) {
   
   useEffect(() => {
       getElders()
-  }, [getElders]);
+  }, []);
 
   ;
 
