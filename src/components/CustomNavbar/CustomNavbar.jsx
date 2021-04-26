@@ -18,7 +18,12 @@ const CustomNavbar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-
+                    <Nav.Link href="#home">Enfermería</Nav.Link>
+                    <Nav.Link href="#link">Medicina</Nav.Link>
+                    <Nav.Link href="#link">Fisioterapia</Nav.Link>
+                    <Nav.Link href="#link">Terapia Ocupacional</Nav.Link>
+                    <Nav.Link href="#link">Trabajo social</Nav.Link>
+                    <Nav.Link href="#link">Animación</Nav.Link>
                 </Nav>
                 <div>
                 <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>

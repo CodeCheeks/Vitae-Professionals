@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Spinner } from 'react-bootstrap'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import { UserContext } from "../../contexts/UserContext"
@@ -24,44 +25,46 @@ const AppRouter = () => {
     
     
     return(
-        
-        
-            <Switch>
-                {/* External Routes */}
-                <Route exact path='/'><Redirect to ='/personal-area'/></Route>
-                <Route exact path="/login" >
-                    {user ? <Redirect to="/personal-area" /> : <Login/>}
-                </Route>
-                {/* Personal Area */}
-                <Route exact path="/personal-area" >
-                    {!user ? <Redirect to="/login" /> : <PersonalArea/>}
-                </Route>
-                {/* Elder profile */}
-                <Route exact path="/elders/:id" >
-                    {!user ? <Redirect to="/login" /> : <ElderProfile />}
-                </Route>  
-                {/* Professional sections */}
-                <Route exact path="/personal-area/reports" >
-                    {!user ? <Redirect to="/login" /> : <MyReports/>}
-                </Route>
-                <Route exact path="/personal-area/activities" >
-                    {!user ? <Redirect to="/login" /> : <MyActivities/>}
-                </Route>
-                <Route exact path="/personal-area/album" >
-                    {!user ? <Redirect to="/login" /> : <MyAlbum/>}
-                </Route>
-                <Route exact path="/personal-area/messages" >
-                    {!user ? <Redirect to="/login" /> : <MyMessages/>}
-                </Route>
-                <Route exact path="/personal-area/newRelative" >
-                    {!user ? <Redirect to="/login" /> : <CreateRelative/>}
-                </Route>
-                <Route exact path="/personal-area/newProfessional" >
-                    {!user ? <Redirect to="/login" /> : <CreateProfessional/>}
-                </Route>
-                
-                <Route component={NotFound} />
-            </Switch>
+
+        //<Spinner animation="border" role="status" variant="info"/>
+
+        <Switch>
+
+            <Route exact path='/'><Login/></Route>
+            
+            <Route exact path="/login" >
+                {user ? <PersonalArea/> : <Login/>}
+            </Route>
+
+            <Route exact path="/personal-area" >
+                {!user ? <Login/> : <PersonalArea/>}
+            </Route>
+
+            <Route exact path="/elders/:id" >
+                {!user ? <Login/> : <ElderProfile />}
+            </Route>  
+
+            <Route exact path="/personal-area/reports" >
+                {!user ? <Login/> : <MyReports/>}
+            </Route>
+            <Route exact path="/personal-area/activities" >
+                {!user ? <Login/> : <MyActivities/>}
+            </Route>
+            <Route exact path="/personal-area/album" >
+                {!user ? <Login/> : <MyAlbum/>}
+            </Route>
+            <Route exact path="/personal-area/messages" >
+                {!user ? <Login/> : <MyMessages/>}
+            </Route>
+            <Route exact path="/personal-area/newRelative" >
+                {!user ? <Login/> : <CreateRelative/>}
+            </Route>
+            <Route exact path="/personal-area/newProfessional" >
+                {!user ? <Login/> : <CreateProfessional/>}
+            </Route>
+            
+            <Route component={NotFound} />
+        </Switch>
 
     )
 }

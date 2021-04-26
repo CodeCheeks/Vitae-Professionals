@@ -47,7 +47,7 @@ const EldersList = () => {
                     </div>
                 })) : 
 
-                <Spinner animation="border" role="status" variant="info">
+                <Spinner className="m-5" animation="border" role="status" variant="info">
                     <span className="sr-only">Loading...</span>
                  </Spinner>
                 }

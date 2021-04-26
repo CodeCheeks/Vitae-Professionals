@@ -9,22 +9,17 @@ const PersonalArea = () => {
 
     const { user } = useContext(UserContext);
     const { elders } = useContext(ElderContext)
-    const {firstname, lastname, phonenumber, occupation, email} = user
+
    console.log(EldersList)
 
     return (
         <div className='PersonalArea'>
             <div className='container-fluid border-primary'>
-
                 <div className='p__area__wrapper'>
-                <LateralBar/>
-                <EldersList/> 
-                
-                </div>
-                
-                
+                    <LateralBar/>
+                    <EldersList/> 
+                </div> 
             </div>
-            
         </div>
     );
 };
