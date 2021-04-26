@@ -13,7 +13,7 @@ const CreateRelative = () => {
     const onSubmit = (data) => {
         console.log(data)
         addElder(data).then((response) => {
-            push("/")
+            push("/personal-area")
         });
     }
 
@@ -87,15 +87,15 @@ const CreateRelative = () => {
                             <Form.Row>
                                 <Form.Group as={Col} controlId="gender">
                                     <Form.Control className={errors.gender && "is-invalid"} placeholder="Género" as="select" {...register("gender", { required: true })}>
-                                        <option></option>
+                                        <option  value="">Género</option>
                                         <option value="Mujer">Mujer</option>
                                         <option value="Varón">Hombre</option>
                                     </Form.Control>
                                     {errors.gender && <div className="invalid-feedback">Seleccione una opción</div>}
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="diet">
-                                    <Form.Control className={errors.diet && "is-invalid"} placeholder="Género" as="select" {...register("diet", { required: true })}>
-                                        <option></option>
+                                    <Form.Control className={errors.diet && "is-invalid"} placeholder="Dieta" as="select" {...register("diet", { required: true })}>
+                                        <option value="">Dieta</option>
                                         <option>Basal</option>
                                         <option>Diabético</option>
                                         <option>Sin gluten</option>
@@ -104,8 +104,8 @@ const CreateRelative = () => {
                                     {errors.diet && <div className="invalid-feedback">Seleccione una opción</div>}
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="group">
-                                    <Form.Control className={errors.group && "is-invalid"} placeholder="Género" as="select" {...register("group", { required: true })}>
-                                        <option></option>
+                                    <Form.Control className={errors.group && "is-invalid"} placeholder="Grupo" as="select" {...register("group", { required: true })}>
+                                        <option  value="">Grupo</option>
                                         <option>Verde</option>
                                         <option>Naranja</option>
                                         <option>Rojo</option>
