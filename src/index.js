@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from 'react-router-dom'
 import { UserContextProvider } from "./contexts/UserContext"
+import { ElderContextProvider } from './contexts/ElderContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <UserContextProvider>
-      <App />
+      <ElderContextProvider>
+        <App />
+      </ElderContextProvider>
     </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>,

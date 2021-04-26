@@ -1,16 +1,20 @@
-import React, { useContext } from 'react';
-import { Navbar, Nav, NavDropdown, FormControl, Form, Button} from 'react-bootstrap';
-import {NavLink} from 'react-router-dom'
-import { UserContext } from '../../../contexts/UserContext';
-import { logout } from '../../../store/AccessTokenStore'
-import "./TopBar.css"
-const TopBar = () => {
+import React from 'react';
+import { Navbar, Nav} from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { logout } from '../../store/AccessTokenStore'
+import "./CustomNavbar.css"
 
-    const { user } = useContext(UserContext);
+
+const CustomNavbar = () => {
+
     return (
-        <div className='TopBar'>
+        <div className='CustomNavbar'>
             <Navbar bg="light" expand="lg" fixed="top">
-            <Navbar.Brand href="#home" className='mx-5'><h4>Bienvenido {user.firstname}</h4></Navbar.Brand>
+            <Navbar.Brand>
+                <NavLink className='link__style logo__wrapper'to="/personal-area">
+                    <img src="https://pics.freeicons.io/uploads/icons/png/18081978721600459989-512.png" width="30" height="30" className="d-inline-block align-top mx-3" alt="vitae-logo"/>
+                </NavLink>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -30,4 +34,4 @@ const TopBar = () => {
     );
 };
 
-export default TopBar;
+export default CustomNavbar;

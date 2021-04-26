@@ -3,7 +3,6 @@ import './ElderProfile.css'
 import { useParams } from 'react-router';
 import { ElderContext } from "../../../../contexts/ElderContext"
 import LateralBar from '../../ProfessionalsBars/LateralBar';
-import TopBar from '../../ProfessionalsBars/TopBar';
 import {groupColor} from '../../Elders/EldersList/EldersList'
 import { NavLink } from 'react-router-dom';
 
@@ -29,7 +28,6 @@ const ElderProfile = () => {
     return (
         <div className='ElderProfile'>
             <div className="container-fluid p__area__wrapper">
-                <TopBar/>
                 <LateralBar/> 
                 <div className="container px-1 py-3 border">
                     <div className="row mx-5">
