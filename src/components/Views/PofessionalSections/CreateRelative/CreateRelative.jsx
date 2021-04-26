@@ -74,7 +74,7 @@ const CreateRelative = () => {
                                     {errors.dni && <div className="invalid-feedback">Rellene este campo</div>}
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="birth">
-                                    <Form.Control className={errors.birth && "is-invalid"} placeholder="birth" type="string" {...register("birth", { required: true })} />
+                                    <Form.Control className={errors.birth && "is-invalid"} placeholder="birth" type="date" {...register("birth", { required: true })} />
                                     {errors.birth && <div className="invalid-feedback">Rellene este campo</div>}
                                 </Form.Group>
                             </Form.Row>
