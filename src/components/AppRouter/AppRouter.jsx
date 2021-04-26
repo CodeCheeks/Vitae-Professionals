@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { ElderContextProvider } from '../../contexts/ElderContext'
+
 import { UserContext } from "../../contexts/UserContext"
 import ElderProfile from '../Views/Elders/ElderProfile/ElderProfile'
 
@@ -25,7 +25,7 @@ const AppRouter = () => {
     
     return(
         
-        <ElderContextProvider>
+        
             <Switch>
                 {/* External Routes */}
                 <Route exact path='/'><Redirect to ='/personal-area'/></Route>
@@ -62,7 +62,7 @@ const AppRouter = () => {
                 
                 <Route component={NotFound} />
             </Switch>
-        </ElderContextProvider>
+
     )
 }
 

@@ -3,7 +3,6 @@ import { ElderContext } from '../../../contexts/ElderContext';
 import { UserContext } from "../../../contexts/UserContext"
 import EldersList from "../Elders/EldersList/EldersList"
 import LateralBar from '../ProfessionalsBars/LateralBar';
-import TopBar from '../ProfessionalsBars/TopBar';
 import './PersonalArea.css'
 
 const PersonalArea = () => {
@@ -15,8 +14,6 @@ const PersonalArea = () => {
 
     return (
         <div className='PersonalArea'>
-           <TopBar/>
-            
             <div className='container-fluid border-primary'>
 
                 <div className='p__area__wrapper'>

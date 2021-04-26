@@ -75,3 +75,7 @@ body {
 .custom__spacer{
   height: 300px;
 }
+
+.custom__navbar__spacer{
+  height: 50px;
+}
