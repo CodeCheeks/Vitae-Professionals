@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { Spinner } from 'react-bootstrap'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import { UserContext } from "../../contexts/UserContext"
 import ElderProfile from '../Views/Elders/ElderProfile/ElderProfile'
@@ -25,8 +24,6 @@ const AppRouter = () => {
     
     
     return(
-
-        //<Spinner animation="border" role="status" variant="info"/>
 
         <Switch>
 

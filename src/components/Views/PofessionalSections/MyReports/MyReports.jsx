@@ -7,15 +7,17 @@ const MyReports = () => {
 
     const { user } = useContext(UserContext);
 
-    const editHandler = (event) => {
+    const editHandler = (e) => {
         console.log("click edit")
        
     }
+    const deleteHandler = (e) => {
+        deleteReports(e.target.id)
+        .then(res => {
+            console.log("deleted")
 
-    const deleteHandler = (report) => {
-        console.log("click delete")
-        //deleteReports(report.id)
-        
+        })
+        .catch(e => console.log(e))
     }
 
     const getReports = () => {
@@ -28,8 +30,8 @@ const MyReports = () => {
                             <h5>{report}</h5>
                         </div>
                         <div className="col-2">
-                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" alt="edit" className="mx-3 custom__img" width="20px" onClick={editHandler}/>
-                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/>
+                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report} alt="edit" className="mx-3 custom__img" width="20px" onClick={editHandler}/>
+                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/>
                         </div>  
                     </div>
                 </div>

@@ -3,7 +3,6 @@ import './ElderProfile.css'
 import { useParams } from 'react-router';
 import { ElderContext } from "../../../../contexts/ElderContext"
 import LateralBar from '../../ProfessionalsBars/LateralBar';
-import {groupColor} from '../../Elders/EldersList/EldersList'
 import { NavLink } from 'react-router-dom';
 
 const ElderProfile = () => {
