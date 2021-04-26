@@ -6,3 +6,7 @@ export const deleteReports = (report_id) => {
   return http.delete('/deleteReport', { params: { id: report_id } })
 }
 
+export const getReports = (_id) => {
+  return http.get('/reports', { params: { id: _id } })
+}
+
