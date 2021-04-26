@@ -10,3 +10,7 @@ export const getEldersInfo = () => {
   return http.get('/elders')
 }
 
+
+export const addElder = (body) => {
+  return http.post('/addElder', body)
+}
