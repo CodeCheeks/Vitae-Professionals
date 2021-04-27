@@ -5,11 +5,11 @@ import { logout } from '../../store/AccessTokenStore'
 import "./CustomNavbar.css"
 
 
-const CustomNavbar = () => {
+const CustomNavbar = (user) => {
 
     return (
         <div className='CustomNavbar'>
-            <Navbar bg="light" expand="lg" fixed="top">
+            <Navbar className="color__nav" expand="lg" fixed="top">
             <Navbar.Brand>
                 <NavLink className='link__style logo__wrapper'to="/personal-area">
                     <img src="https://pics.freeicons.io/uploads/icons/png/18081978721600459989-512.png" width="30" height="30" className="d-inline-block align-top mx-3" alt="vitae-logo"/>
@@ -25,8 +25,11 @@ const CustomNavbar = () => {
                     <Nav.Link href="#link">Trabajo social</Nav.Link>
                     <Nav.Link href="#link">Animación</Nav.Link>
                 </Nav>
-                <div>
-                <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
+                <Navbar.Text>
+                  Usuario: <a href="#login">{user.firstname}</a>
+                </Navbar.Text>
+                <div className="mx-3">
+                    <Nav.Link href="/login" onClick={logout}>Cerrar sesión</Nav.Link>
                 </div>
             </Navbar.Collapse>
             </Navbar>

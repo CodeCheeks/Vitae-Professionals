@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Nav, Navbar } from 'react-bootstrap';
 import './App.css';
 import AppRouter from './components/AppRouter/AppRouter'
 import CustomFooter from './components/CustomFooter/CustomFooter';
@@ -11,8 +12,22 @@ function App() {
   return (
     <div className="App">
       <header>
-        {user && <CustomNavbar/>}
-        {user && <div className="custom__navbar__spacer"></div>}
+        {user ?
+          (
+            <>
+              <CustomNavbar {...user}/>
+              <div className="custom__navbar__spacer"></div>
+            </>
+          )
+          :
+          (
+          <Navbar className="color__nav" variant="dark">
+              <Navbar.Brand>
+                <img src="https://pics.freeicons.io/uploads/icons/png/18081978721600459989-512.png" width="30" height="30" className="d-inline-block align-top mx-3" alt="vitae-logo"/>
+              </Navbar.Brand>
+            </Navbar>
+          )
+        }
       </header>
 
       <main>
