@@ -17,3 +17,23 @@
 .red{
     color: red;
 }
+
+@media only screen and (max-width: 768px) {
+
+    .EldersList{
+        margin-left: auto;
+    }   
+    
+}
+
+@media only screen and (max-width: 992px) {
+
+    .EldersList{
+        margin-left: auto;
+    }   
+    
+
+    .hide__element{
+        display: none;
+    }
+}
