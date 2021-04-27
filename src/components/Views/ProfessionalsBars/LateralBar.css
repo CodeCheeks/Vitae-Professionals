@@ -1,12 +1,32 @@
+:root {
+    --light-blue-color: #2fb2b9;
+    --light-transparent-blue-color: rgba(47, 178, 185, 0.5);
+    --medium-blue-color: #3e7dd0;
+    --primary-blue-color: #007bff;
+    --dark-blue-color: #053d79;
+  }
+
+
 .LateralBar{
     width: 15%;
     position: fixed;
     margin: auto;
+    background-color: var(--light-transparent-blue-color);
+    border-radius: 15px;
 }
 
 .l__bar__item{
+    
     padding: 30px;
-    text-align: left;
-    border: 2px solid grey;
+    text-align: left; 
+    text-decoration: none !important;
+    color: var(--dark-blue-color);
+    padding-left: 20% !important;
+    
+}
 
+.l__bar__item:hover{
+    background-color: rgba(47, 178, 185, 0.5);
+    border-radius: 15px;
+    font-size: 1.1rem;
 }

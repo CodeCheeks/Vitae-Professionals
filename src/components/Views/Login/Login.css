@@ -4,24 +4,10 @@
     --medium-blue-color: #3e7dd0;
     --primary-blue-color: #007bff;
   }
-.nav__decoration{
-background-color: var(--light-blue-color);
-height: 50px;
-display: flex;
-align-items: center;
-justify-content: center;
-}
 
-.nav__decoration p{
-    color: white;
-    align-self: flex-end;
-}
 
-.login__form__title{
-padding-left: 20px;
-padding-top: 30px;
-color: var(--primary-blue-color);
-
+.form__title{
+    color: var(--medium-blue-color)
 }
 
 .login__form{
@@ -29,18 +15,14 @@ color: var(--primary-blue-color);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 8% auto 5%;
+    margin: 8% auto 5% ;
     padding: 50px 10px ;
     background-color: var(--light-transparent-blue-color);
     border-radius: 15px;
-    width: 40%;
+    width: 100%;
 }
 
 
-
-.email__input__wrapper{
-    margin-bottom: 15px;
-}
 
 
 

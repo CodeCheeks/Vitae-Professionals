@@ -21,7 +21,8 @@ const CreateRelative = () => {
         <div className='container'>
             <div className="container">
                 <div className="row justify-content-center mt-5">
-                    <div className="col-lg-8 mt-5">
+                <h3 className='form__title'>Formulario de alta de usuarios y familiares</h3>
+                    <div className="col-lg-8 mt-5 form__wrapper">
                         <Form onSubmit={handleSubmit(onSubmit)}>
                             <Form.Row>
                                 <h3>Familiar</h3>

@@ -4,7 +4,7 @@ import  './LateralBar.css'
 const LateralBar = () => {
     return (
         <div className='LateralBar'>
-            <div className="container lateral__bar">
+            <div className="container lateral__bar d-flex flex-column justify-content-center ">
                 <div className="row">
                     <Link to={"/personal-area/reports"} className='col l__bar__item'>Mis informes</Link>
                 </div>
