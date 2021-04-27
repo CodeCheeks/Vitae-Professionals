@@ -12,7 +12,7 @@ const ElderProfile = () => {
     const selectedElder = elders.find(eld => eld.id === id.toString())
     
     
-    const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies, profilepicture} = selectedElder
+    const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies, profilepicture, age} = selectedElder
 
     const groupColor = (group) => {
         if(group === 'Rojo'){
@@ -39,8 +39,8 @@ const ElderProfile = () => {
                             <div className="col-3 d-flex flex-column justify-content-center align-items-start">
                                 <h6 >Grupo:<span className={groupColor(group)}>{group}</span> </h6>
                                 <h6 >Género: {gender} </h6>
-                                <h6>Fecha de nacimiento: </h6>
-                                <h6>{dateOfBirth.split('T')[0].split("-").reverse().join("-")}</h6>
+                                <h6>Nacimiento: {dateOfBirth.split('T')[0].split("-").reverse().join("-")} </h6>
+                                <h6>Edad: {age}</h6>
                             </div>
                             <div className="col-5 d-flex flex-column justify-content-center align-items-start">
                                 <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {diet}</h6>
