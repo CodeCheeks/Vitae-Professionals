@@ -39,7 +39,7 @@ const EldersList = () => {
                                     <p className={groupColor(elder.group)}>⬤</p>
                                     <p className=' col-2 list__items'>{elder.age}</p>
                                     <p className=' col-1 list__items'>{elder.relative.firstname} </p>
-                                    <p className=' col-3 list__items ml-5'>{elder.relative.phonenumber}</p>
+                                    <p className=' col-2 list__items ml-5'>{elder.relative.phonenumber}</p>
                                     
                                 </div>
                             </div>
