@@ -35,7 +35,7 @@
     font-size: 1.1rem;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 768px) {
 
     .LateralBar{
         width: 100%;
