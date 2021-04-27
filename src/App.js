@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import './App.css';
 import AppRouter from './components/AppRouter/AppRouter'
 import CustomFooter from './components/CustomFooter/CustomFooter';
