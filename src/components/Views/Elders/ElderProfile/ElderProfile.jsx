@@ -29,8 +29,8 @@ const ElderProfile = () => {
             <div className="container-fluid p__area__wrapper">
                 <LateralBar/> 
                 <div className="container px-1 py-3 border">
-                    <div className="row mx-5">
-                        <div className="col-6">
+                    <div className="row">
+                        <div className="col-4">
                             <img src={profilepicture} width="150px" alt="avatar"/>
                             <div className="col-12 my-2">
                                 <h1>{firstname} {lastname}</h1>
@@ -41,13 +41,12 @@ const ElderProfile = () => {
                                 <h6 >Género: {gender} </h6>
                                 <h6>Fecha de nacimiento: </h6>
                                 <h6>{dateOfBirth.split('T')[0].split("-").reverse().join("-")}</h6>
-                                
                             </div>
-                            <div className="col-3 d-flex flex-column justify-content-center align-items-start">
-                                <h6>Dieta: {diet}</h6>
-                                <h6 >Dirección: {address} </h6>
-                                <h6 >Familiar: {relative.firstname} </h6>
-                                <h6>Contactar: {relative.phonenumber}</h6>
+                            <div className="col-5 d-flex flex-column justify-content-center align-items-start">
+                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {diet}</h6>
+                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546183/Vitae/iconos/pngwing.com_afyg5o.png" alt="" width="25"/>Dirección: {address} </h6>
+                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546583/Vitae/iconos/klipartz.com_p3aao4.png" alt="" width="25"/>Familiar: {relative.firstname} </h6>
+                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619547020/Vitae/iconos/klipartz.com_1_zf01wx.png" alt="" width="25"/>Contactar: {relative.phonenumber}</h6>
                             </div>
                         
                     </div>
