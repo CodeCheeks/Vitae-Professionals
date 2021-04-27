@@ -51,14 +51,14 @@ const ElderProfile = () => {
                             </div>
                         
                     </div>
-                    <div className="container px-1 py-3 border d-flex justify-content-center">
-                        <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
-                       <NavLink to="#" className='py-2 my-3 btn-primary'>Nuevo informe +</NavLink>
-                       <NavLink to="#" className='py-2 my-3 btn-primary'>Ver informes</NavLink>
-                       <NavLink to="#" className='py-2 my-3 btn-primary' therapies = {therapies}>Ver actividades</NavLink> 
-                       <NavLink to="#" className='py-2 my-3 btn-primary'>Enviar mensaje a {relative.firstname} </NavLink>
-                       <NavLink to="#" className='py-2 my-3 btn-primary'>Añadir imagenes </NavLink> 
-                    </div>
+                        <div className="container px-1 py-3 border d-flex justify-content-center">
+                            <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
+                                <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-primary'>Añadir informe</NavLink>
+                                <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-primary'>Ver informes</NavLink>
+                                <NavLink to={`/elders/${id}/actividades`} className='py-2 my-3 btn-primary' therapies = {therapies}>Ver actividades</NavLink> 
+                                <NavLink to="#" className='py-2 my-3 btn-primary'>Enviar mensaje a {relative.firstname} </NavLink>
+                                <NavLink to="#" className='py-2 my-3 btn-primary'>Añadir imagenes </NavLink> 
+                            </div>
                         
                     </div>
                     

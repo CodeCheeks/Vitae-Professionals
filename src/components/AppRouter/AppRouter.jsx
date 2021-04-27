@@ -37,9 +37,13 @@ const AppRouter = () => {
                 {!user ? <Login/> : <PersonalArea/>}
             </Route>
 
-            <Route exact path="/elders/:id" >
+            <Route exact path="/elders/:id/" >
                 {!user ? <Login/> : <ElderProfile />}
             </Route>  
+            <Route exact path="/elders/:id/reports" >
+                {!user ? <Login/> : <MyReports />}
+            </Route>  
+
 
             <Route exact path="/personal-area/reports" >
                 {!user ? <Login/> : <MyReports/>}

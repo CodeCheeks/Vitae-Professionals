@@ -3,11 +3,12 @@ import './MyReports.css'
 import { UserContext } from "../../../../contexts/UserContext";
 import { getReports, deleteReports } from "../../../../services/ReportsService";
 import { Spinner } from 'react-bootstrap';
-
+import { useParams } from 'react-router';
 
 
 const MyReports = () => {
-
+    
+    const {id} = useParams()
     const { user } = useContext(UserContext);
     const [reports, setReports] = useState(null);
 
@@ -29,10 +30,10 @@ const MyReports = () => {
     }
 
     useEffect(() => {
-        getReports(user.id)
+        getReports(id ? id : user.id)
         .then(res => setReports(res))
         .catch(error => console.log(error))
-    }, [user]);
+    }, [user, id]);
 
 
     return (
