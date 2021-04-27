@@ -1,9 +1,32 @@
+:root {
+    --light-blue-color: #2fb2b9;
+    --light-transparent-blue-color: rgba(47, 178, 185, 0.5);
+    --medium-blue-color: #3e7dd0;
+    --primary-blue-color: #007bff;
+    --dark-blue-color: #053d79;
+  }
 
 .EldersList{
-    margin-left: 21%;
+    margin-left: 15%;
 }
 .list__items{
     text-align: left;
+    margin-bottom: 0px !important;
+    padding: 5px;
+}
+
+.name__style:hover{
+    color: var(--primary-blue-color)
+}
+
+.list__row:hover{
+background-color: rgba(128, 128, 128, 0.1);
+
+}
+
+.name__style:hover{
+    text-decoration: none;
+    color: var(--dark-blue-color)
 }
 
 .green{
@@ -17,6 +40,9 @@
 .red{
     color: red;
 }
+.border__styles{
+border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
 
 @media only screen and (max-width: 768px)  {
 
@@ -27,9 +53,6 @@
 }
 
 @media only screen and (max-width: 992px) {
-
-      
-    
 
     .hide__element{
         display: none;
