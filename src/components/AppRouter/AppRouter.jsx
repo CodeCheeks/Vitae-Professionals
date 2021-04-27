@@ -16,6 +16,7 @@ import MyActivities from '../Views/PofessionalSections/MyActivities/ActivitiesLi
 import MyAlbum from '../Views/PofessionalSections/MyAlbum/MyAlbum'
 import MyMessages from '../Views/PofessionalSections/MyMessages/MyMessages'
 import MyReports from '../Views/PofessionalSections/MyReports/MyReports'
+import AddReport from '../Views/Reports/AddReport/AddReport'
 
 const AppRouter = () => {
 
@@ -44,6 +45,9 @@ const AppRouter = () => {
                 {!user ? <Login/> : <MyReports />}
             </Route>  
 
+            <Route exact path="/elders/:id/add-reports" >
+                {!user ? <Login/> : <AddReport />}
+            </Route>  
 
             <Route exact path="/personal-area/reports" >
                 {!user ? <Login/> : <MyReports/>}
