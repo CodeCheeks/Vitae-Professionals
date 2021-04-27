@@ -22,6 +22,7 @@ const EldersList = () => {
     return (
         <div className='EldersList'>
             <div className="container">
+
                 <div className='row border d-flex align-items-center justify-content-center'>
                     <h5 className=' col-2 list__items '>Nombre</h5>
                     <h5 className='col-1 list__items '>Grupo</h5>
