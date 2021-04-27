@@ -11,6 +11,7 @@ const CreateRelative = () => {
     const { push } = useHistory();
 
     const onSubmit = (data) => {
+        data.age = new Date().getFullYear()-(data.birth.split("-")[0])
         console.log(data)
         addElder(data).then((response) => {
             push("/personal-area")
@@ -96,7 +97,7 @@ const CreateRelative = () => {
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="diet">
                                     <Form.Control className={errors.diet && "is-invalid"} placeholder="Dieta" as="select" {...register("diet", { required: true })}>
-                                        <option value="">Dieta</option>
+                                        <option value="">Seleccione Dieta</option>
                                         <option>Basal</option>
                                         <option>Diabético</option>
                                         <option>Sin gluten</option>
@@ -106,7 +107,7 @@ const CreateRelative = () => {
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="group">
                                     <Form.Control className={errors.group && "is-invalid"} placeholder="Grupo" as="select" {...register("group", { required: true })}>
-                                        <option  value="">Grupo</option>
+                                        <option  value="">Seleccione Grupo</option>
                                         <option>Verde</option>
                                         <option>Naranja</option>
                                         <option>Rojo</option>
