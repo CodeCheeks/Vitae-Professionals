@@ -1,148 +1,55 @@
-import './Login.css'
-import  { useState } from 'react';
+
+import React, { useState } from 'react';
+import { Form, Button, Navbar } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
+
 import { useHistory } from 'react-router';
 import { useUser } from '../../../hooks/useUser';
 import { login } from '../../../services/AuthService';
-import { setAccessToken } from '../../../store/AccessTokenStore'
+import { setAccessToken } from '../../../store/AccessTokenStore';
 
-// eslint-disable-next-line no-useless-escape
-const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-
-const validators = {
-    email: (value) => {
-      let message;
-  
-      if (!value) {
-        message = "Email is required";
-      } else if (!EMAIL_PATTERN.test(value)) {
-        message = "Email is invalid";
-      }
-  
-      return message;
-    },
-    password: (value) => {
-      let message;
-  
-      if (!value) {
-        message = "Password is required";
-      } else if (value && value.length < 8) {
-        message = "Incorrect password";
-      }
-  
-      return message;
-    },
-  }
 
 const Login = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { push } = useHistory();
     const { getUser: doLogin } = useUser();
+    const [authError, setAuthError] = useState(false)
 
-    const [state, setState] = useState({
-        fields: {
-          email: "",
-          password: "",
-        },
-        errors: {
-          email: validators.email(),
-          password: validators.password(),
-        },
-      });
-    
-    const [touched, setTouched] = useState({});
-
-    const isValid = () => {
-        const { errors } = state;
-        return !Object.keys(errors).some((error) => errors[error]);
-    };
-
-    const onSubmit = (e) => {
-        const { fields } = state;
-        e.preventDefault();
-    
-        if (isValid()) {
-          login(fields).then((response) => {
+    const onSubmit = (data) => {
+        setAuthError(false)
+        login(data)
+        .then((response) => {
             setAccessToken(response.access_token);
             doLogin().then(() => push("/personal-area"));
-          });
-        }
-      };
+        })
+        .catch(error => {
+            setAuthError(true)
+        })
+    }
     
-      const onChange = (e) => {
-        const { name, value } = e.target;
-    
-        setState((prevState) => ({
-          fields: {
-            ...prevState.fields,
-            [name]: value,
-          },
-          errors: {
-            ...prevState.errors,
-            [name]: validators[name] && validators[name](value),
-          },
-        }));
-      };
-    
-      const onBlur = (e) => {
-        const { name } = e.target;
-    
-        setTouched((prevTouched) => ({
-          ...prevTouched,
-          [name]: true,
-        }));
-      };
-    
-      const onFocus = (e) => {
-        const { name } = e.target;
-    
-        setTouched((prevTouched) => ({
-          ...prevTouched,
-          [name]: false,
-        }));
-      };
-
-    const { email, password } = state.fields;
-    const { errors } = state;
     return (
-        <div className='Login'>
-            
-           <div className='nav__decoration'>
-            <p>Vitae para profesionales</p>
-            </div>     
-            <form className='login__form' onSubmit={onSubmit}>
-            
-                <div className="email__input__wrapper">
-                    <label htmlFor="email" className="form-label d-flex flex-start ">Email address</label>
-                    <input className={`form-control ${touched.email && errors.email ? "is-invalid" : ""}`}
-                        type="email"
-                        id="email"
-                        name="email"
-                        autoComplete="off"
-                        value={email}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        onFocus={onFocus}/>
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-lg-4 col-md-5 col-sm-6 col-8 border m-5 p-5">
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Control className={(errors.email || authError) && "is-invalid"} type="email" placeholder="Email" {...register("email", { required: true })}/>
+                            {errors.email && <div className="invalid-feedback">Introduzca email</div>}
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Control className={(errors.password || authError) && "is-invalid"} type="password" placeholder="Password" 
+                            {...register("password", { required: true })}/>
+                            {errors.password && <div className="invalid-feedback">Introduzca la contraseña</div>}
+                            {authError && !errors.password && <div className="invalid-feedback">Contraseña o email incorrectos</div>}
+                        </Form.Group>
+                        <Button variant="primary" type="submit">Submit</Button>
+                    </Form>
                 </div>
-                <div className="invalid-feedback">{errors.email==="Email is required" ?  "Email is required" : "Email is invalid"}</div>
-                <div className="email__input__wrapper">
-                    <label htmlFor="password" className="form-label d-flex flex-start">Password</label>
-                    <input 
-                        className={`form-control ${touched.password && errors.password ? "is-invalid" : ""}`}
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        onFocus={onFocus}/>
-                        <div className="invalid-feedback">{errors.password==="Password is required" ?  "Password is required" : "Incorrect password"}</div>
-                </div>
-                <button type="submit" className="btn btn-primary d-flex flex-start" disabled={!isValid()}>Submit</button>
-                <label htmlFor="exampleInputPassword1" className="form-label login__form__title">Si ha olvidado sus credenciales contacte con el departamento de IT</label>
-                </form>
-            
+            </div>
         </div>
+       
     );
 };
 
+
 export default Login
-  

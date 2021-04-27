@@ -28,6 +28,10 @@
   color: #61dafb;
 }
 
+.color__nav {
+  background-color: #3ec8d0;
+}
+
 .p__area__wrapper{
   position: relative;
   margin: 15px auto;
