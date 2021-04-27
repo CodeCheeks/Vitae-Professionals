@@ -12,7 +12,7 @@ const ElderProfile = () => {
     const selectedElder = elders.find(eld => eld.id === id.toString())
     
     
-    const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies} = selectedElder
+    const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies, profilepicture} = selectedElder
 
     const groupColor = (group) => {
         if(group === 'Rojo'){
@@ -31,7 +31,7 @@ const ElderProfile = () => {
                 <div className="container px-1 py-3 border">
                     <div className="row mx-5">
                         <div className="col-6">
-                            <img src="http://via.placeholder.com/150" alt=""/>
+                            <img src={profilepicture} width="150px" alt="avatar"/>
                             <div className="col-12 my-2">
                                 <h1>{firstname} {lastname}</h1>
                             </div>
