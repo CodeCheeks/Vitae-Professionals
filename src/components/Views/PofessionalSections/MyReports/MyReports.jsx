@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import './MyReports.css'
 import { UserContext } from "../../../../contexts/UserContext";
 import { getReports, deleteReports } from "../../../../services/ReportsService";
-import { Spinner } from 'react-bootstrap';
+import { Accordion, Button, Card, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router';
 
 
@@ -38,28 +38,41 @@ const MyReports = () => {
 
     return (
         <div className="container">
-            <h1>Informes</h1>
+            <h1 className="mb-5">Informes</h1>
             {
                 reports ? 
                 reports.length > 0 ?
                 (reports.map(report => {
                     return(
-                        <div key={report.id} className="container">
-                            <div className="row justify-content-between border">
-
-                                <div className="col-4 align-self-center">
-                                    <h5>{report.title}</h5>
-                                </div>
-                                <div className="col-4 align-self-center">
-                                    <h5>{report.id}</h5>
-                                </div>
-                                <div className="col-2">
-                                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20px" onClick={editHandler}/>
-                                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/>
-                                </div>  
-                                
-                            </div>
-                        </div>
+                        <Accordion>
+                            <Card>
+                                <Card.Header className="row justify-content-between align-items-center">
+                                    <div className="col-2">
+                                        <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
+                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619607719/Vitae/iconos/image_euso1q.png" alt="show" width="30" height="30"/>
+                                        </Accordion.Toggle>
+                                    </div>
+                                    <div className="col-4">
+                                        <h6>Usuario: {report.elder}</h6>
+                                    </div>
+                                    <div className="col-2">
+                                        <h6>{(report.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
+                                    </div>
+                                    <div className="col-2">
+                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
+                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={deleteHandler}/>
+                                    </div>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                <Card.Body>
+                                    <div className="row">
+                                        <div className="col"></div>
+                                    </div>
+                                    <p className="custom__description">{report.description}</p>
+                                </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
                     )
                 })) 
                 :
