@@ -1,3 +1,9 @@
 .custom__img {
     cursor: pointer;
 }
+
+
+.custom__description{
+    margin: 10px 50px;
+    text-align: justify;
+}
