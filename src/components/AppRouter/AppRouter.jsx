@@ -10,7 +10,7 @@ import ElderProfile from '../Views/Elders/ElderProfile/ElderProfile'
 import Login from '../Views/Login/Login'
 import NotFound from '../Views/NotFound/NotFound'
 import PersonalArea from '../Views/PersonalArea/PersonalArea'
-import CreateProfessional from '../Views/PofessionalSections/CreateProfessional/CreateProfessional'
+import AdminProfessional from '../Views/PofessionalSections/AdminProfessional/AdminProfessional'
 import CreateRelative from '../Views/PofessionalSections/CreateRelative/CreateRelative'
 import MyActivities from '../Views/PofessionalSections/MyActivities/ActivitiesList/ActivitiesList'
 import MyAlbum from '../Views/PofessionalSections/MyAlbum/MyAlbum'
@@ -64,8 +64,8 @@ const AppRouter = () => {
             <Route exact path="/personal-area/newRelative" >
                 {!user ? <Login/> : <CreateRelative/>}
             </Route>
-            <Route exact path="/personal-area/newProfessional" >
-                {!user ? <Login/> : <CreateProfessional/>}
+            <Route exact path="/personal-area/adminProfessional" >
+                {!user ? <Login/> : <AdminProfessional/>}
             </Route>
             
             <Route component={NotFound} />
