@@ -1,10 +1,10 @@
 import React from 'react';
-import './CreateProfessional.css'
-
+import './AdminProfessional.css'
+import ProfessionalList from '../Lists/ProfessionalList/ProfessionalList'
 const CreateProfessional = () => {
     return (
         <div className='CreateProfessional'>
-           <h1>Create new Professional Form</h1> 
+           <ProfessionalList/> 
         </div>
     );
 };
