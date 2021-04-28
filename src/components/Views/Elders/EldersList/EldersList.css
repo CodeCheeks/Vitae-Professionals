@@ -7,12 +7,20 @@
   }
 
 .EldersList{
-    margin-left: 15%;
+    margin-left: 20% !important;
 }
 .list__items{
     text-align: left;
     margin-bottom: 0px !important;
     padding: 5px;
+    
+}
+
+.list__items:hover{
+    
+    text-decoration: none;
+    color:var(--dark-blue-color);
+    font-weight: bold;
 }
 
 .name__style:hover{
@@ -54,15 +62,18 @@ border-bottom: 1px solid rgba(128, 128, 128, 0.5);
     
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 765px) {
 
     .hide__element{
         display: none;
     }
+    .EldersList{
+        margin-left: 0 !important;
+    } 
 }
 
-@media only screen and (max-width: 992px) and (min-width: 992px){
+@media only screen and (max-width: 992px) and (min-width: 768px){
     .EldersList{
-        margin-left: 20%;
+        margin-left: 20% !important;
     } 
 }
