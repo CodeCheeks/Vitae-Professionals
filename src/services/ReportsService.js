@@ -10,6 +10,10 @@ export const getReports = (_id) => {
   return http.get('/reports', { params: { id: _id } })
 }
 
+export const getDataReport = (_id) => {
+  return http.get(`/reports/${_id}`, { params: { id: _id } })
+}
+
 export const addReport = (body) => {
   return http.post('/reports', body)
 }

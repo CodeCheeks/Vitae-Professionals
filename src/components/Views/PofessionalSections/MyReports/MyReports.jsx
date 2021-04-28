@@ -4,6 +4,7 @@ import { UserContext } from "../../../../contexts/UserContext";
 import { getReports, deleteReports } from "../../../../services/ReportsService";
 import { Accordion, Button, Card, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 
 const MyReports = () => {
@@ -15,7 +16,7 @@ const MyReports = () => {
 
     const editHandler = (e) => {
         console.log("click edit")
-       
+        
     }
 
 
@@ -44,7 +45,7 @@ const MyReports = () => {
                 reports.length > 0 ?
                 (reports.map(report => {
                     return(
-                        <Accordion>
+                        <Accordion key = {report.id}>
                             <Card>
                                 <Card.Header className="row justify-content-between align-items-center">
                                     <div className="col-2">
@@ -59,7 +60,9 @@ const MyReports = () => {
                                         <h6>{(report.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
                                     </div>
                                     <div className="col-2">
-                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
+                                        <NavLink className='link__style'to={`/elders/edit-report/${report.id}`}>
+                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
+                                        </NavLink>
                                         <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={deleteHandler}/>
                                     </div>
                                 </Card.Header>

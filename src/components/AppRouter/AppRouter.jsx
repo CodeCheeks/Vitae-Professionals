@@ -45,8 +45,12 @@ const AppRouter = () => {
                 {!user ? <Login/> : <MyReports />}
             </Route>  
 
-            <Route exact path="/elders/:id/add-reports" >
+            <Route exact path="/elders/:elder_id/add-reports" >
                 {!user ? <Login/> : <AddReport />}
+            </Route>  
+
+            <Route exact path="/elders/edit-report/:report_id" >
+                {!user ? <Login/> : <AddReport data />}
             </Route>  
 
             <Route exact path="/personal-area/reports" >
