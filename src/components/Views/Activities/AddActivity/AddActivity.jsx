@@ -20,9 +20,12 @@ const AddActivity = () => {
 
 
     const deleteHandler = (e) => {
-        console.log(e.target.id)
         deleteParticipants(e.target.id, activity_id)
-        .then()
+        .then(()=> {
+            setdataActivity( { participants: dataActivity.participants.filter(item => item !== e.target.id)})
+        }
+
+        )
         .catch(e => console.log(e))
     }
 
@@ -98,7 +101,7 @@ const AddActivity = () => {
                                                         :
                                                         <td><Form.Check type="checkbox" value={elder.id} {...register("participants")} /></td>
                                                         }
-         
+
                                                     </tr>)
                                             )    
                                     })}
