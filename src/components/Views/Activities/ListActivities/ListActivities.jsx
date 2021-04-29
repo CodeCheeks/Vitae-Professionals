@@ -40,6 +40,14 @@ const ListActivities = () => {
     return (
         <div className="container">
             <h1 className="mb-5">Actividades</h1>
+
+            <NavLink className='link__style'to={`/personal-area/activities/addActivity`}>
+                <div>
+                    <h5>Añadir Actividad</h5>
+                </div>
+
+            </NavLink>
+            
             {
                 activities ? 
                 activities.length > 0 ?
@@ -63,7 +71,7 @@ const ListActivities = () => {
                                         <h6>Horario: {activity.schedule}</h6>
                                     </div>
                                     <div className="col-2">
-                                        <NavLink className='link__style'to={`/elders/edit-activity/${activity.id}`}>
+                                        <NavLink className='link__style'to={`/personal-area/editActivity/${activity.id}`}>
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={activity.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
                                         </NavLink>
                                         <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={activity.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={deleteHandler}/>
