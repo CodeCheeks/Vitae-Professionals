@@ -48,7 +48,7 @@ const AddActivity = () => {
         activity_id && getDataActivity(activity_id)
         .then(data => setdataActivity(data))
         .catch(e => console.log(e)) 
-    }, []);
+    }, [activity_id]);
     
     const getForm = () => {
         return(
