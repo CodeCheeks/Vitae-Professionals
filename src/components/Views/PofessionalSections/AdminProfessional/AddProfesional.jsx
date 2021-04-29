@@ -71,6 +71,15 @@ const AddProfessional = () => {
                             </div>
                         </div>
                         <div className="row mt-5">
+                            {!professional_id &&
+                            <div className="col mx-3">
+                                <Form.Group controlId="formBasictitle">
+                                    <Form.Control className={(errors.password) && "is-invalid"} type="password" defaultValue={professional_id && professionalData.password} placeholder="Contraseña"  {...register("password", { required: true })}/>
+                                    {errors.password && <div className="invalid-feedback">Introduzca una contraseña válida</div>}
+                                </Form.Group>
+                            </div>}
+                        </div>
+                        <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
                                 <Form.Label className='d-flex '>Especialidad</Form.Label>
