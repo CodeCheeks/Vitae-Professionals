@@ -3,6 +3,11 @@ import { create } from "./BaseService";
 const http = create()
 
 //PROFESSIONALS
+
+export const addUser = (body) => {
+  return http.post('/professionals', body)
+}
+
 export const getUserInfo = () => {
   return http.get('/professionals/me')
 }
