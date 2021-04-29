@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import { UserContext } from "../../contexts/UserContext"
+import ListActivities from '../Views/Activities/ListActivities/ListActivities'
 import ElderProfile from '../Views/Elders/ElderProfile/ElderProfile'
 
 
@@ -12,7 +13,6 @@ import NotFound from '../Views/NotFound/NotFound'
 import PersonalArea from '../Views/PersonalArea/PersonalArea'
 import AdminProfessional from '../Views/PofessionalSections/AdminProfessional/AdminProfessional'
 import CreateRelative from '../Views/PofessionalSections/CreateRelative/CreateRelative'
-import MyActivities from '../Views/PofessionalSections/MyActivities/ActivitiesList/ActivitiesList'
 import MyAlbum from '../Views/PofessionalSections/MyAlbum/MyAlbum'
 import MyMessages from '../Views/PofessionalSections/MyMessages/MyMessages'
 import MyReports from '../Views/PofessionalSections/MyReports/MyReports'
@@ -57,7 +57,7 @@ const AppRouter = () => {
                 {!user ? <Login/> : <MyReports/>}
             </Route>
             <Route exact path="/personal-area/activities" >
-                {!user ? <Login/> : <MyActivities/>}
+                {!user ? <Login/> : <ListActivities/>}
             </Route>
             <Route exact path="/personal-area/album" >
                 {!user ? <Login/> : <MyAlbum/>}
