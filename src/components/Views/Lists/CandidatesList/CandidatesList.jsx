@@ -38,26 +38,29 @@ const CandidatesList = () => {
                 <td>{cand.vacancy}</td>
                 <td>{cand.email}</td>
                 <td>{cand.phoneNumber}</td>
-                <td>{cand.comments}</td>
+                
                 
                 <td>
                 <a className='link__style' href={cand.cv} target='_blank' rel="noreferrer">
-                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619718795/Vitae/iconos/download_mh6ecg.png" id={cand.id} alt="edit" className="mx-3 custom__img" width="20px" />
+                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619718795/Vitae/iconos/download_mh6ecg.png" id={cand.id} alt="edit" className="mx-3 custom__img" width="15px" />
                 </a>
                 </td>
-                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={cand.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/></td>
+                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={cand.id} alt="delete" className="mx-3 custom__img" width="15px" onClick={deleteHandler}/></td>
             </tr>)
         })
-        return candidatesRow
+
+        
+        return candidatesRow 
     }
 
     return(
         <div className="container CandidatesList">
             <div className='row'>
-            <h2 className='col-12 my-2 py-2'>Administración de personal</h2>
+            <h2 className='col-12 my-2 py-2'>Administración de candidaturas</h2>
             </div>
-            
-            { candidates ? 
+            { 
+            candidates ? 
+            candidates.length > 0 ? 
             (<Table size="sm" bordered hover >
                 <thead>
                     <tr>
@@ -66,7 +69,6 @@ const CandidatesList = () => {
                         <th>Puesto</th>
                         <th>Email</th>
                         <th>Teléfono</th>
-                        <th>Comentarios</th>
                         <th>Curriculum</th>
                         <th>Eliminar</th>
                     </tr>
@@ -75,10 +77,11 @@ const CandidatesList = () => {
                 {getCandidates()}
                 </tbody>
             </Table>)
+            : <h4>No existen candidaturas pendientes</h4> 
             :
             (<Spinner className="m-5" animation="border" role="status" variant="info">
                 <span className="sr-only">Loading...</span>
-            </Spinner>)}
+            </Spinner>) }
         </div>
     )
 };
