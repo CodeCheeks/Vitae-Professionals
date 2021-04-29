@@ -38,3 +38,6 @@ export const getEldersInfo = () => {
 export const addElder = (body) => {
   return http.post('/addElder', body)
 }
+
+
+

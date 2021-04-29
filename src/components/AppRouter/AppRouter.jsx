@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import { UserContext } from "../../contexts/UserContext"
 import ListActivities from '../Views/Activities/ListActivities/ListActivities'
 import ElderProfile from '../Views/Elders/ElderProfile/ElderProfile'
+import CandidatesList from '../Views/Lists/CandidatesList/CandidatesList'
 
 
 //views
@@ -88,6 +89,9 @@ const AppRouter = () => {
             </Route>
             <Route exact path="/personal-area/adminProfessional/editProfessional/:professional_id" >
                 {!user ? <Login/> : <AddProfessional/>}
+            </Route>
+            <Route exact path="/personal-area/adminProfessional/adminCandidates" >
+                {!user ? <Login/> : <CandidatesList/>}
             </Route>
             
             <Route component={NotFound} />

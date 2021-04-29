@@ -1,9 +1,9 @@
 
-import React, { useEffect, useContext, useState } from 'react';
-import {Link, NavLink} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { NavLink} from 'react-router-dom'
 import './ProfessionalList.css'
 import { Spinner, Table } from 'react-bootstrap';
-import { getUsersInfo, deleteUser, editUser } from "../../../../../services/UserService";
+import { getUsersInfo, deleteUser } from "../../../../services/UserService";
 
 
 
@@ -11,8 +11,6 @@ import { getUsersInfo, deleteUser, editUser } from "../../../../../services/User
 const UsersList = () => {
     
     const [users, setUsers] = useState(null)
-
-
 
     const deleteHandler = ((e) => {
         console.log(e.target.id)
