@@ -92,7 +92,7 @@ const AddActivity = () => {
                                                     (<tr key={elder.id}>
                                                         <td><Link to={`/elders/${elder.id}`} className='col-2 list__items'>{elder.firstname} {elder.lastname}</Link></td>
                                                         <td className={((elder.group) === 'Rojo') ? 'red' : ((elder.group) === 'Naranja') ? 'orange' : 'green'}>⬤</td>
-                                                        {dataActivity.participants.includes(elder.id) 
+                                                        {activity_id&&dataActivity.participants.includes(elder.id) 
                                                         ? 
                                                         <td> <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={elder.id} alt="delete" className="mx-3 custom__img" width="15"  height="15" onClick={deleteHandler}/></td>
                                                         :
