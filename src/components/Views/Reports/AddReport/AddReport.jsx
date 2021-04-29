@@ -3,7 +3,7 @@ import { Form, Button, Spinner } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from 'react-router';
 import { UserContext } from '../../../../contexts/UserContext';
-import {addReport, getDataReport } from '../../../../services/ReportsService'
+import {addReport, getDataReport, editReport } from '../../../../services/ReportsService'
 
 
 
@@ -13,26 +13,21 @@ const AddReport = () => {
     const { push } = useHistory();
     const [dataReport, setdataReport] = useState(null);
     
-    const { register, handleSubmit, formState: { errors } } = useForm(
-        dataReport ?
-        {
-            defaultValues: {
-                title: `${dataReport.title}`,
-                description: `${dataReport.description}`
-            }
-        }
-        :
-        {}
-    );
-
-    //TODO CARGAR LOS VALORES POR DEFECTO CUANDO SE OBTENGA LA RESPUESTA DE LA API
+    const { register, handleSubmit, formState: { errors } } = useForm();
     
     const onSubmit = (data) => {
-        data.elder = elder_id
-        data.professional = user.id
-        addReport(data)
-        .then(() =>   push(`/elders/${elder_id}`))
-        .catch()
+        if(elder_id){
+            data.elder = elder_id
+            data.professional = user.id
+            addReport(data)
+            .then(() => push(`/elders/${elder_id}`))
+            .catch(e => console.log(e))
+        }
+        else{
+            editReport(report_id, data)
+            .then(() => push(`/personal-area`))
+            .catch(e => console.log(e))
+        }
     }
 
     useEffect(() => {
@@ -58,7 +53,7 @@ const AddReport = () => {
                         <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.title) && "is-invalid"} type="title" placeholder="Título" {...register("title", { required: true })}/>
+                                    <Form.Control className={(errors.title) && "is-invalid"} type="title" defaultValue={report_id && dataReport.title} placeholder="Título" {...register("title", { required: true })}/>
                                     {errors.title && <div className="invalid-feedback">Introduzca Título</div>}
                                 </Form.Group>
                             </div>
@@ -66,7 +61,7 @@ const AddReport = () => {
                         <div className="row my-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasicDescription">
-                                    <Form.Control as="textarea" className={(errors.description && "is-invalid")}  style={{height: "250px"}} type="description" placeholder="description" 
+                                    <Form.Control as="textarea" className={(errors.description && "is-invalid")} defaultValue={report_id && dataReport.description} style={{height: "250px"}} type="description" placeholder="description" 
                                     {...register("description", { required: true })}/>
                                     {errors.description && <div className="invalid-feedback">Introduzca la descripción</div>}
                                 </Form.Group>
