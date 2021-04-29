@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import './MyReports.css'
+import './ListReports.css'
 import { UserContext } from "../../../../contexts/UserContext";
 import { getReports, deleteReports } from "../../../../services/ReportsService";
 import { Accordion, Button, Card, Spinner } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 
-const MyReports = () => {
+const ListReports = () => {
     
     const {id} = useParams()
     const { user } = useContext(UserContext);
@@ -40,6 +40,7 @@ const MyReports = () => {
     return (
         <div className="container">
             <h1 className="mb-5">Informes</h1>
+            
             {
                 reports ? 
                 reports.length > 0 ?
@@ -86,7 +87,7 @@ const MyReports = () => {
     );
 };
 
-export default MyReports;
+export default ListReports;
 
 
 
