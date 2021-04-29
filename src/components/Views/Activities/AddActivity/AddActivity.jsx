@@ -21,7 +21,7 @@ const AddActivity = () => {
 
     const deleteHandler = (e) => {
         console.log(e.target.id)
-        deleteParticipants(e.target.id)
+        deleteParticipants(e.target.id, activity_id)
         .then()
         .catch(e => console.log(e))
     }

@@ -24,9 +24,14 @@ export const addActivity = (body) => {
 }
 
 
-export const deleteParticipants = (participant_id) => {
-    return http.delete(`/participants/${participant_id}`, { params: { id: participant_id } })
+export const deleteParticipants = (elders_id, activity_id) => {
+    return http.delete(`/participants/${activity_id}`, {
+      headers: {
+        params: activity_id
+      },
+      data: {
+        participant_id: [elders_id]
+      }
+    })
   }
-  
-
-
+    
