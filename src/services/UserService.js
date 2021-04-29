@@ -12,6 +12,10 @@ export const getUserInfo = () => {
   return http.get('/professionals/me')
 }
 
+export const getUserInfobyId = (_id) => {
+  return http.get(`/professionals/${_id}`)
+}
+
 export const getUsersInfo = () => {
   return http.get('/professionals')
 }
@@ -20,8 +24,8 @@ export const deleteUser = (user_id) => {
   return http.delete('/deleteProfessional', { params: { id: user_id } })
 }
 
-export const editUser = (body) => {
-  return http.put('/editProfessional', body)
+export const editUser = (_id,body) => {
+  return http.put(`/editProfessional/${_id}`, body)
 }
 
 //ELDERS

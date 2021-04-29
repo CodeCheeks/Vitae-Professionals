@@ -7,7 +7,7 @@ const CreateProfessional = () => {
     return (
         <div className='CreateProfessional'>
            <ProfessionalList/> 
-           <Link to ='/personal-area/adminProfessional/addProfessional'>Add new professional</Link>
+           <Link to ='/personal-area/adminProfessional/addProfessional'><button className='btn-primary'>Add new professional</button></Link>
         </div>
     );
 };

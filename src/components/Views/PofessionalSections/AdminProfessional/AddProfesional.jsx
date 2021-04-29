@@ -3,23 +3,39 @@ import { Form, Button, Spinner } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from 'react-router';
 import { UserContext } from '../../../../contexts/UserContext';
-import {addUser } from '../../../../services/UserService'
+import {addUser, editUser, getUserInfobyId } from '../../../../services/UserService'
 
 
 
 const AddProfessional = () => {
     
-    const { user } = useContext(UserContext);
+    const {professional_id} = useParams()
     const { push } = useHistory();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    
-    const onSubmit = (data) => {
-        addUser(data)
-        .then((res) => push('/personal-area/adminProfessional'))
-        .catch(e => console.log(e))
-    }
- 
+    const [professionalData, setprofessionalData] = useState(null)
 
+    const onSubmit = (data) => {
+        console.log(professional_id)
+        if(!professional_id){
+            addUser(data)
+                .then((res) => push('/personal-area/adminProfessional'))
+                .catch(e => console.log(e))
+        }
+        else{
+            editUser(professional_id,data)
+                .then((res) => push('/personal-area/adminProfessional'))
+                .catch(e => console.log(e))
+        }
+
+    }
+
+    useEffect(() => {
+        professional_id && getUserInfobyId(professional_id)
+        .then(res => setprofessionalData(res))
+        .catch(e => console.log(e)) 
+    }, []);
+ 
+    const getForm = () => {
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -29,13 +45,13 @@ const AddProfessional = () => {
                         <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.firstname) && "is-invalid"} type="string" placeholder="Nombre" {...register("firstname", { required: true })}/>
+                                    <Form.Control className={(errors.firstname) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.firstname} placeholder="Nombre" {...register("firstname", { required: true })}/>
                                     {errors.firstname && <div className="invalid-feedback">Introduzca nombre</div>}
                                 </Form.Group>
                             </div>
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.lastname) && "is-invalid"} type="string" placeholder="Apellidos" {...register("lastname", { required: true })}/>
+                                    <Form.Control className={(errors.lastname) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.lastname} placeholder="Apellidos" {...register("lastname", { required: true })}/>
                                     {errors.lastname && <div className="invalid-feedback">Introduzca apellidos</div>}
                                 </Form.Group>
                             </div>
@@ -43,30 +59,31 @@ const AddProfessional = () => {
                         <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.phonenumber) && "is-invalid"} type="string" placeholder="Teléfono" {...register("phonenumber", { required: true })}/>
+                                    <Form.Control className={(errors.phonenumber) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.phonenumber} placeholder="Teléfono" {...register("phonenumber", { required: true })}/>
                                     {errors.phonenumber && <div className="invalid-feedback">Introduzca un teléfono</div>}
                                 </Form.Group>
                             </div>
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.email) && "is-invalid"} type="string" placeholder="Email" {...register("email", { required: true })}/>
+                                    <Form.Control className={(errors.email) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.email} placeholder="Email" {...register("email", { required: true })}/>
                                     {errors.email && <div className="invalid-feedback">Introduzca un email</div>}
                                 </Form.Group>
                             </div>
                         </div>
                         <div className="row mt-5">
+                            {!professional_id &&
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.password) && "is-invalid"} type="password" placeholder="Contraseña" {...register("password", { required: true })}/>
+                                    <Form.Control className={(errors.password) && "is-invalid"} type="password" defaultValue={professional_id && professionalData.password} placeholder="Contraseña"  {...register("password", { required: true })}/>
                                     {errors.password && <div className="invalid-feedback">Introduzca una contraseña válida</div>}
                                 </Form.Group>
-                            </div>
+                            </div>}
                         </div>
                         <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
                                 <Form.Label className='d-flex '>Especialidad</Form.Label>
-                                <Form.Control as="select" className={(errors.password) && "is-invalid"} type="string" {...register("occupation")}>
+                                <Form.Control as="select" className={(errors.password) && "is-invalid"} defaultValue={professional_id && professionalData.occupation} type="string" {...register("occupation")}>
                                     <option>nurse</option>
                                     <option>physiotherapist</option>
                                     <option>doctor</option>
@@ -93,6 +110,19 @@ const AddProfessional = () => {
             </div>
         </div>
     )
+    }
+
+    return (
+        professional_id ? professionalData ?
+        getForm()
+        :
+        (<Spinner className="m-5" animation="border" role="status" variant="info">
+                <span className="sr-only">Loading...</span>
+        </Spinner>)
+        :
+        getForm()
+    )
+
 };
 
 export default AddProfessional;

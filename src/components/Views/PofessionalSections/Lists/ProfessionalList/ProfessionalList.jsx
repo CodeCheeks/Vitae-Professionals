@@ -1,6 +1,6 @@
 
 import React, { useEffect, useContext, useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import './ProfessionalList.css'
 import { Spinner, Table } from 'react-bootstrap';
 import { getUsersInfo, deleteUser, editUser } from "../../../../../services/UserService";
@@ -12,10 +12,7 @@ const UsersList = () => {
     
     const [users, setUsers] = useState(null)
 
-    const editHandler = (e) => {
-        console.log("click edit")
-       
-    }
+
 
     const deleteHandler = ((e) => {
         console.log(e.target.id)
@@ -45,7 +42,11 @@ const UsersList = () => {
                 <td>{user.email}</td>
                 <td>{user.admin ? <p>Si</p> : <p>No</p>}</td>
                 <td>{user.phonenumber}</td>
-                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={user.id} alt="edit" className="mx-3 custom__img" width="20px" onClick={editHandler}/></td>
+                <td>
+                <NavLink className='link__style'to={`/personal-area/adminProfessional/editProfessional/${user.id}`}>
+                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={user.id} alt="edit" className="mx-3 custom__img" width="20px" />
+                </NavLink>
+                </td>
                 <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={user.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/></td>
             </tr>)
         })
@@ -67,8 +68,8 @@ const UsersList = () => {
                         <th>Email</th>
                         <th>Administrador</th>
                         <th>Teléfono</th>
-                        <th>Eliminar</th>
                         <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>

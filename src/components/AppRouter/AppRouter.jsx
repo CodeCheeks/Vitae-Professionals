@@ -75,6 +75,9 @@ const AppRouter = () => {
             <Route exact path="/personal-area/adminProfessional/addProfessional" >
                 {!user ? <Login/> : <AddProfessional/>}
             </Route>
+            <Route exact path="/personal-area/adminProfessional/editProfessional/:professional_id" >
+                {!user ? <Login/> : <AddProfessional/>}
+            </Route>
             
             <Route component={NotFound} />
         </Switch>
