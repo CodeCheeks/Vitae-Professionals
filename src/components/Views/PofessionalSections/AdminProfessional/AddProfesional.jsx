@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Form, Button, Spinner } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from 'react-router';
-import { UserContext } from '../../../../contexts/UserContext';
 import {addUser, editUser, getUserInfobyId } from '../../../../services/UserService'
 
 
@@ -33,7 +32,7 @@ const AddProfessional = () => {
         professional_id && getUserInfobyId(professional_id)
         .then(res => setprofessionalData(res))
         .catch(e => console.log(e)) 
-    }, []);
+    }, [professional_id]);
  
     const getForm = () => {
     return (
@@ -74,7 +73,7 @@ const AddProfessional = () => {
                             {!professional_id &&
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.password) && "is-invalid"} type="password" defaultValue={professional_id && professionalData.password} placeholder="Contraseña"  {...register("password", { required: true })}/>
+                                    <Form.Control className={(errors.password) && "is-invalid"} type="password" defaultValue={professional_id && professionalData.password} name='password' placeholder="Contraseña"  {...register("password", { required: true })}/>
                                     {errors.password && <div className="invalid-feedback">Introduzca una contraseña válida</div>}
                                 </Form.Group>
                             </div>}

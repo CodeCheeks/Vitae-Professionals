@@ -34,7 +34,7 @@ const AddReport = () => {
         report_id && getDataReport(report_id)
         .then(data => setdataReport(data))
         .catch(e => console.log(e)) 
-    }, []);
+    }, [report_id]);
 
     const getForm = () => {
         return(
