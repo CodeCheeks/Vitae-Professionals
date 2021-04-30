@@ -7,6 +7,10 @@ const http = create()
 export const getEldersInfo = () => {
     return http.get('/elders')
   }
+
+  export const getElderInfoById = (elder_id) => {
+    return http.get(`/elders/${elder_id}`)
+  }
   
   
 export const addElder = (body) => {

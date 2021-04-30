@@ -34,7 +34,7 @@ const AdminElders = () => {
                 <td>{elder.age}</td>
                 <td>{elder.relative.firstname} {elder.relative.lastname}</td>
                 <td>
-                <NavLink className='link__style'to={`/personal-area/adminProfessional/editProfessional/${elder.id}`}>
+                <NavLink className='link__style'to={`/personal-area/adminElders/editElder/${elder.id}`}>
                     <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={elder.id} alt="edit" className="mx-3 custom__img" width="20px" />
                 </NavLink>
                 </td>
