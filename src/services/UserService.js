@@ -28,16 +28,6 @@ export const editUser = (_id,body) => {
   return http.put(`/editProfessional/${_id}`, body)
 }
 
-//ELDERS
-
-export const getEldersInfo = () => {
-  return http.get('/elders')
-}
-
-
-export const addElder = (body) => {
-  return http.post('/addElder', body)
-}
 
 
 

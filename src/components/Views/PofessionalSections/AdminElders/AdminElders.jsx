@@ -1,17 +1,29 @@
-import React, { useContext } from 'react';
-import { ElderContext } from "../../../../contexts/ElderContext"
-import {Link,} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import {Link,NavLink} from 'react-router-dom'
 import './AdminElders.css'
 import { Spinner, Table } from 'react-bootstrap';
+import { getEldersInfo, deleteElder } from "../../../../services/ElderService";
 
 import "./AdminElders.css"
 
 const AdminElders = () => {
-    const { elders } = useContext(ElderContext);
+    const [elders, setElders] = useState(null)
     
     const deleteHandler = ((e) => {
-         
+        console.log(e.target.id)
+        deleteElder(e.target.id)
+        .then(res => {
+            let updatedElders = elders.filter(elder => elder.id !== e.target.id)
+            setElders(updatedElders)
+        })
+        .catch(e => console.log(e))  
     })
+
+    useEffect(() => {
+        getEldersInfo()
+        .then(res => setElders(res))
+        .catch(error => console.log(error))
+    }, [])
 
     const getElders =() => {
         let eldersRow = []
@@ -22,7 +34,9 @@ const AdminElders = () => {
                 <td>{elder.age}</td>
                 <td>{elder.relative.firstname} {elder.relative.lastname}</td>
                 <td>
-                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={elder.id} alt="edit" className="mx-3 custom__img" width="20px" />
+                <NavLink className='link__style'to={`/personal-area/adminProfessional/editProfessional/${elder.id}`}>
+                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={elder.id} alt="edit" className="mx-3 custom__img" width="20px" />
+                </NavLink>
                 </td>
                 <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={elder.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/></td>
             </tr>)

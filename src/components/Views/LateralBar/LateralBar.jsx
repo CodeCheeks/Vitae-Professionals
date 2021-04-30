@@ -18,7 +18,7 @@ const LateralBar = () => {
                     <Link to={"/personal-area/messages"} className='col l__bar__item'>Mis mensajes</Link>
                 </div> 
                 <div className="row">
-                    <Link to={"/personal-area/newRelative"} className='col l__bar__item'>Crear Nueva alta</Link>
+                    <Link to={"/personal-area/newElder"} className='col l__bar__item'>Crear Nueva alta</Link>
                 </div>
                 <div className="row">
                     <Link to={"/personal-area/adminProfessionals"} className='col l__bar__item'>Administrar Profesionales</Link>

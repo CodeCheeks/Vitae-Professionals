@@ -14,7 +14,7 @@ import NotFound from '../Views/NotFound/NotFound'
 import PersonalArea from '../Views/PersonalArea/PersonalArea'
 import AddProfessional from '../Views/PofessionalSections/AdminProfessional/AddProfesional'
 import AdminProfessional from '../Views/PofessionalSections/AdminProfessional/AdminProfessional'
-import CreateRelative from '../Views/PofessionalSections/CreateRelative/CreateRelative'
+import CreateElder from '../Views/PofessionalSections/CreateElder/CreateElder'
 import MyAlbum from '../Views/PofessionalSections/MyAlbum/MyAlbum'
 import MyMessages from '../Views/PofessionalSections/MyMessages/MyMessages'
 import ListReports from '../Views/Reports/ListReports/ListReports'
@@ -79,8 +79,8 @@ const AppRouter = () => {
             <Route exact path="/personal-area/messages" >
                 {!user ? <Login/> : <MyMessages/>}
             </Route>
-            <Route exact path="/personal-area/newRelative" >
-                {!user ? <Login/> : <CreateRelative/>}
+            <Route exact path="/personal-area/newElder" >
+                {!user ? <Login/> : <CreateElder/>}
             </Route>
             <Route exact path="/personal-area/adminProfessionals" >
                 {!user ? <Login/> : <AdminProfessional/>}
@@ -96,6 +96,9 @@ const AppRouter = () => {
             </Route>
             <Route exact path="/personal-area/adminElders" >
                 {!user ? <Login/> : <AdminElders/>}
+            </Route>
+            <Route exact path="/personal-area/adminElders/editElder/:elder_id" >
+                {!user ? <Login/> : <CreateElder/>}
             </Route>
             
             <Route component={NotFound} />

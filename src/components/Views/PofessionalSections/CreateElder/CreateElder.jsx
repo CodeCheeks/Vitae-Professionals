@@ -1,11 +1,11 @@
 import React from 'react';
-import './CreateRelative.css'
+import './CreateElder.css'
 import { Col, Form, Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-import { addElder } from '../../../../services/UserService';
+import { addElder } from '../../../../services/ElderService';
 import { useHistory } from 'react-router';
 
-const CreateRelative = () => {
+const CreateElder = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { push } = useHistory();
@@ -125,6 +125,6 @@ const CreateRelative = () => {
     );
 };
 
-export default CreateRelative;
+export default CreateElder;
 
 
