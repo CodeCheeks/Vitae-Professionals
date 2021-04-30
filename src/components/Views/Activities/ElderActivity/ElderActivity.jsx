@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './ElderActivity.css'
 import { Spinner, Table } from 'react-bootstrap';
-
 import { useParams } from 'react-router';
-import { deleteParticipants } from '../../../../services/activitiesService';
 import { getElderData } from '../../../../services/EldersService';
-
 
 
 const ElderActivity = () => {

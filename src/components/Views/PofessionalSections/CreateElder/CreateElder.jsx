@@ -18,7 +18,7 @@ const CreateElder = () => {
         console.log(data)
         if(!elder_id){
             addElder(data)
-                .then((response) => { push("/personal-area/adminElders")})
+                .then((response) => window.location.href="/personal-area")
                 .catch((e) => console.log(e))
         }
         else{
