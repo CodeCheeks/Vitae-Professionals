@@ -5,6 +5,9 @@ const LateralBar = () => {
     return (
         <div className='LateralBar'>
             <div className="container   ">
+            <div className="row">
+                    <Link to={"/personal-area"} className='col l__bar__item'>Listado de usuarios</Link>
+                </div>
                 <div className="row">
                     <Link to={"/personal-area/reports"} className='col l__bar__item'>Mis informes</Link>
                 </div>

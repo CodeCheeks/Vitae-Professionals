@@ -6,8 +6,6 @@ import './PersonalArea.css'
 const PersonalArea = () => {
 
 
-   console.log(EldersList)
-
     return (
         <div className='PersonalArea'>
             <div className='container-fluid border-primary'>

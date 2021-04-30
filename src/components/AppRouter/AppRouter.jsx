@@ -20,6 +20,7 @@ import MyMessages from '../Views/PofessionalSections/MyMessages/MyMessages'
 import ListReports from '../Views/Reports/ListReports/ListReports'
 import AddReport from '../Views/Reports/AddReport/AddReport'
 import AddActivity  from '../Views/Activities/AddActivity/AddActivity'
+import AdminElders from '../Views/PofessionalSections/AdminElders/AdminElders'
 
 const AppRouter = () => {
 
@@ -94,7 +95,7 @@ const AppRouter = () => {
                 {!user ? <Login/> : <CandidatesList/>}
             </Route>
             <Route exact path="/personal-area/adminElders" >
-                {!user ? <Login/> : <CandidatesList/>}
+                {!user ? <Login/> : <AdminElders/>}
             </Route>
             
             <Route component={NotFound} />
