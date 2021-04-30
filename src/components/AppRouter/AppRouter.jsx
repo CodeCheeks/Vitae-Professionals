@@ -21,6 +21,8 @@ import ListReports from '../Views/Reports/ListReports/ListReports'
 import AddReport from '../Views/Reports/AddReport/AddReport'
 import AddActivity  from '../Views/Activities/AddActivity/AddActivity'
 import AdminElders from '../Views/PofessionalSections/AdminElders/AdminElders'
+import ElderActivity from '../Views/Activities/ElderActivity/ElderActivity'
+
 
 const AppRouter = () => {
 
@@ -51,6 +53,10 @@ const AppRouter = () => {
 
             <Route exact path="/elders/:elder_id/add-reports" >
                 {!user ? <Login/> : <AddReport />}
+            </Route>  
+
+            <Route exact path="/elders/actividades/:id" >
+                {!user ? <Login/> : <ElderActivity />}
             </Route>  
 
             <Route exact path="/elders/edit-report/:report_id" >
