@@ -32,8 +32,20 @@ function App() {
       </header>
 
       <main>
-        {user && <LateralBar/> }
-        <AppRouter/>
+        <div className='container-fluid'>
+        
+          <div className='row'>
+            <div className={`${user ? 'col-sm-12 col-md-12  col-lg-2' : 'd-none'}`}>
+            {user && <LateralBar/> }
+            </div>
+            <div 
+            className={`${user ? 'col-sm-12 col-md-12  col-lg-10' : 'col-12'}`}>
+            <AppRouter/>
+            </div>
+            
+          </div>
+        
+        </div>
       
         
       </main>
