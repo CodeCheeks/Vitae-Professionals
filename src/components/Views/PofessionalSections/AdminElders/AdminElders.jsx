@@ -1,18 +1,16 @@
 import React from 'react';
 import LateralBar from '../../ProfessionalsBars/LateralBar';
 import CustomNavbar from '../../../CustomNavbar/CustomNavbar';
-import "./AdminPage.css"
+import "./AdminElders.css"
 
-const MyAlbum = () => {
+const AdminElders = () => {
     return (
-        <div ClassName='MyAlbum'>
+        <div ClassName='AdminElders'>
             <CustomNavbar/>
             <LateralBar/>
-            <h1>Administrator area</h1>
-            <p>CRUD ABUELOS</p>
-            <p>CRUD PERSONAL</p>
+            <h1>Administrar abuelos</h1>
         </div>
     );
 };
 
-export default MyAlbum;
+export default AdminElders;

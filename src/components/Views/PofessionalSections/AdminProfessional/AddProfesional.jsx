@@ -17,12 +17,12 @@ const AddProfessional = () => {
         console.log(professional_id)
         if(!professional_id){
             addUser(data)
-                .then((res) => push('/personal-area/adminProfessional'))
+                .then((res) => push('/personal-area/adminProfessionals'))
                 .catch(e => console.log(e))
         }
         else{
             editUser(professional_id,data)
-                .then((res) => push('/personal-area/adminProfessional'))
+                .then((res) => push('/personal-area/adminProfessionals'))
                 .catch(e => console.log(e))
         }
 
@@ -44,12 +44,14 @@ const AddProfessional = () => {
                         <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
+                                <Form.Label className='d-flex '>Nombre</Form.Label>
                                     <Form.Control className={(errors.firstname) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.firstname} placeholder="Nombre" {...register("firstname", { required: true })}/>
                                     {errors.firstname && <div className="invalid-feedback">Introduzca nombre</div>}
                                 </Form.Group>
                             </div>
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
+                                <Form.Label className='d-flex '>Apellidos</Form.Label>
                                     <Form.Control className={(errors.lastname) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.lastname} placeholder="Apellidos" {...register("lastname", { required: true })}/>
                                     {errors.lastname && <div className="invalid-feedback">Introduzca apellidos</div>}
                                 </Form.Group>
@@ -58,13 +60,15 @@ const AddProfessional = () => {
                         <div className="row mt-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
+                                <Form.Label className='d-flex '>Teléfono</Form.Label>
                                     <Form.Control className={(errors.phonenumber) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.phonenumber} placeholder="Teléfono" {...register("phonenumber", { required: true })}/>
                                     {errors.phonenumber && <div className="invalid-feedback">Introduzca un teléfono</div>}
                                 </Form.Group>
                             </div>
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.email) && "is-invalid"} type="string" defaultValue={professional_id && professionalData.email} placeholder="Email" {...register("email", { required: true })}/>
+                                <Form.Label className='d-flex '>Email</Form.Label>
+                                    <Form.Control className={(errors.email) && "is-invalid"} type="email" defaultValue={professional_id && professionalData.email} placeholder="Email" {...register("email", { required: true })}/>
                                     {errors.email && <div className="invalid-feedback">Introduzca un email</div>}
                                 </Form.Group>
                             </div>
@@ -73,6 +77,7 @@ const AddProfessional = () => {
                             {!professional_id &&
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
+                                <Form.Label className='d-flex '>Contraseña</Form.Label>
                                     <Form.Control className={(errors.password) && "is-invalid"} type="password" defaultValue={professional_id && professionalData.password} name='password' placeholder="Contraseña"  {...register("password", { required: true })}/>
                                     {errors.password && <div className="invalid-feedback">Introduzca una contraseña válida</div>}
                                 </Form.Group>

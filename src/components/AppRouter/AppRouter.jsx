@@ -81,7 +81,7 @@ const AppRouter = () => {
             <Route exact path="/personal-area/newRelative" >
                 {!user ? <Login/> : <CreateRelative/>}
             </Route>
-            <Route exact path="/personal-area/adminProfessional" >
+            <Route exact path="/personal-area/adminProfessionals" >
                 {!user ? <Login/> : <AdminProfessional/>}
             </Route>
             <Route exact path="/personal-area/adminProfessional/addProfessional" >
@@ -91,6 +91,9 @@ const AppRouter = () => {
                 {!user ? <Login/> : <AddProfessional/>}
             </Route>
             <Route exact path="/personal-area/adminProfessional/adminCandidates" >
+                {!user ? <Login/> : <CandidatesList/>}
+            </Route>
+            <Route exact path="/personal-area/adminElders" >
                 {!user ? <Login/> : <CandidatesList/>}
             </Route>
             
