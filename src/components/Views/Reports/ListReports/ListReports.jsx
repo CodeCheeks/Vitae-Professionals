@@ -55,7 +55,11 @@ const ListReports = () => {
                                         </Accordion.Toggle>
                                     </div>
                                     <div className="col-4">
-                                        <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>
+                                        {console.log(id)}
+                                        {!id && <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>}
+
+                                        {id && <h6>Profesional: {report.professional.firstname} {report.professional.lastname}</h6> }
+
                                     </div>
                                     <div className="col-2">
                                         <h6>{(report.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
