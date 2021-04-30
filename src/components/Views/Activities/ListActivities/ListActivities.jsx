@@ -83,7 +83,12 @@ const ListActivities = () => {
                                         <div className="col">
                                             {
                                                 activity.participants.length > 0 ?
-                                                activity.participants.map(elder => <h6>{elder}</h6>)
+                                                activity.participants.map(elder => {
+                                                return (
+                                                    <div className="row justify-content-center">
+                                                        <h6>{elder.firstname} {elder.lastname}</h6>
+                                                    </div>
+                                                )})
                                                 :
                                                 <h6>No existen usuarios inscritos en la actividad</h6>
                                             }

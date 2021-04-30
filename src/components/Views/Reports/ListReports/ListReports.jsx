@@ -55,7 +55,7 @@ const ListReports = () => {
                                         </Accordion.Toggle>
                                     </div>
                                     <div className="col-4">
-                                        <h6>Usuario: {report.elder}</h6>
+                                        <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>
                                     </div>
                                     <div className="col-2">
                                         <h6>{(report.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
@@ -69,10 +69,18 @@ const ListReports = () => {
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="0">
                                 <Card.Body>
-                                    <div className="row">
-                                        <div className="col"></div>
+                                    <div className="container justify-content-start">
+                                        <div className="row">
+                                            <div className="col">
+                                                <h6>{report.title}</h6>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <p className="custom__description">{report.description}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p className="custom__description">{report.description}</p>
                                 </Card.Body>
                                 </Accordion.Collapse>
                             </Card>
