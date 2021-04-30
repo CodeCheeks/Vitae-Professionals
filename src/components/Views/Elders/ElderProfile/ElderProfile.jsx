@@ -2,14 +2,20 @@ import React, { useContext } from 'react';
 import './ElderProfile.css'
 import { useParams } from 'react-router';
 import { ElderContext } from "../../../../contexts/ElderContext"
-import LateralBar from '../../ProfessionalsBars/LateralBar';
+import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 const ElderProfile = () => {
     const {id} = useParams()
     const { elders } = useContext(ElderContext)
+    let selectedElder={};
 
-    const selectedElder = elders.find(eld => eld.id === id.toString())
+    elders ? 
+     selectedElder = elders.find(eld => eld.id === id.toString())
+    :
+    <Spinner className="m-5" animation="border" role="status" variant="info">
+        <span className="sr-only">Loading...</span>
+    </Spinner>
     
     
     const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies, profilepicture, age} = selectedElder
@@ -25,9 +31,10 @@ const ElderProfile = () => {
     }
 
     return (
+        
         <div className='ElderProfile'>
+            {elders ? 
             <div className="container-fluid p__area__wrapper">
-                <LateralBar/> 
                 <div className="container px-1 py-3 border">
                     <div className="row">
                         <div className="col-4">
@@ -63,7 +70,13 @@ const ElderProfile = () => {
                     
                 </div>
             </div>
+            :
+            <Spinner className="m-5" animation="border" role="status" variant="info">
+            <span className="sr-only">Loading...</span>
+            </Spinner>}
         </div>
+        
+    
     );
 };
 

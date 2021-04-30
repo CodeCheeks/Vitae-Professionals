@@ -4,6 +4,7 @@ import './App.css';
 import AppRouter from './components/AppRouter/AppRouter'
 import CustomFooter from './components/CustomFooter/CustomFooter';
 import CustomNavbar from './components/CustomNavbar/CustomNavbar'
+import LateralBar from './components/Views/LateralBar/LateralBar';
 import { UserContext } from "./contexts/UserContext.jsx";
 
 function App() {
@@ -31,7 +32,10 @@ function App() {
       </header>
 
       <main>
+        {user && <LateralBar/> }
         <AppRouter/>
+      
+        
       </main>
 
       <footer className="footer">
