@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
-import { ElderContext } from "../../../../contexts/ElderContext"
+import React, { useEffect, useState } from 'react';
+
 import {Link} from 'react-router-dom'
 import './EldersList.css'
 import { Spinner, Table } from 'react-bootstrap';
+import { getEldersInfo } from "../../../../services/ElderService";
 
 const EldersList = () => {
-    const { elders } = useContext(ElderContext);
+
+    const [elders, setElders] = useState(null);
     
+    useEffect(() => {
+        getEldersInfo()
+        .then(res => setElders(res))
+        .catch(error => console.log(error))
+    }, []);
 
     const getElders =() => {
         let eldersRow = []
