@@ -14,13 +14,15 @@ import NotFound from '../Views/NotFound/NotFound'
 import PersonalArea from '../Views/PersonalArea/PersonalArea'
 import AddProfessional from '../Views/PofessionalSections/AdminProfessional/AddProfesional'
 import AdminProfessional from '../Views/PofessionalSections/AdminProfessional/AdminProfessional'
-import CreateRelative from '../Views/PofessionalSections/CreateRelative/CreateRelative'
+import CreateElder from '../Views/PofessionalSections/CreateElder/CreateElder'
 import MyAlbum from '../Views/PofessionalSections/MyAlbum/MyAlbum'
 import MyMessages from '../Views/PofessionalSections/MyMessages/MyMessages'
 import ListReports from '../Views/Reports/ListReports/ListReports'
 import AddReport from '../Views/Reports/AddReport/AddReport'
 import AddActivity  from '../Views/Activities/AddActivity/AddActivity'
+import AdminElders from '../Views/PofessionalSections/AdminElders/AdminElders'
 import ElderActivity from '../Views/Activities/ElderActivity/ElderActivity'
+
 
 const AppRouter = () => {
 
@@ -83,10 +85,10 @@ const AppRouter = () => {
             <Route exact path="/personal-area/messages" >
                 {!user ? <Login/> : <MyMessages/>}
             </Route>
-            <Route exact path="/personal-area/newRelative" >
-                {!user ? <Login/> : <CreateRelative/>}
+            <Route exact path="/personal-area/newElder" >
+                {!user ? <Login/> : <CreateElder/>}
             </Route>
-            <Route exact path="/personal-area/adminProfessional" >
+            <Route exact path="/personal-area/adminProfessionals" >
                 {!user ? <Login/> : <AdminProfessional/>}
             </Route>
             <Route exact path="/personal-area/adminProfessional/addProfessional" >
@@ -97,6 +99,12 @@ const AppRouter = () => {
             </Route>
             <Route exact path="/personal-area/adminProfessional/adminCandidates" >
                 {!user ? <Login/> : <CandidatesList/>}
+            </Route>
+            <Route exact path="/personal-area/adminElders" >
+                {!user ? <Login/> : <AdminElders/>}
+            </Route>
+            <Route exact path="/personal-area/adminElders/editElder/:elder_id" >
+                {!user ? <Login/> : <CreateElder/>}
             </Route>
             
             <Route component={NotFound} />
