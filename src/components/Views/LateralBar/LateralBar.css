@@ -8,14 +8,9 @@
 
 
 .LateralBar{
-    width: 15%;
-    position: fixed;
-    margin: auto;
     background-color: var(--light-transparent-blue-color);
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: 100%;
     
 }
 
