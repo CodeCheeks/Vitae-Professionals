@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import {Link,NavLink} from 'react-router-dom'
 import './AdminElders.css'
-import { Spinner, Table } from 'react-bootstrap';
+import { Button, Modal, Spinner, Table } from 'react-bootstrap';
 import { getEldersInfo, deleteElder } from "../../../../services/ElderService";
 
 import "./AdminElders.css"
 
 const AdminElders = () => {
     const [elders, setElders] = useState(null)
+
+    const [elderId, setElderId] = useState(null);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => {
+        setShow(true)
+        setElderId(e.target.id)
+    };
+
     
     const deleteHandler = ((e) => {
-        console.log(e.target.id)
-        deleteElder(e.target.id)
+
+        deleteElder(elderId)
         .then(res => {
-            let updatedElders = elders.filter(elder => elder.id !== e.target.id)
+            let updatedElders = elders.filter(elder => elder.id !== elderId)
             setElders(updatedElders)
+            setElderId(null)
+            setShow(false)
         })
         .catch(e => console.log(e))  
     })
@@ -38,7 +50,7 @@ const AdminElders = () => {
                     <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={elder.id} alt="edit" className="mx-3 custom__img" width="20px" />
                 </NavLink>
                 </td>
-                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={elder.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/></td>
+                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={elder.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={handleShow}/></td>
             </tr>)
         })
         return eldersRow
@@ -46,6 +58,21 @@ const AdminElders = () => {
 
     return (
         <div className="container AdminElders">
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>¿Desea eliminar el elemento?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="info" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="danger" onClick={deleteHandler}>
+                        Eliminar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className='row'>
                 <h2 className='col-12 my-2 py-2'>Administración de usuarios y familiares</h2>
             </div>
