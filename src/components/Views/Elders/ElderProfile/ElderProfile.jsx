@@ -61,7 +61,7 @@ const ElderProfile = () => {
                             <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
                                 <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-primary'>Añadir informe</NavLink>
                                 <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-primary'>Ver informes</NavLink>
-                                <NavLink to={`/elders/${id}/actividades`} className='py-2 my-3 btn-primary' therapies = {therapies}>Ver actividades</NavLink> 
+                                <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-primary' therapies = {therapies}>Ver actividades</NavLink> 
                                 <NavLink to="#" className='py-2 my-3 btn-primary'>Enviar mensaje a {relative.firstname} </NavLink>
                                 <NavLink to="#" className='py-2 my-3 btn-primary'>Añadir imagenes </NavLink> 
                             </div>
