@@ -39,7 +39,7 @@ const ListActivities = () => {
 
     return (
         <div className="container">
-            <h1 className="mb-5">Actividades</h1>
+            <h1 className="mb-5">Mis Actividades</h1>
 
             <NavLink className='link__style'to={`/personal-area/activities/addActivity`}>
                 <div>
