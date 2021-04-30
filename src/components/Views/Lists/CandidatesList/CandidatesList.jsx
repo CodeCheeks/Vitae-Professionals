@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './CandidatesList.css'
-import { Spinner, Table } from 'react-bootstrap';
+import { Button, Modal, Spinner, Table } from 'react-bootstrap';
 import { getCandidatesInfo, deleteCandidate } from "../../../../services/CandidatesService";
 
 
@@ -11,11 +11,23 @@ const CandidatesList = () => {
     
     const [candidates, setCandidates] = useState(null)
 
+    const [candidateId, setCandidateId] = useState(null);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => {
+        setShow(true)
+        setCandidateId(e.target.id)
+    };
+
+
     const deleteHandler = ((e) => {
-        deleteCandidate(e.target.id)
+        deleteCandidate(candidateId)
         .then(res => {
-            let updatedCandidates = candidates.filter(cand => cand.id !== e.target.id)
+            let updatedCandidates = candidates.filter(cand => cand.id !== candidateId)
             setCandidates(updatedCandidates)
+            setCandidateId(null)
+            setShow(false)
         })
         .catch(e => console.log(e))  
     })
@@ -45,7 +57,7 @@ const CandidatesList = () => {
                 <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619718795/Vitae/iconos/download_mh6ecg.png" id={cand.id} alt="edit" className="mx-3 custom__img" width="15px" />
                 </a>
                 </td>
-                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={cand.id} alt="delete" className="mx-3 custom__img" width="15px" onClick={deleteHandler}/></td>
+                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={cand.id} alt="delete" className="mx-3 custom__img" width="15px" onClick={handleShow}/></td>
             </tr>)
         })
 
@@ -55,6 +67,21 @@ const CandidatesList = () => {
 
     return(
         <div className="container CandidatesList">
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>¿Desea eliminar el elemento?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="info" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="danger" onClick={deleteHandler}>
+                        Eliminar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className='row'>
             <h2 className='col-12 my-2 py-2'>Administración de candidaturas</h2>
             </div>

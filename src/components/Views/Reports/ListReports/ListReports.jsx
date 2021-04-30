@@ -2,9 +2,11 @@ import React, { useEffect, useContext, useState } from 'react';
 import './ListReports.css'
 import { UserContext } from "../../../../contexts/UserContext";
 import { getReports, deleteReports } from "../../../../services/ReportsService";
-import { Accordion, Button, Card, Spinner } from 'react-bootstrap';
+import { Accordion, Button, Card, Spinner, Modal } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
+
+
 
 
 const ListReports = () => {
@@ -12,6 +14,14 @@ const ListReports = () => {
     const {id} = useParams()
     const { user } = useContext(UserContext);
     const [reports, setReports] = useState(null);
+    const [reportId, setReportId] = useState(null);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => {
+        setShow(true)
+        setReportId(e.target.id)
+    };
 
 
     const editHandler = (e) => {
@@ -20,12 +30,14 @@ const ListReports = () => {
     }
 
 
-    const deleteHandler = (e) => {
-        console.log(e.target.id)
-        deleteReports(e.target.id)
+    const deleteHandler = () => {
+
+        deleteReports(reportId)
         .then(res => {
-            let updatedReports = reports.filter(rep => rep.id !== e.target.id)
+            let updatedReports = reports.filter(rep => rep.id !== reportId)
             setReports(updatedReports)
+            setReportId(null)
+            setShow(false)
         })
         .catch(e => console.log(e))
     }
@@ -39,7 +51,23 @@ const ListReports = () => {
 
     return (
         <div className="container">
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>¿Desea eliminar el elemento?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="info" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="danger" onClick={deleteHandler}>
+                        Eliminar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <h1 className="mb-5">Informes</h1>
+
             
             {
                 reports ? 
@@ -56,9 +84,9 @@ const ListReports = () => {
                                     </div>
                                     <div className="col-4">
                                         {console.log(id)}
-                                        {!id && <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>}
+                                        {!id&&report.elder && <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>}
 
-                                        {id && <h6>Profesional: {report.professional.firstname} {report.professional.lastname}</h6> }
+                                        {id&&report.professional && <h6>Profesional: {report.professional.firstname} {report.professional.lastname}</h6> }
 
                                     </div>
                                     <div className="col-2">
@@ -68,7 +96,7 @@ const ListReports = () => {
                                         <NavLink className='link__style'to={`/elders/edit-report/${report.id}`}>
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
                                         </NavLink>
-                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={deleteHandler}/>
+                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={handleShow}/>
                                     </div>
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="0">
@@ -96,6 +124,9 @@ const ListReports = () => {
                 : <Spinner animation="border" variant="info" />
             }
         </div>
+
+
+
     );
 };
 

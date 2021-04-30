@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink} from 'react-router-dom'
 import './ProfessionalList.css'
-import { Spinner, Table } from 'react-bootstrap';
+import { Spinner, Table, Modal, Button } from 'react-bootstrap';
 import { getUsersInfo, deleteUser } from "../../../../services/UserService";
+
 
 
 
@@ -12,12 +13,23 @@ const UsersList = () => {
     
     const [users, setUsers] = useState(null)
 
+    const [professionalId, setProfessionalId] = useState(null);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => {
+        setShow(true)
+        setProfessionalId(e.target.id)
+    };
+
     const deleteHandler = ((e) => {
-        console.log(e.target.id)
-        deleteUser(e.target.id)
+
+        deleteUser(professionalId)
         .then(res => {
-            let updatedUsers = users.filter(user => user.id !== e.target.id)
+            let updatedUsers = users.filter(user => user.id !== professionalId)
             setUsers(updatedUsers)
+            setProfessionalId(null)
+            setShow(false)
         })
         .catch(e => console.log(e))  
     })
@@ -45,7 +57,7 @@ const UsersList = () => {
                 <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={user.id} alt="edit" className="mx-3 custom__img" width="20px" />
                 </NavLink>
                 </td>
-                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={user.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={deleteHandler}/></td>
+                <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={user.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={handleShow}/></td>
             </tr>)
         })
         return usersRow
@@ -53,6 +65,23 @@ const UsersList = () => {
 
     return(
         <div className="container UsersList">
+
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Eliminar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>¿Desea eliminar el elemento?</Modal.Body>
+                <Modal.Footer>
+                <Button variant="info" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="danger" onClick={deleteHandler}>
+                    Eliminar
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
             <div className='row'>
             <h2 className='col-12 my-2 py-2'>Administración de personal</h2>
             </div>

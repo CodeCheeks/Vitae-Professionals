@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import './ListActivities.css'
 import { UserContext } from "../../../../contexts/UserContext";
 import { getActivities, deleteActivity } from "../../../../services/activitiesService";
-import { Accordion, Button, Card, Spinner } from 'react-bootstrap';
+import { Accordion, Button, Card, Modal, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
@@ -14,6 +14,15 @@ const ListActivities = () => {
     const [activities, setActivities] = useState(null);
 
 
+    const [activityId, setActivityId] = useState(null);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => {
+        setShow(true)
+        setActivityId(e.target.id)
+    };
+
     const editHandler = (e) => {
         console.log("click edit")
         
@@ -21,11 +30,13 @@ const ListActivities = () => {
 
 
     const deleteHandler = (e) => {
-        console.log(e.target.id)
-        deleteActivity(e.target.id)
+
+        deleteActivity(activityId)
         .then(act => {
-            let updatedActivities = activities.filter(act => act.id !== e.target.id)
+            let updatedActivities = activities.filter(act => act.id !== activityId)
             setActivities(updatedActivities)
+            setActivityId(null)
+            setShow(false)
         })
         .catch(e => console.log(e))
     }
@@ -40,6 +51,21 @@ const ListActivities = () => {
     return (
         <div className="container">
             <h1 className="mb-5">Mis Actividades</h1>
+
+            <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>Eliminar</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>¿Desea eliminar el elemento?</Modal.Body>
+            <Modal.Footer>
+            <Button variant="info" onClick={handleClose}>
+                Close
+            </Button>
+            <Button variant="danger" onClick={deleteHandler}>
+                Eliminar
+            </Button>
+            </Modal.Footer>
+            </Modal>
 
             <NavLink className='link__style'to={`/personal-area/activities/addActivity`}>
                 <div>
@@ -74,7 +100,7 @@ const ListActivities = () => {
                                         <NavLink className='link__style'to={`/personal-area/editActivity/${activity.id}`}>
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={activity.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
                                         </NavLink>
-                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={activity.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={deleteHandler}/>
+                                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={activity.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={handleShow}/>
                                     </div>
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="0">
@@ -99,6 +125,7 @@ const ListActivities = () => {
                                 </Accordion.Collapse>
                             </Card>
                         </Accordion>
+                        
                     )
                 })) 
                 :
