@@ -86,25 +86,25 @@ const AppRouter = () => {
                 {!user ? <Login/> : <MyMessages/>}
             </Route>
             <Route exact path="/personal-area/newElder" >
-                {!user ? <Login/> : <CreateElder/>}
+                {!user ? <Login/> : user.admin ? <CreateElder/> : <PersonalArea/>}
             </Route>
             <Route exact path="/personal-area/adminProfessionals" >
-                {!user ? <Login/> : <AdminProfessional/>}
+                {!user ? <Login/> : user.admin ? <AdminProfessional/> : <PersonalArea/>}
             </Route>
             <Route exact path="/personal-area/adminProfessional/addProfessional" >
-                {!user ? <Login/> : <AddProfessional/>}
+                {!user ? <Login/> : user.admin ? <AddProfessional/> : <PersonalArea/>}
             </Route>
             <Route exact path="/personal-area/adminProfessional/editProfessional/:professional_id" >
-                {!user ? <Login/> : <AddProfessional/>}
+                {!user ? <Login/> : user.admin ? <AddProfessional/> : <PersonalArea/>}
             </Route>
             <Route exact path="/personal-area/adminProfessional/adminCandidates" >
-                {!user ? <Login/> : <CandidatesList/>}
+                {!user ? <Login/> : user.admin ? <CandidatesList/> : <PersonalArea/>}
             </Route>
             <Route exact path="/personal-area/adminElders" >
-                {!user ? <Login/> : <AdminElders/>}
+                {!user ? <Login/> : user.admin ? <AdminElders/> : <PersonalArea/>}
             </Route>
             <Route exact path="/personal-area/adminElders/editElder/:elder_id" >
-                {!user ? <Login/> : <CreateElder/>}
+                {!user ? <Login/> : user.admin ? <CreateElder/> : <PersonalArea/>}
             </Route>
             
             <Route component={NotFound} />
