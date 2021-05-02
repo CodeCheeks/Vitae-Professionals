@@ -21,6 +21,7 @@ const CustomNavbar = (user) => {
                     <NavLink to="/personal-area/enfermeria" className="mx-2">Enfermería</NavLink>
                     <NavLink to="/personal-area/medicina" className="mx-2">Medicina</NavLink>
                     <NavLink to="/personal-area/fisioterapia" className="mx-2">Fisioterapia</NavLink>
+                    <NavLink to="/personal-area/psicología" className="mx-2">Psicología</NavLink>
                     <NavLink to="/personal-area/terapia-ocupacional" className="mx-2">Terapia Ocupacional</NavLink>
                     <NavLink to="/personal-area/trabajo-social" className="mx-2">Trabajo social</NavLink>
                     <NavLink to="/personal-area/animación" className="mx-2">Animación</NavLink>
