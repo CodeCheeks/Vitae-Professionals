@@ -28,6 +28,7 @@ import Physiotherapy from '../Views/PofessionalSections/Sections/Physiotherapy/P
 import Therapy from '../Views/PofessionalSections/Sections/Therapy/Therapy'
 import Animation from '../Views/PofessionalSections/Sections/Animation/Animation'
 import SocialWork from '../Views/PofessionalSections/Sections/SocialWork/SocialWork'
+import Psychology from '../Views/PofessionalSections/Sections/Psychology/Psychology'
 
 
 const AppRouter = () => {
@@ -95,6 +96,10 @@ const AppRouter = () => {
 
             <Route exact path="/personal-area/fisioterapia" >
                 {!user ? <Login/> : <Physiotherapy/>}
+            </Route>
+
+            <Route exact path="/personal-area/psicología" >
+                {!user ? <Login/> : <Psychology/>}
             </Route>
 
             <Route exact path="/personal-area/terapia-ocupacional" >

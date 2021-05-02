@@ -1,13 +1,13 @@
 import React from 'react';
 import ProfessionalSection from '../ProfessionalSection/ProfessionalSection';
 
-const Physiotherapy = () => {
+const Psychology = () => {
     return (
         <div>
-            <h1>Fisioterapia</h1>
-            <ProfessionalSection department="physiotherapist"/>
+            <h1>Psicología</h1>
+            <ProfessionalSection department="psychologist"/>
         </div>
     );
 };
 
-export default Physiotherapy;
+export default Psychology;
