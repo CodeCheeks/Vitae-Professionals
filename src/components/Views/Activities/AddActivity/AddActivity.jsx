@@ -32,7 +32,11 @@ const AddActivity = () => {
 
     const onSubmit = (data) => {
         if(!activity_id){
-            data.organizer = user.id
+            Object.assign(data, {
+                sector: user.occupation,
+                organizer: user.id
+            });
+
             addActivity(data)
             .then(() => push(`/personal-area/activities`))
             .catch(e => console.log(e))
@@ -46,7 +50,9 @@ const AddActivity = () => {
     
     useEffect(() => {
         activity_id && getDataActivity(activity_id)
-        .then(data => setdataActivity(data))
+        .then(data => {
+            console.log(data)
+            setdataActivity(data)})
         .catch(e => console.log(e)) 
     }, [activity_id]);
     
@@ -66,15 +72,55 @@ const AddActivity = () => {
                         </div>
                         <div className="row">
                             <div className="col">
+                                <Form.Group controlId="formBasictitle">    
+                                    <Form.Control className={(errors.title) && "is-invalid"} type="date" /* defaultValue={activity_id && (dataActivity.startDate.split('T')[0].split("-").join("-"))} */ {...register("startDate", { required: true })}/>
+                                    {errors.title && <div className="invalid-feedback">Introduzca fecha</div>}
+                                </Form.Group>
+                            </div>
+                        <div className="col">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.duration) && "is-invalid"} type="string" defaultValue={activity_id && dataActivity.duration} placeholder="duration" {...register("duration", { required: true })}/>
-                                    {errors.duration && <div className="invalid-feedback">Introduzca duración de la actividad</div>}
+                                    <Form.Control className={(errors.schedule) && "is-invalid"} as="select" defaultValue={activity_id && dataActivity.startHour} placeholder="Hora de inicio" {...register("startHour", { required: true })}>
+                                        <option value="">--:--</option>
+                                        <option>8:00</option>
+                                        <option>8:30</option>
+                                        <option>9:00</option>
+                                        <option>9:30</option>
+                                        <option>10:00</option>
+                                        <option>10:30</option>
+                                        <option>11:00</option>
+                                        <option>11:30</option>
+                                        <option>12:00</option>
+                                        <option>12:30</option>
+                                        <option>13:00</option>
+                                        <option>13:30</option>
+                                        <option>14:00</option>
+                                        <option>14:30</option>
+                                        <option>15:00</option>
+                                    </Form.Control>
+                                    {errors.schedule && <div className="invalid-feedback">Introduzca hora de inicio</div>}
                                 </Form.Group>
                             </div>
                             <div className="col">
                                 <Form.Group controlId="formBasictitle">
-                                    <Form.Control className={(errors.schedule) && "is-invalid"} type="string" defaultValue={activity_id && dataActivity.schedule} placeholder="schedule" {...register("schedule", { required: true })}/>
-                                    {errors.schedule && <div className="invalid-feedback">Introduzca duración de la actividad</div>}
+                                <Form.Control className={(errors.schedule) && "is-invalid"} as="select" defaultValue={activity_id && dataActivity.finishHour} placeholder="Hora de finalización" {...register("finishHour", { required: true })}>
+                                        <option value="">--:--</option>
+                                        <option>8:00</option>
+                                        <option>8:30</option>
+                                        <option>9:00</option>
+                                        <option>9:30</option>
+                                        <option>10:00</option>
+                                        <option>10:30</option>
+                                        <option>11:00</option>
+                                        <option>11:30</option>
+                                        <option>12:00</option>
+                                        <option>12:30</option>
+                                        <option>13:00</option>
+                                        <option>13:30</option>
+                                        <option>14:00</option>
+                                        <option>14:30</option>
+                                        <option>15:00</option>
+                                    </Form.Control>
+                                    {errors.schedule && <div className="invalid-feedback">Introduzca hora de finalización</div>}
                                 </Form.Group>
                             </div>
                         </div>
