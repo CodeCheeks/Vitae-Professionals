@@ -4,8 +4,7 @@ import ProfessionalSection from '../ProfessionalSection/ProfessionalSection';
 
 const Medicine = () => {
     return (
-        <div>
-            <h1>Medicina</h1>
+        <div className="my-5">
             <ProfessionalSection department="doctor"/>
             <Agenda section="doctor" />
         </div>

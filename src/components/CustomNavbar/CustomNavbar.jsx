@@ -18,19 +18,19 @@ const CustomNavbar = (user) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavLink to="/personal-area/enfermeria" className="mx-2">Enfermería</NavLink>
-                    <NavLink to="/personal-area/medicina" className="mx-2">Medicina</NavLink>
-                    <NavLink to="/personal-area/fisioterapia" className="mx-2">Fisioterapia</NavLink>
-                    <NavLink to="/personal-area/psicología" className="mx-2">Psicología</NavLink>
-                    <NavLink to="/personal-area/terapia-ocupacional" className="mx-2">Terapia Ocupacional</NavLink>
-                    <NavLink to="/personal-area/trabajo-social" className="mx-2">Trabajo social</NavLink>
-                    <NavLink to="/personal-area/animación" className="mx-2">Animación</NavLink>
+                    <NavLink to="/personal-area/enfermeria" className="mx-3 menu__item">Enfermería</NavLink>
+                    <NavLink to="/personal-area/medicina" className="mx-3 menu__item">Medicina</NavLink>
+                    <NavLink to="/personal-area/fisioterapia" className="mx-3 menu__item">Fisioterapia</NavLink>
+                    <NavLink to="/personal-area/psicología" className="mx-3 menu__item">Psicología</NavLink>
+                    <NavLink to="/personal-area/terapia-ocupacional" className="mx-3 menu__item">Terapia Ocupacional</NavLink>
+                    <NavLink to="/personal-area/trabajo-social" className="mx-3 menu__item">Trabajo social</NavLink>
+                    <NavLink to="/personal-area/animación" className="mx-3 menu__item">Animación</NavLink>
                 </Nav>
                 <Navbar.Text>
                   Usuario: <a href="#login">{user.firstname}</a>
                 </Navbar.Text>
-                <div className="mx-3">
-                    <NavLink to="/login" onClick={logout}>Cerrar sesión</NavLink>
+                <div className="mx-5">
+                    <NavLink className="menu__item" to="/login" onClick={logout}>Cerrar sesión</NavLink>
                 </div>
             </Navbar.Collapse>
             </Navbar>

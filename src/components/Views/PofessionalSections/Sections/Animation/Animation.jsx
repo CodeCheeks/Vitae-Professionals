@@ -4,8 +4,7 @@ import ProfessionalSection from '../ProfessionalSection/ProfessionalSection';
 
 const Animation = () => {
     return (
-        <div>
-            <h1>Animación</h1>
+        <div className="my-5">
             <ProfessionalSection department="animator"/>
             <Agenda section="animator" />
         </div>
