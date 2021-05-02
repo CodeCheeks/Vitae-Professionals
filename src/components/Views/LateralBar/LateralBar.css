@@ -9,13 +9,11 @@
 
 .LateralBar{
     background-color: var(--light-transparent-blue-color);
-    border-radius: 15px;
     height: 100%;
     
 }
 
 .l__bar__item{
-    
     padding: 30px;
     text-align: left; 
     text-decoration: none !important;
@@ -26,7 +24,6 @@
 
 .l__bar__item:hover{
     background-color: rgba(47, 178, 185, 0.5);
-    border-radius: 15px;
     font-size: 1.1rem;
 }
 
@@ -37,7 +34,6 @@
         position: sticky;
         margin-bottom:  10px ;
         background-color: var(--light-transparent-blue-color);
-        border-radius: 15px;
         display: flex;
         flex-direction: row;
         justify-content: center;

@@ -77,10 +77,6 @@ body {
   text-align: center;
 }
 
-.custom__spacer{
-  height: 300px;
-}
-
 .custom__navbar__spacer{
-  height: 100px;
+  height: 50px;
 }

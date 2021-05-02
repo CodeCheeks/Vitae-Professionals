@@ -6,8 +6,7 @@ import Agenda from '../../../../Agenda/Agenda';
 const Nursing = () => {
 
     return (
-        <div>
-            <h1>Enfermería</h1>
+        <div className="my-5">
             <ProfessionalSection department="nurse"/>
             <Agenda section="nurse" />
         </div>

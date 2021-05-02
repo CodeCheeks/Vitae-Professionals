@@ -1,4 +1,8 @@
-.TopBar{
-    margin-bottom: 100px;
+.menu__item{
+    text-decoration: none !important;
+    color: #0f4881; 
 }
 
+.menu__item:hover{
+    text-decoration: underline!important;
+}
