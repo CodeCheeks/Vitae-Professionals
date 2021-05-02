@@ -14,6 +14,12 @@ export const getActivities = (_id) => {
   return http.get(`/activities/${_id}`, { params: { id: _id } })
 }
 
+export const getSectorActivities = (sector) => {
+  console.log(sector)
+  return http.get(`/activities-sector/${sector}`)
+}
+
+
 export const editActivity = (activity_id, body) => {
   return http.put(`/activity/${activity_id}`, body )
 }

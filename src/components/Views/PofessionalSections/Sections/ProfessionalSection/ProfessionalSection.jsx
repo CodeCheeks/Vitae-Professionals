@@ -1,7 +1,5 @@
 import './ProfessionalSection.css'
-
 import React, { useEffect, useState } from 'react';
-
 import { Spinner, Table } from 'react-bootstrap';
 import { getUsersInfo } from "../../../../../services/UserService";
 

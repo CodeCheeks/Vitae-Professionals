@@ -1,4 +1,5 @@
 import React from 'react';
+import Agenda from '../../../../Agenda/Agenda';
 import ProfessionalSection from '../ProfessionalSection/ProfessionalSection';
 
 const SocialWork = () => {
@@ -6,6 +7,7 @@ const SocialWork = () => {
         <div>
             <h1>Trabajo social</h1>
             <ProfessionalSection department="social worker"/>
+            <Agenda section="social worker" />
         </div>
     );
 };

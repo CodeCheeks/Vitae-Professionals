@@ -111,7 +111,7 @@ const ListActivities = () => {
                                                 activity.participants.length > 0 ?
                                                 activity.participants.map(elder => {
                                                 return (
-                                                    <div className="row justify-content-center">
+                                                    <div key={elder.id} className="row justify-content-center">
                                                         <h6>{elder.firstname} {elder.lastname}</h6>
                                                     </div>
                                                 )})

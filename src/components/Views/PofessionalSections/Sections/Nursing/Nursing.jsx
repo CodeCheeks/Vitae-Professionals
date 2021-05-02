@@ -1,17 +1,15 @@
 
-import './Nursing.css'
-
 import React from 'react';
-
 import ProfessionalSection from '../ProfessionalSection/ProfessionalSection';
-
+import Agenda from '../../../../Agenda/Agenda';
 
 const Nursing = () => {
 
     return (
-        <div className="container UsersList">
+        <div>
             <h1>Enfermería</h1>
             <ProfessionalSection department="nurse"/>
+            <Agenda section="nurse" />
         </div>
     );
 };
