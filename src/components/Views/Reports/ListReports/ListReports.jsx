@@ -23,15 +23,7 @@ const ListReports = () => {
         setReportId(e.target.id)
     };
 
-
-    const editHandler = (e) => {
-        console.log("click edit")
-        
-    }
-
-
     const deleteHandler = () => {
-
         deleteReports(reportId)
         .then(res => {
             let updatedReports = reports.filter(rep => rep.id !== reportId)
@@ -50,7 +42,7 @@ const ListReports = () => {
 
 
     return (
-        <div className="container">
+        <div className="container my-5">
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -83,7 +75,6 @@ const ListReports = () => {
                                         </Accordion.Toggle>
                                     </div>
                                     <div className="col-4">
-                                        {console.log(id)}
                                         {!id&&report.elder && <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>}
 
                                         {id&&report.professional && <h6>Profesional: {report.professional.firstname} {report.professional.lastname}</h6> }
@@ -94,7 +85,7 @@ const ListReports = () => {
                                     </div>
                                     <div className="col-2">
                                         <NavLink className='link__style'to={`/elders/edit-report/${report.id}`}>
-                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20" height="20" onClick={editHandler}/>
+                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={report.id} alt="edit" className="mx-3 custom__img" width="20" height="20"/>
                                         </NavLink>
                                         <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={report.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={handleShow}/>
                                     </div>

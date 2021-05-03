@@ -15,7 +15,6 @@ export const getActivities = (_id) => {
 }
 
 export const getSectorActivities = (sector) => {
-  console.log(sector)
   return http.get(`/activities-sector/${sector}`)
 }
 
