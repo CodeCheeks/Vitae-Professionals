@@ -20,6 +20,7 @@ const AddActivity = () => {
 
 
     const deleteHandler = (e) => {
+        console.log(e)
         deleteParticipants(e.target.id, activity_id)
         .then(()=> {
             setdataActivity( { participants: dataActivity.participants.filter(item => item !== e.target.id)})
@@ -71,12 +72,14 @@ const AddActivity = () => {
                             </div>
                         </div>
                         <div className="row">
+
+                            {!activity_id && 
                             <div className="col">
                                 <Form.Group controlId="formBasictitle">    
-                                    <Form.Control className={(errors.title) && "is-invalid"} type="date" /* defaultValue={activity_id && (dataActivity.startDate.split('T')[0].split("-").join("-"))} */ {...register("startDate", { required: true })}/>
+                                    <Form.Control className={(errors.title) && "is-invalid"} type="date" {...register("startDate", { required: true })}/>
                                     {errors.title && <div className="invalid-feedback">Introduzca fecha</div>}
                                 </Form.Group>
-                            </div>
+                            </div>}
                         <div className="col">
                                 <Form.Group controlId="formBasictitle">
                                     <Form.Control className={(errors.schedule) && "is-invalid"} as="select" defaultValue={activity_id && dataActivity.startHour} placeholder="Hora de inicio" {...register("startHour", { required: true })}>

@@ -91,10 +91,10 @@ const ListActivities = () => {
                                         <h6>{activity.title}</h6>
                                     </div>
                                     <div className="col-2">
-                                        <h6>Duración: {activity.duration}</h6>
+                                        <h6>Horario: {`${activity.startHour}-${activity.finishHour}`}</h6>
                                     </div>
                                     <div className="col-2">
-                                        <h6>Horario: {activity.schedule}</h6>
+                                        <h6>Participantes: {activity.participants.length}</h6>
                                     </div>
                                     <div className="col-2">
                                         <NavLink className='link__style'to={`/personal-area/editActivity/${activity.id}`}>
