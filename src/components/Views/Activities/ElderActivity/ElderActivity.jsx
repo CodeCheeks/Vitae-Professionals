@@ -24,8 +24,8 @@ const ElderActivity = () => {
             activitiesRow.push(<tr key={act.id}>
                
                 <td>{act.title}</td>
-                <td>{act.schedule}</td>
-                <td>{act.duration} minutos</td>
+                <td>{act.startHour}-{act.finishHour}</td>
+                <td>{act.participants.length}</td>
                 <td>{act.organizer.firstname} {act.organizer.lastname}</td>
                 
 
@@ -46,7 +46,7 @@ const ElderActivity = () => {
                     <tr>
                         <th>Actividad</th>
                         <th>Horario</th>
-                        <th>Duración</th>
+                        <th>Participantes</th>
                         <th>Organizador</th>
                     </tr>
                 </thead>

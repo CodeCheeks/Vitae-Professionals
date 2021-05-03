@@ -1,14 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './ElderProfile.css'
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { ElderContext } from "../../../../contexts/ElderContext"
-import { Spinner } from 'react-bootstrap';
+import { Button, Collapse, Form, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { elderImages } from '../../../../services/ElderService';
 
 const ElderProfile = () => {
+    const [open, setOpen] = useState(false);
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const {id} = useParams()
     const { elders } = useContext(ElderContext)
     let selectedElder={};
+
+
+    const onSubmit = (data) => {
+        data.picture = data.picture[0]
+        const formData = new FormData();
+        Object.entries(data).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+        
+        elderImages(formData, id)
+        .then(res => console.log(""))
+        .catch(e => console.log(e))
+    }
 
     elders ? 
      selectedElder = elders.find(eld => eld.id === id.toString())
@@ -16,9 +33,9 @@ const ElderProfile = () => {
     <Spinner className="m-5" animation="border" role="status" variant="info">
         <span className="sr-only">Loading...</span>
     </Spinner>
-    
-    
     const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies, profilepicture, age} = selectedElder
+    
+    
 
     const groupColor = (group) => {
         if(group === 'Rojo'){
@@ -43,31 +60,45 @@ const ElderProfile = () => {
                                 <h1>{firstname} {lastname}</h1>
                             </div>
                         </div>
-                            <div className="col-3 d-flex flex-column justify-content-center align-items-start">
-                                <h6 >Grupo:<span className={groupColor(group)}>{group}</span> </h6>
-                                <h6 >Género: {gender} </h6>
-                                <h6>Nacimiento: {dateOfBirth.split('T')[0].split("-").reverse().join("-")} </h6>
-                                <h6>Edad: {age}</h6>
-                            </div>
-                            <div className="col-5 d-flex flex-column justify-content-center align-items-start">
-                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {diet}</h6>
-                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546183/Vitae/iconos/pngwing.com_afyg5o.png" alt="" width="25"/>Dirección: {address} </h6>
-                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546583/Vitae/iconos/klipartz.com_p3aao4.png" alt="" width="25"/>Familiar: {relative.firstname} </h6>
-                                <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619547020/Vitae/iconos/klipartz.com_1_zf01wx.png" alt="" width="25"/>Contactar: {relative.phonenumber}</h6>
-                            </div>
-                        
+                        <div className="col-3 d-flex flex-column justify-content-center align-items-start">
+                            <h6 >Grupo:<span className={groupColor(group)}>{group}</span> </h6>
+                            <h6 >Género: {gender} </h6>
+                            <h6>Nacimiento: {dateOfBirth.split('T')[0].split("-").reverse().join("-")} </h6>
+                            <h6>Edad: {age}</h6>
+                        </div>
+                        <div className="col-5 d-flex flex-column justify-content-center align-items-start">
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {diet}</h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546183/Vitae/iconos/pngwing.com_afyg5o.png" alt="" width="25"/>Dirección: {address} </h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546583/Vitae/iconos/klipartz.com_p3aao4.png" alt="" width="25"/>Familiar: {relative.firstname} </h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619547020/Vitae/iconos/klipartz.com_1_zf01wx.png" alt="" width="25"/>Contactar: {relative.phonenumber}</h6>
+                        </div>
                     </div>
-                        <div className="container px-1 py-3 border d-flex justify-content-center">
-                            <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
-                                <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-primary'>Añadir informe</NavLink>
-                                <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-primary'>Ver informes</NavLink>
-                                <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-primary' therapies = {therapies}>Ver actividades</NavLink> 
-                                <NavLink to="#" className='py-2 my-3 btn-primary'>Enviar mensaje a {relative.firstname} </NavLink>
-                                <NavLink to="#" className='py-2 my-3 btn-primary'>Añadir imagenes </NavLink> 
-                            </div>
-                        
+                    <div className="container px-1 py-3 border d-flex justify-content-center">
+                        <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
+                            <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-info'>Añadir informe</NavLink>
+                            <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-info'>Ver informes</NavLink>
+                            <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-info' therapies = {therapies}>Ver actividades</NavLink> 
+                            <NavLink to="#" className='py-2 my-3 btn-info'>Enviar mensaje a {relative.firstname} </NavLink>
+                            <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}variant="info">Añadir imagen</Button>{' '}
+                            <Collapse in={open}> 
+                                <div className="container">
+                                    <div className="row justify-content-center" id="example-collapse-text">
+                                        <div className="col">
+                                            <Form onSubmit={handleSubmit(onSubmit)}>
+                                                <Form.Group controlId="picture">
+                                                    <div className="row">
+                                                        <Form.File className="inputfile my-3" id="picture" {...register("picture", { required: true })} />
+                                                        {errors.picture && <div className="invalid-feedback">Seleccione una imagen</div>}
+                                                        <Button variant="" type="submit">Añadir</Button>
+                                                    </div>
+                                                </Form.Group>
+                                            </Form>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </Collapse>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
             :
@@ -75,8 +106,6 @@ const ElderProfile = () => {
             <span className="sr-only">Loading...</span>
             </Spinner>}
         </div>
-        
-    
     );
 };
 
