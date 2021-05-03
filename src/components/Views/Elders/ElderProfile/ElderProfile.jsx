@@ -78,8 +78,8 @@ const ElderProfile = () => {
                             <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-info'>Añadir informe</NavLink>
                             <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-info'>Ver informes</NavLink>
                             <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-info' therapies = {therapies}>Ver actividades</NavLink> 
-                            <NavLink to="#" className='py-2 my-3 btn-info'>Enviar mensaje a {relative.firstname} </NavLink>
-                            <Button  onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}variant="info">Añadir imagen</Button>{' '}
+                            <Button className="my-1" variant="info" type="submit">Enviar mensaje a {relative.firstname}</Button>
+                            <Button className="my-3" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}variant="info">Añadir imagen</Button>{' '}
                             <Collapse in={open}> 
                                 <div className="container">
                                     <div className="row justify-content-center" id="example-collapse-text">
