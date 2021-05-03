@@ -49,7 +49,7 @@ const ListActivities = () => {
 
 
     return (
-        <div className="container">
+        <div className="container my-5">
             <h1 className="mb-5">Mis Actividades</h1>
 
             <Modal show={show} onHide={handleClose}>

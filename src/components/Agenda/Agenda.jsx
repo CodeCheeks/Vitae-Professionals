@@ -18,16 +18,13 @@ const Agenda = (props) => {
 
   useEffect(() => {
     let tasks = []
-    console.log(props.section)
     getSectorActivities(props.section)
     .then(res => {
-      console.log(res)
       res.forEach(task => tasks.push(changeFormat(task)))
-      console.log(tasks)
       setAgenda(tasks)
     })
     .catch(error => console.log(error))
-  }, [])
+  }, [props.section])
 
   return (
       <AgendaCalender agenda={agenda} currentDate={new Date()} />
