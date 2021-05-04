@@ -6,3 +6,12 @@
 .menu__item:hover{
     text-decoration: underline!important;
 }
+
+.user__style:hover{
+    text-decoration: none !important;
+}
+
+.user__style{
+    color: var(--dark-blue-color) !important;
+    font-weight: bold;
+}

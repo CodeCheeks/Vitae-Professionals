@@ -36,8 +36,13 @@ const ElderActivity = () => {
     
     return(
         <div className="container UsersList">
-            <div className='row'>
-            <h2 className='col-12 my-2 py-2'>Actividades</h2>
+            <div className="row my-4">
+                <div className="col-12 pt-5">
+                    <h1 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034455/Vitae/iconos/calendario_n7aojk.png" className='mx-2  ' alt="reports" width='80'/>
+                        Actividades 
+                    </h1>
+                </div>
             </div>
             
             { elder ? 
