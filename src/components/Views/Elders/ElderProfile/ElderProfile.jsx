@@ -1,21 +1,44 @@
 import React, { useContext, useState } from 'react';
 import './ElderProfile.css'
-import { useParams, useHistory } from 'react-router';
+import { useParams } from 'react-router';
 import { ElderContext } from "../../../../contexts/ElderContext"
-import { Button, Collapse, Form, Spinner } from 'react-bootstrap';
+import { Button, Collapse, Form, Modal, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { elderImages } from '../../../../services/ElderService';
+import { addMessage } from '../../../../services/messageService';
+import { UserContext } from '../../../../contexts/UserContext';
 
 const ElderProfile = () => {
     const [open, setOpen] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register: register1, handleSubmit: handleSubmit1, formState: { errors: errors1 } } = useForm();
+
+
     const {id} = useParams()
     const { elders } = useContext(ElderContext)
+    const { user } = useContext(UserContext);
     let selectedElder={};
 
+    
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
 
-    const onSubmit = (data) => {
+    const handleShow = e => setShow(true);
+
+    const messageHandler = (data) => {
+        Object.assign(data, {
+            receiver: relative.id,
+            sender: user.id
+        });
+
+        setShow(false)
+        addMessage(relative.id, data)
+        .then(mes => console.log("mensaje enviado"))
+        .catch(e => console.log(e))
+    }
+
+    const imageHandler = (data) => {
         data.picture = data.picture[0]
         const formData = new FormData();
         Object.entries(data).forEach(([key, value]) => {
@@ -50,6 +73,43 @@ const ElderProfile = () => {
     return (
         
         <div className='ElderProfile'>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Enviar mensaje</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleSubmit(messageHandler)}>
+                        <div className="row mt-5">
+                            <div className="col mx-3">
+                                    <Form.Control type="string" placeholder= {`Destinatario: `} disabled/>
+                                    <Form.Group controlId="formBasictitle">
+                                    <Form.Control className={(errors.title) && "is-invalid"} type="title" placeholder="Título" {...register("title", { required: true })}/>
+                                    {errors.title && <div className="invalid-feedback">Introduzca Título</div>}
+                                </Form.Group>
+                            </div>
+                        </div>
+                        <div className="row my-5">
+                            <div className="col mx-3">
+                                <Form.Group controlId="formBasicDescription">
+                                    <Form.Control as="textarea" className={(errors.message && "is-invalid")} style={{height: "250px"}} type="message" placeholder="message" 
+                                    {...register("message", { required: true })}/>
+                                    {errors.message && <div className="invalid-feedback">Introduzca el mensaje</div>}
+                                </Form.Group>
+                            </div>
+                        </div>
+                        <div className="row justify-content-end">
+                            <Button className="mr-2" variant="info" onClick={handleClose}>Close</Button>
+                            <Button className="mr-5" variant="danger" type="submit">Enviar</Button>
+
+                        </div>
+                    </Form>
+            
+                </Modal.Body>
+                <Modal.Footer>
+                </Modal.Footer>
+            </Modal>
+
             {elders ? 
             <div className="container-fluid p__area__wrapper">
                 <div className="container px-1 py-3 border">
@@ -78,17 +138,17 @@ const ElderProfile = () => {
                             <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-info'>Añadir informe</NavLink>
                             <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-info'>Ver informes</NavLink>
                             <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-info' therapies = {therapies}>Ver actividades</NavLink> 
-                            <Button className="my-1" variant="info" type="submit">Enviar mensaje a {relative.firstname}</Button>
+                            <Button className="my-1" onClick={handleShow} variant="info" type="submit">Enviar mensaje a {relative.firstname}</Button>
                             <Button className="my-3" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}variant="info">Añadir imagen</Button>{' '}
                             <Collapse in={open}> 
                                 <div className="container">
                                     <div className="row justify-content-center" id="example-collapse-text">
                                         <div className="col">
-                                            <Form onSubmit={handleSubmit(onSubmit)}>
+                                            <Form onSubmit={handleSubmit1(imageHandler)}>
                                                 <Form.Group controlId="picture">
                                                     <div className="row">
-                                                        <Form.File className="inputfile my-3" id="picture" {...register("picture", { required: true })} />
-                                                        {errors.picture && <div className="invalid-feedback">Seleccione una imagen</div>}
+                                                        <Form.File className="inputfile my-3" id="picture" {...register1("picture", { required: true })} />
+                                                        {errors1.picture && <div className="invalid-feedback">Seleccione una imagen</div>}
                                                         <Button variant="" type="submit">Añadir</Button>
                                                     </div>
                                                 </Form.Group>
