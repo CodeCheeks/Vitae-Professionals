@@ -8,12 +8,31 @@ import { getEldersInfo } from "../../../../services/ElderService";
 const EldersList = () => {
 
     const [elders, setElders] = useState(null);
+    const [sort, setSort] = useState(null);
     
     useEffect(() => {
         getEldersInfo()
         .then(res => setElders(res))
         .catch(error => console.log(error))
     }, []);
+
+    const sortByName = () => {
+        setSort("byName")
+        let eldersByName
+        eldersByName = elders.sort((a, b) => 
+        {
+            if(a.firstname < b.firstname) { return -1; }
+            if(a.firstname > b.firstname) { return 1; }
+            return 0;
+        })
+
+        setElders(eldersByName)
+    }
+
+    const sortByAge = () => {
+        setSort("byAge")
+        setElders(elders.sort((a, b) => b.age - a.age))
+    }
 
     const getElders =() => {
         let eldersRow = []
@@ -35,9 +54,9 @@ const EldersList = () => {
             (<Table size="sm" bordered hover >
                 <thead>
                     <tr>
-                        <th>Nombre</th>
+                        <th> <button className="custom__button__style" onClick={sortByName}>Nombre</button> </th>
                         <th>Grupo</th>
-                        <th>Edad</th>
+                        <th><button className="custom__button__style" onClick={sortByAge}>Edad</button></th>
                         <th>Familiar</th>
                         <th>Teléfono</th>
                     </tr>
