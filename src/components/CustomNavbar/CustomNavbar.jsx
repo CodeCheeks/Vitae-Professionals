@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Form, Button} from 'react-bootstrap';
+import { Navbar, Nav, Form} from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../../store/AccessTokenStore'
 import "./CustomNavbar.css"
@@ -38,15 +38,7 @@ const CustomNavbar = (user) => {
                     <NavLink to="/personal-area/animación" className="mx-3 menu__item">Animación</NavLink>
 
 
-                    <Form onSubmit={handleSubmit(onSubmit)} className="mx-5">
-                        <div className="row">
-                            <div className="col pr-0 mr-0">
-                                <Form.Group controlId="elderName">
-                                    <Form.Control size="sm" type="string" placeholder="Buscar" {...register("elder", { required: true })}/>
-                                </Form.Group>
-                            </div>
-                        </div>
-                    </Form>
+                    
 
                 </Nav>
                 <Navbar.Text>
