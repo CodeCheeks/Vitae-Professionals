@@ -9,9 +9,10 @@ import { Next } from 'react-bootstrap/esm/PageItem';
 
 
 const CustomNavbar = (user) => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm({ defaultValues: { elder: "" } });
     let history = useHistory();
     const onSubmit = (data) => {
+        reset({ elder: '' })
         getElderByName(data.elder)
         .then(res => history.push(`/elders/${res.id}/`) )
         .catch(e => Next(e))
@@ -39,13 +40,10 @@ const CustomNavbar = (user) => {
 
                     <Form onSubmit={handleSubmit(onSubmit)} className="mx-5">
                         <div className="row">
-                            <div className="col">
+                            <div className="col pr-0 mr-0">
                                 <Form.Group controlId="elderName">
                                     <Form.Control size="sm" type="string" placeholder="Buscar" {...register("elder", { required: true })}/>
                                 </Form.Group>
-                            </div>
-                            <div className="col">
-                                <Button size="sm" variant="info" type="submit">Submit</Button>
                             </div>
                         </div>
                     </Form>
