@@ -29,7 +29,7 @@ const Login = () => {
     
     return (
         
-        <div className="container__wrapper">
+        <div className="container__wrapper ">
             <div className="container-fluid  ">
                 <div className="row justify-content-center form__wrapper">
                     <div className="col-lg-4 col-md-5 col-sm-6 col-8 border m-5 p-5 login__form">

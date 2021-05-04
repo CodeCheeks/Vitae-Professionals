@@ -68,7 +68,7 @@ const MyMessages = () => {
                 </Modal.Footer>
             </Modal>
             <div className=" col-md-12  col-lg-6">
-            <div className="row mb-5">
+            <div className="row mb-5 mb-3">
                 <div className="col-12">
                     <h2 className='text-center main__title'>
                         <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620120426/Vitae/iconos/see-messsage_s7zqrj.svg" className='mx-3 pb-3  ' alt="reports" width='50'/>
@@ -124,7 +124,7 @@ const MyMessages = () => {
             </div>
             
             <div className=" col-md-12  col-lg-6">
-            <div className="row mb-5">
+            <div className="row mb-5 mb-3">
                 <div className="col-12">
                     <h2 className='text-center main__title'>
                     <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034723/Vitae/iconos/charla_ufydrz.png" className='mx-2  ' alt="reports" width='60'/>

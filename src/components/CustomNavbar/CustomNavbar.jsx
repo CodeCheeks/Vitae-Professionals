@@ -23,7 +23,7 @@ const CustomNavbar = (user) => {
             <Navbar className="color__nav" expand="lg" fixed="top">
             <Navbar.Brand>
                 <NavLink className='link__style logo__wrapper'to="/personal-area">
-                    <img src="https://pics.freeicons.io/uploads/icons/png/18081978721600459989-512.png" width="30" height="30" className="d-inline-block align-top mx-3" alt="vitae-logo"/>
+                    <img src="https://pics.freeicons.io/uploads/icons/png/18081978721600459989-512.png" width="40" height="40" className="d-inline-block align-top mx-3" alt="vitae-logo"/>
                 </NavLink>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -42,7 +42,7 @@ const CustomNavbar = (user) => {
 
                 </Nav>
                 <Navbar.Text>
-                  Usuario: <a href="#login">{user.firstname}</a>
+                  Usuario: <a className="user__style" href="#login">{user.firstname}</a>
                 </Navbar.Text>
                 <div className="mx-5">
                     <NavLink className="menu__item" to="/login" onClick={logout}>Cerrar sesión</NavLink>

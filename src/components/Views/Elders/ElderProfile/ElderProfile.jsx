@@ -79,10 +79,11 @@ const ElderProfile = () => {
                 <Modal.Title>Enviar mensaje</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                {elders ?
                     <Form onSubmit={handleSubmit(messageHandler)}>
                         <div className="row mt-5">
                             <div className="col mx-3">
-                                    <Form.Control type="string" placeholder= {`Destinatario: `} disabled/>
+                                    <Form.Control type="string" placeholder= {`Destinatario:${ relative.firstname} `} disabled/>
                                     <Form.Group controlId="formBasictitle">
                                     <Form.Control className={(errors.title) && "is-invalid"} type="title" placeholder="Título" {...register("title", { required: true })}/>
                                     {errors.title && <div className="invalid-feedback">Introduzca Título</div>}
@@ -92,7 +93,7 @@ const ElderProfile = () => {
                         <div className="row my-5">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasicDescription">
-                                    <Form.Control as="textarea" className={(errors.message && "is-invalid")} style={{height: "250px"}} type="message" placeholder="message" 
+                                    <Form.Control as="textarea" className={(errors.message && "is-invalid")} style={{height: "250px"}} type="message" placeholder="Escribe aquí tu mensaje" 
                                     {...register("message", { required: true })}/>
                                     {errors.message && <div className="invalid-feedback">Introduzca el mensaje</div>}
                                 </Form.Group>
@@ -103,7 +104,8 @@ const ElderProfile = () => {
                             <Button className="mr-5" variant="danger" type="submit">Enviar</Button>
 
                         </div>
-                    </Form>
+                    </Form> : <p>'There was an error'</p>
+                }
             
                 </Modal.Body>
                 <Modal.Footer>
@@ -111,29 +113,29 @@ const ElderProfile = () => {
             </Modal>
 
             {elders ? 
-            <div className="container-fluid p__area__wrapper">
-                <div className="container px-1 py-3 border">
-                    <div className="row">
+            <div className="container-fluid  p__area__wrapper">
+                <div className="container px-1 py-5 my-5 border box__color">
+                    <div className="row justify-content-center ">
                         <div className="col-4">
                             <img src={profilepicture} width="150px" alt="avatar"/>
                             <div className="col-12 my-2">
                                 <h1>{firstname} {lastname}</h1>
                             </div>
                         </div>
-                        <div className="col-3 d-flex flex-column justify-content-center align-items-start">
+                        <div className="col-12 col-md-3 d-flex flex-column justify-content-center align-content-center text-md-left">
                             <h6 >Grupo:<span className={groupColor(group)}>{group}</span> </h6>
                             <h6 >Género: {gender} </h6>
                             <h6>Nacimiento: {dateOfBirth.split('T')[0].split("-").reverse().join("-")} </h6>
                             <h6>Edad: {age}</h6>
                         </div>
-                        <div className="col-5 d-flex flex-column justify-content-center align-items-start">
+                        <div className="col-12 col-md-5  d-flex flex-column justify-content-center align-content-center text-md-left">
                             <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {diet}</h6>
                             <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546183/Vitae/iconos/pngwing.com_afyg5o.png" alt="" width="25"/>Dirección: {address} </h6>
                             <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546583/Vitae/iconos/klipartz.com_p3aao4.png" alt="" width="25"/>Familiar: {relative.firstname} </h6>
                             <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619547020/Vitae/iconos/klipartz.com_1_zf01wx.png" alt="" width="25"/>Contactar: {relative.phonenumber}</h6>
                         </div>
                     </div>
-                    <div className="container px-1 py-3 border d-flex justify-content-center">
+                    <div className="container px-1 py-3 d-flex justify-content-center">
                         <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
                             <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-info'>Añadir informe</NavLink>
                             <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-info'>Ver informes</NavLink>
@@ -147,10 +149,15 @@ const ElderProfile = () => {
                                             <Form onSubmit={handleSubmit1(imageHandler)}>
                                                 <Form.Group controlId="picture">
                                                     <div className="row">
-                                                        <Form.File className="inputfile my-3" id="picture" {...register1("picture", { required: true })} />
-                                                        {errors1.picture && <div className="invalid-feedback">Seleccione una imagen</div>}
-                                                        <Button variant="" type="submit">Añadir</Button>
+                                                        <div className="col-8">
+                                                            <Form.File className="inputfile my-3" id="picture" {...register1("picture", { required: true })} />
+                                                            {errors1.picture && <div className="invalid-feedback">Seleccione una imagen</div>}
+                                                        </div>
+                                                        <div className="col-4">
+                                                        <Button className=' btn-sm my-3' type="submit">Añadir</Button>
+                                                        </div>
                                                     </div>
+                                                    
                                                 </Form.Group>
                                             </Form>
                                         </div>

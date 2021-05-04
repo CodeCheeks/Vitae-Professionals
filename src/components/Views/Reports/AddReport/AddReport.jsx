@@ -39,18 +39,32 @@ const AddReport = () => {
     const getForm = () => {
         return(
             <div className="container">
+                <div className="row py-2 my-5">
+                    <div className="col-12">
+                    {report_id ? 
+                        <h1 className='text-center main__title'>
+                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
+                            Editar Informe
+                        </h1> :
+                        <h1 className='text-center main__title'>
+                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
+                            Añadir Informe 
+                        </h1>
+                    }
+                    </div>
+                </div>
             <div className="row justify-content-center">
-                <div className="col-lg-8 col-md-8 col-sm-10 col-12 border m-5 p-5">
+                <div className="col-lg-8 col-md-8 col-sm-10 col-12 border  p-5">
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row justify-content-between mt-3">
-                            <div className="col-4">
-                                <h6>{`Departamento de ${user.occupation}`}</h6>
+                            <div className="col-7">
+                                <h6>{`Redactado por: ${user.firstname} ${user.lastname},${user.occupation}  `}</h6>
                             </div>
-                            <div className="col-2">
+                            <div className="col-3">
                                 <h6>{`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`}</h6>
                             </div>
                         </div>
-                        <div className="row mt-5">
+                        <div className="row mt-4">
                             <div className="col mx-3">
                                 <Form.Group controlId="formBasictitle">
                                     <Form.Control className={(errors.title) && "is-invalid"} type="title" defaultValue={report_id && dataReport.title} placeholder="Título" {...register("title", { required: true })}/>
@@ -67,11 +81,7 @@ const AddReport = () => {
                                 </Form.Group>
                             </div>
                         </div>
-                        <div className="row justify-content-between">
-                            <div className="col-3">
-                                <h6>{`${user.firstname} ${user.lastname} `}</h6>
-                            </div>
-                        </div>
+                        
                         <Button variant="primary" type="submit">Submit</Button>
                     </Form>
                 </div>

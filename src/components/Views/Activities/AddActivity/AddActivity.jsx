@@ -60,6 +60,20 @@ const AddActivity = () => {
     const getForm = () => {
         return(
             <div className="container">
+                <div className="row py-2 mt-5">
+                    <div className="col-12">
+                    {activity_id ? 
+                        <h1 className='text-center main__title'>
+                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034455/Vitae/iconos/calendario_n7aojk.png" className='mx-2  ' alt="reports" width='80'/>
+                            Editar Actividad
+                        </h1> :
+                        <h1 className='text-center main__title'>
+                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034455/Vitae/iconos/calendario_n7aojk.png" className='mx-2  ' alt="reports" width='80'/>
+                            Añadir actividad 
+                        </h1>
+                    }
+                    </div>
+                </div>
             <div className="row justify-content-center">
                 <div className="col-lg- col-md-8 col-sm-10 col-12 border m-5 p-5">
                     <Form onSubmit={handleSubmit(onSubmit)}>
