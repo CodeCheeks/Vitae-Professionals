@@ -39,8 +39,21 @@ const CreateElder = () => {
     return (
         <div className='container'>
             <div className="container">
-                <div className="row justify-content-center mt-5">
-                <h3 className='form__title'>Formulario de alta de usuarios y familiares</h3>
+                <div className="row mt-5 pt-3">
+                    <div className="col-12">
+                    {elder_id ?
+                    <h1 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620145105/Vitae/iconos/user_f9qusq.png"  alt="reports" width='80'/>
+                         Editar usuario
+                    </h1> :
+                    <h1 className='text-center main__title'>
+                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144124/Vitae/iconos/add-user_suhr5p.png"  alt="reports" width='80'/>
+                        Añadir nuevo usuario 
+                </h1>
+                }
+                    </div>
+                </div>
+                <div className="row justify-content-center mt-3">
                     <div className="col-lg-8 mt-5 form__wrapper">
                         <Form onSubmit={handleSubmit(onSubmit)}>
                             <Form.Row>

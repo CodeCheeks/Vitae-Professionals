@@ -50,7 +50,14 @@ const ListActivities = () => {
 
     return (
         <div className="container my-5">
-            <h1 className="mb-5">Mis Actividades</h1>
+            <div className="row my-4">
+                <div className="col-12">
+                    <h1 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034455/Vitae/iconos/calendario_n7aojk.png" className='mx-2  ' alt="reports" width='80'/>
+                        Mis actividades
+                    </h1>
+                </div>
+            </div>
 
             <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -69,7 +76,7 @@ const ListActivities = () => {
 
             <NavLink className='link__style'to={`/personal-area/activities/addActivity`}>
                 <div>
-                    <h5>Añadir Actividad</h5>
+                    <button className='btn btn-secondary mb-5'>+ Añadir actividad</button>
                 </div>
 
             </NavLink>
@@ -84,7 +91,7 @@ const ListActivities = () => {
                                 <Card.Header className="row justify-content-between align-items-center">
                                     <div className="col-1">
                                         <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619607719/Vitae/iconos/image_euso1q.png" alt="show" width="30" height="30"/>
+                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                         </Accordion.Toggle>
                                     </div>
                                     <div className="col-3">

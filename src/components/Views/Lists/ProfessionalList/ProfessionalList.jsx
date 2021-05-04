@@ -6,9 +6,6 @@ import { Spinner, Table, Modal, Button } from 'react-bootstrap';
 import { getUsersInfo, deleteUser } from "../../../../services/UserService";
 
 
-
-
-
 const UsersList = () => {
     
     const [users, setUsers] = useState(null)
@@ -81,10 +78,6 @@ const UsersList = () => {
                 </Button>
                 </Modal.Footer>
             </Modal>
-
-            <div className='row'>
-            <h2 className='col-12 my-2 py-2'>Administración de personal</h2>
-            </div>
             
             { users ? 
             (<Table size="sm" bordered hover >

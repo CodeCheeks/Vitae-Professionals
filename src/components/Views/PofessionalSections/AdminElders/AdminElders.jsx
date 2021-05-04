@@ -73,8 +73,14 @@ const AdminElders = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <div className='row'>
-                <h2 className='col-12 my-2 py-2'>Administración de usuarios y familiares</h2>
+    
+            <div className="row my-5">
+                <div className="col-12">
+                    <h1 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620145105/Vitae/iconos/user_f9qusq.png" className='mx-2  ' alt="reports" width='80'/>
+                        Administrar usuarios y familiares
+                    </h1>
+                </div>
             </div>
             { elders ? 
             (<Table size="sm" bordered hover >
