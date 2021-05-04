@@ -46,9 +46,6 @@ const EldersList = () => {
     return elders.filter(elder => elder.firstname.toLowerCase().includes(searchTerm.toLowerCase()))
     }
 
-    const handleChange = (e) =>  {
-        setSearchTerm( e.target.value);
-      }
 
     //GET ELDERS
     const getElders =() => {
@@ -72,7 +69,7 @@ const EldersList = () => {
         <div className="container EldersList">
             <div className="row">
                 <div className="col-12">
-                    <input className='my-5 form-control input-lg' type= 'text' value ={searchTerm} onChange = {editSearchTerm, handleChange} placeholder = 'Buscar por nombre' autoComplete="on"/>
+                    <input className='my-5 form-control input-lg' type= 'text' value ={searchTerm} onChange = {editSearchTerm } placeholder = 'Buscar por nombre' autoComplete="on"/>
                 </div>
             </div>
             { elders ? 
