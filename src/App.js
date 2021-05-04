@@ -35,7 +35,7 @@ function App() {
         <div className='container-fluid'>
         
           <div className='row'>
-            <div className={`${user ? 'col-sm-12 col-md-12  col-lg-2' : 'd-none'}`}>
+            <div className={`${user ? 'col-sm-12 col-md-12  col-lg-2 p-0' : 'd-none'}`}>
               {user && <LateralBar/> }
             </div>
 
