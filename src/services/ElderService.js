@@ -8,9 +8,14 @@ export const getEldersInfo = () => {
     return http.get('/elders')
   }
 
-  export const getElderInfoById = (elder_id) => {
-    return http.get(`/elders/${elder_id}`)
-  }
+export const getElderInfoById = (elder_id) => {
+  return http.get(`/elders/${elder_id}`)
+}
+
+export const getElderByName = (elder_name) => {
+  console.log(elder_name)
+  return http.get(`/eldersByName/${elder_name}`)
+}
   
   
 export const addElder = (body) => {

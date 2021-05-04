@@ -1,11 +1,21 @@
 import React from 'react';
-import { Navbar, Nav} from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Navbar, Nav, Form, Button} from 'react-bootstrap';
+import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../../store/AccessTokenStore'
 import "./CustomNavbar.css"
+import { useForm } from "react-hook-form";
+import { getElderByName } from '../../services/ElderService';
+import { Next } from 'react-bootstrap/esm/PageItem';
 
 
 const CustomNavbar = (user) => {
+    const { register, handleSubmit } = useForm();
+    let history = useHistory();
+    const onSubmit = (data) => {
+        getElderByName(data.elder)
+        .then(res => history.push(`/elders/${res.id}/`) )
+        .catch(e => Next(e))
+    }
 
     return (
         <div className='CustomNavbar'>
@@ -25,6 +35,21 @@ const CustomNavbar = (user) => {
                     <NavLink to="/personal-area/terapia-ocupacional" className="mx-3 menu__item">Terapia Ocupacional</NavLink>
                     <NavLink to="/personal-area/trabajo-social" className="mx-3 menu__item">Trabajo social</NavLink>
                     <NavLink to="/personal-area/animación" className="mx-3 menu__item">Animación</NavLink>
+
+
+                    <Form onSubmit={handleSubmit(onSubmit)} className="mx-5">
+                        <div className="row">
+                            <div className="col">
+                                <Form.Group controlId="elderName">
+                                    <Form.Control size="sm" type="string" placeholder="Buscar" {...register("elder", { required: true })}/>
+                                </Form.Group>
+                            </div>
+                            <div className="col">
+                                <Button size="sm" variant="info" type="submit">Submit</Button>
+                            </div>
+                        </div>
+                    </Form>
+
                 </Nav>
                 <Navbar.Text>
                   Usuario: <a href="#login">{user.firstname}</a>
