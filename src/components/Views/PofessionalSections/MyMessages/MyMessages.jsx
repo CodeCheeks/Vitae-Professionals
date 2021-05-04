@@ -48,7 +48,7 @@ const MyMessages = () => {
         .catch(error => console.log(error))
 
     
-    }, []);
+    }, [user.id]);
 
     return (
         <div className='MyMessages row my-5'>
