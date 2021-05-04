@@ -37,8 +37,22 @@ const AddProfessional = () => {
     const getForm = () => {
     return (
         <div className="container">
+            <div className="row mt-5">
+                <div className="col-12">
+                {professional_id ?
+                    <h1 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620145105/Vitae/iconos/user_f9qusq.png" className='mx-2  ' alt="reports" width='80'/>
+                         Editar profesional
+                    </h1> :
+                    <h1 className='text-center main__title'>
+                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144124/Vitae/iconos/add-user_suhr5p.png" className='mx-2  ' alt="reports" width='80'/>
+                        Añadir profesional
+                </h1>
+                }
+                </div>
+            </div>
             <div className="row justify-content-center">
-                <div className="col-lg-8 col-md-8 col-sm-10 col-12 border m-5 p-5">
+                <div className="col-lg-8 col-md-8 col-sm-10 col-12 border my-4 p-1">
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         
                         <div className="row mt-5">
@@ -108,7 +122,7 @@ const AddProfessional = () => {
                                 </Form.Group>
                             </div>
                         </div>
-                        <Button variant="primary" type="submit">Submit</Button>
+                        <Button variant="primary" type="submit" className='mb-3'>Submit</Button>
                     </Form>
                 </div>
             </div>

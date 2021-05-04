@@ -58,9 +58,15 @@ const ListReports = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <h1 className="mb-5">Informes</h1>
 
-            
+            <div className="row my-5">
+                <div className="col-12">
+                    <h1 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
+                        Mis informes
+                    </h1>
+                </div>
+            </div>
             {
                 reports ? 
                 reports.length > 0 ?
@@ -71,7 +77,7 @@ const ListReports = () => {
                                 <Card.Header className="row justify-content-between align-items-center">
                                     <div className="col-2">
                                         <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619607719/Vitae/iconos/image_euso1q.png" alt="show" width="30" height="30"/>
+                                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                         </Accordion.Toggle>
                                     </div>
                                     <div className="col-4">

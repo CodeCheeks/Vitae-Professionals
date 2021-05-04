@@ -67,8 +67,15 @@ const MyMessages = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <div className="col">
-                <h2 className="mb-3">Recibidos</h2>
+            <div className=" col-md-12  col-lg-6">
+            <div className="row mb-5">
+                <div className="col-12">
+                    <h2 className='text-center main__title'>
+                        <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620120426/Vitae/iconos/see-messsage_s7zqrj.svg" className='mx-3 pb-3  ' alt="reports" width='50'/>
+                        Mensajes Recibidos
+                    </h2>
+                </div>
+            </div>
                 {
                     received ? 
                     received.length > 0 ?
@@ -79,7 +86,7 @@ const MyMessages = () => {
                                     <Card.Header className="row justify-content-between align-items-center">
                                         <div className="col-1">
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-                                                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619607719/Vitae/iconos/image_euso1q.png" alt="show" width="30" height="30"/>
+                                                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                             </Accordion.Toggle>
                                         </div>
                                         <div className="col-4">
@@ -115,8 +122,17 @@ const MyMessages = () => {
                     : <Spinner animation="border" variant="info" />
                 }
             </div>
-            <div className="col">
-            <h2 className="mb-3">Enviados</h2>
+            
+            <div className=" col-md-12  col-lg-6">
+            <div className="row mb-5">
+                <div className="col-12">
+                    <h2 className='text-center main__title'>
+                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034723/Vitae/iconos/charla_ufydrz.png" className='mx-2  ' alt="reports" width='60'/>
+                            Mensajes Enviados
+                    </h2>
+                </div>
+            </div>
+            
             {
                     sent ? 
                     sent.length > 0 ?
@@ -127,7 +143,7 @@ const MyMessages = () => {
                                     <Card.Header className="row justify-content-between align-items-center">
                                         <div className="col-1">
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
-                                                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619607719/Vitae/iconos/image_euso1q.png" alt="show" width="30" height="30"/>
+                                                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                             </Accordion.Toggle>
                                         </div>
                                         <div className="col-4">
