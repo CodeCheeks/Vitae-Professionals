@@ -70,8 +70,8 @@ const ListReports = () => {
             {
                 reports ? 
                 reports.length > 0 ?
-                (reports.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt);
-                }).map(report => {
+                (reports.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt);})
+                .map(report => {
                     return(
                         <Accordion key = {report.id}>
                             <Card>
