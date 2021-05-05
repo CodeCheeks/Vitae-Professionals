@@ -83,8 +83,8 @@ const ListActivities = () => {
             
             {
                 activities ? 
-                activities.length > 0 ?
-                (activities.map(activity => {
+                activities.length > 0 ? 
+                (activities.sort(function(a,b){return new Date(a.startDate) - new Date(b.startDate);}).map(activity => {
                     return(
                         <Accordion key = {activity.id}>
                             <Card>
@@ -94,10 +94,11 @@ const ListActivities = () => {
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                         </Accordion.Toggle>
                                     </div>
-                                    <div className="col-3">
+                                    <div className="col-2">
                                         <h6>{activity.title}</h6>
                                     </div>
-                                    <div className="col-2">
+                                    <div className="col-5">
+                                        <h6>Día: {`${activity.startDate.split('T',1)}`}</h6>
                                         <h6>Horario: {`${activity.startHour}-${activity.finishHour}`}</h6>
                                     </div>
                                     <div className="col-2">

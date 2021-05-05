@@ -115,10 +115,6 @@ const ElderProfile = () => {
             
             {/* IMAGE TOAST */}
             
-            
-            
-
-
             {elders ? 
             <div className="container-fluid  p__area__wrapper">
                 <div className="container px-1 py-5 my-5 border box__color">

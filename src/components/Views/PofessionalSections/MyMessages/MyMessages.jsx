@@ -79,7 +79,7 @@ const MyMessages = () => {
                 {
                     received ? 
                     received.length > 0 ?
-                    (received.map(mes => {
+                    (received.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt)}).map(mes => {
                         return(
                             <Accordion key = {mes.id}>
                                 <Card>
@@ -136,7 +136,7 @@ const MyMessages = () => {
             {
                     sent ? 
                     sent.length > 0 ?
-                    (sent.map(mes => {
+                    (sent.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt)}).map(mes => {
                         return(
                             <Accordion key = {mes.id}>
                                 <Card>
