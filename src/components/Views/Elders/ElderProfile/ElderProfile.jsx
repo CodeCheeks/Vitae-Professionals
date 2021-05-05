@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import './ElderProfile.css'
 import { useParams } from 'react-router';
 import { ElderContext } from "../../../../contexts/ElderContext"
-import { Button, Collapse, Form, Modal, Spinner } from 'react-bootstrap';
+import { Button, Collapse, Form, Modal, Spinner, Toast } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { elderImages } from '../../../../services/ElderService';
@@ -38,6 +38,7 @@ const ElderProfile = () => {
         .catch(e => console.log(e))
     }
 
+    const [show1, setShow1] = useState(false)
     const imageHandler = (data) => {
         data.picture = data.picture[0]
         const formData = new FormData();
@@ -111,10 +112,37 @@ const ElderProfile = () => {
                 <Modal.Footer>
                 </Modal.Footer>
             </Modal>
+            
+            {/* IMAGE TOAST */}
+            
+            
+            
+
 
             {elders ? 
             <div className="container-fluid  p__area__wrapper">
                 <div className="container px-1 py-5 my-5 border box__color">
+                <Toast onClose={() => setShow1(false)} show={show1} delay={5000} autohide 
+                    style={{
+                        position: 'absolute',
+                        bottom: 30,
+                        right: 0,
+                        backgroundColor:'#07c5e7',
+                        width:'200px',
+                    }}
+                >
+                    <Toast.Header>
+                        <img
+                        src="holder.js/20x20?text=%20"
+                        className="rounded mr-2"
+                        alt=""
+                        />
+                        <strong className="mr-auto">Nueva imagen</strong>
+                    </Toast.Header>
+                    <Toast.Body>
+                        Imagen añadida
+                    </Toast.Body>
+                </Toast>
                     <div className="row justify-content-center ">
                         <div className="col-4">
                             <img src={profilepicture} width="150px" alt="avatar"/>
@@ -154,7 +182,7 @@ const ElderProfile = () => {
                                                             {errors1.picture && <div className="invalid-feedback">Seleccione una imagen</div>}
                                                         </div>
                                                         <div className="col-4">
-                                                        <Button className=' btn-sm my-3' type="submit">Añadir</Button>
+                                                        <Button className=' btn-sm my-3' type="submit" onClick={() => setShow1(true)}>Añadir</Button>
                                                         </div>
                                                     </div>
                                                     
