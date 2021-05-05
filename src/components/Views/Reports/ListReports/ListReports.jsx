@@ -104,14 +104,14 @@ const ListReports = () => {
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="0">
                                 <Card.Body>
-                                    <div className="container justify-content-start">
-                                        <div className="row">
-                                            <div className="col">
-                                                <h6>{report.title}</h6>
+                                    <div className="container ">
+                                        <div className="row justify-content-center">
+                                            <div className="col-10 ">
+                                                <h6 >{report.title}</h6>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col">
+                                        <div className="row justify-content-center">
+                                            <div className="col-10 ">
                                                 <p className="custom__description">{report.description}</p>
                                             </div>
                                         </div>
