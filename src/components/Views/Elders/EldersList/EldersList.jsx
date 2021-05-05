@@ -19,21 +19,36 @@ const EldersList = () => {
 
     //SORT BY
     const sortByName = () => {
-        setSort("byName")
-        let eldersByName
-        eldersByName = elders.sort((a, b) => 
-        {
-            if(a.firstname < b.firstname) { return -1; }
-            if(a.firstname > b.firstname) { return 1; }
-            return 0;
-        })
-
-        setElders(eldersByName)
+        setSort("byABCfirst")
+        if(sort!=="byABCfirst"){
+            setElders(elders.sort((a, b) => 
+            {
+                if(a.firstname < b.firstname) { return -1; }
+                if(a.firstname > b.firstname) { return 1; }
+                return 0;
+            }))
+        }
+        else {
+            setElders(elders.sort((a, b) => 
+            {
+                if(b.firstname < a.firstname) { return -1; }
+                if(b.firstname > a.firstname) { return 1; }
+                return 0;
+            }))
+            setSort("byXYZfirst")
+        }
     }
 
     const sortByAge = () => {
-        setSort("byAge")
-        setElders(elders.sort((a, b) => b.age - a.age))
+        setSort("highFirst")
+        if(sort!=="highFirst"){
+            setElders(elders.sort((a, b) => b.age - a.age))
+        }
+        else {
+            setSort("lowFirst")
+            setElders(elders.sort((a, b) => a.age - b.age))
+        }
+        
     }
 
     //FILTER WITH SEARCH BAR
