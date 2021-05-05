@@ -18,10 +18,12 @@
 .p__area__wrapper{
     position: relative;
     margin: 80px auto;
+    
 }
 
 .box__color{
     background-color: rgba(148, 214, 245, 0.247);
+    
 }
 
 
