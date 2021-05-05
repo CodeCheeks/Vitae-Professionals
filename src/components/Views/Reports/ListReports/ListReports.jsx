@@ -70,15 +70,21 @@ const ListReports = () => {
             {
                 reports ? 
                 reports.length > 0 ?
-                (reports.map(report => {
+                (reports.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt);
+                }).map(report => {
                     return(
                         <Accordion key = {report.id}>
                             <Card>
                                 <Card.Header className="row justify-content-between align-items-center">
-                                    <div className="col-2">
+                                    <div className="col-1">
                                         <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                         </Accordion.Toggle>
+                                    </div>
+                                    <div className="col-2 d-none d-md-block">
+                                        {!id&&report.elder && <h6>Título: {report.title} </h6>}
+
+
                                     </div>
                                     <div className="col-4">
                                         {!id&&report.elder && <h6>Usuario: {report.elder.firstname} {report.elder.lastname} </h6>}
@@ -86,8 +92,8 @@ const ListReports = () => {
                                         {id&&report.professional && <h6>Profesional: {report.professional.firstname} {report.professional.lastname}</h6> }
 
                                     </div>
-                                    <div className="col-2">
-                                        <h6>{(report.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
+                                    <div className="col-3">
+                                        <h6>{(report.createdAt).split('T').join(' a las ').split('.',1)}</h6>
                                     </div>
                                     <div className="col-2">
                                         <NavLink className='link__style'to={`/elders/edit-report/${report.id}`}>
