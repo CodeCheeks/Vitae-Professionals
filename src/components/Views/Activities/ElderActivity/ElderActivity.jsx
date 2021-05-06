@@ -24,6 +24,7 @@ const ElderActivity = () => {
             activitiesRow.push(<tr key={act.id}>
                
                 <td>{act.title}</td>
+                <td>{`${act.startDate.split('T',1)}`}</td>
                 <td>{act.startHour}-{act.finishHour}</td>
                 <td>{act.participants.length}</td>
                 <td>{act.organizer.firstname} {act.organizer.lastname}</td>
@@ -40,7 +41,7 @@ const ElderActivity = () => {
                 <div className="col-12 pt-5">
                     <h1 className='text-center main__title'>
                         <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034455/Vitae/iconos/calendario_n7aojk.png" className='mx-2  ' alt="reports" width='80'/>
-                        Actividades 
+                        {elder ? <h1>Actividades de {elder.firstname} {elder.lastname}</h1> : <Spinner animation="border" variant="info" />}
                     </h1>
                 </div>
             </div>
@@ -50,6 +51,7 @@ const ElderActivity = () => {
                 <thead>
                     <tr>
                         <th>Actividad</th>
+                        <th>Día</th>
                         <th>Horario</th>
                         <th>Participantes</th>
                         <th>Organizador</th>

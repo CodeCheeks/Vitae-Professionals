@@ -43,11 +43,7 @@
   background-color: #3ec8d0;
 }
 
-.p__area__wrapper{
-  position: relative;
-  margin: 15px auto;
-  
-}
+
 
 .main__title{
   color: var(--dark-blue-color)

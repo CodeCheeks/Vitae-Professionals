@@ -10,6 +10,8 @@
 .LateralBar{
     background-color: var(--light-transparent-blue-color);
     height: 100%;
+    padding-top:50%;
+    padding-bottom: 250%;
     
 }
 
