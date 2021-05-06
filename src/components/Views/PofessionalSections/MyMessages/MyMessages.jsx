@@ -3,6 +3,7 @@ import "./MyMessages.css"
 import { UserContext } from "../../../../contexts/UserContext";
 import { receivedMessages, sentMessages, deleteMessage } from '../../../../services/messageService';
 import { Accordion, Button, Card, Spinner, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const MyMessages = () => {
     const { user } = useContext(UserContext);
@@ -89,16 +90,19 @@ const MyMessages = () => {
                                                 <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                             </Accordion.Toggle>
                                         </div>
-                                        <div className="col-4">
-                                            {<h6>Título: {mes.title}</h6>}
-                                        </div>
                                         <div className="col-3">
-                                            {<h6>From: {mes.sender.firstname} </h6>}
+                                            {<h6>{mes.title}</h6>}
+                                        </div>
+                                        <div className="col-2">
+                                            {<h6>De: {mes.sender.firstname} </h6>}
+                                        </div>
+                                        <div className="col-2">
+                                            {<Link to={`/elders/${mes.sender.elder.id}`} className='col l__bar__item'><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
                                         </div>
-                                        <div className="col-2">
+                                        <div className="col-1">
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={mes.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={handleShow}/>
                                         </div>
                                     </Card.Header>
@@ -146,11 +150,11 @@ const MyMessages = () => {
                                                 <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620144303/Vitae/iconos/flecha-hacia-abajo_1_w6ritf.png" alt="show" width="30" height="30"/>
                                             </Accordion.Toggle>
                                         </div>
-                                        <div className="col-4">
-                                            {<h6>Título: {mes.title}</h6>}
+                                        <div className="col-3">
+                                            {<h6>{mes.title}</h6>}
                                         </div>
                                         <div className="col-3">
-                                            {<h6>To: {mes.receiver.firstname} </h6>}
+                                            {<h6>Para: {mes.receiver.firstname} {mes.receiver.lastname} </h6>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
