@@ -3,7 +3,8 @@ import { getAccessToken, logout } from "../store/AccessTokenStore";
 
 export const create = (opts = {}) => {
   const http = axios.create({
-    baseURL: "http://localhost:3001/api",
+    //baseURL: "http://localhost:3001/api",
+    baseURL: "https://api-vitae.herokuapp.com/api",
     ...opts,
   });
 
