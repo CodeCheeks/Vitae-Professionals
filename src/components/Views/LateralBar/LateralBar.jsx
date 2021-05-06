@@ -9,8 +9,8 @@ const LateralBar = () => {
     const { user } = useContext(UserContext);
     
     return (
-        <div className='LateralBar w-lg-75 py-5'>
-            <div className="container  w-lg-75 py-5 my-5 ">
+        <div className='LateralBar '>
+            <div className="container   ">
             <div className="row">
                     <Link to={"/personal-area"} className='col l__bar__item'>Listado de usuarios</Link>
                 </div>

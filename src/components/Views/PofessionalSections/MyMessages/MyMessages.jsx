@@ -163,8 +163,8 @@ const MyMessages = () => {
                                     <Card.Body>
                                         <div className="container justify-content-start">
                                             <div className="row">
-                                                <div className="col">
-                                                    <h6>{mes.message}</h6>
+                                                <div className="col ">
+                                                    <h6 className='message__text__style'>{mes.message}</h6>
                                                 </div>
                                             </div>
                                         </div>

@@ -11,7 +11,7 @@ import { UserContext } from '../../../../contexts/UserContext';
 
 const ElderProfile = () => {
     const [open, setOpen] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit,reset, formState: { errors } } = useForm({ defaultValues: { title: "", message:""} });
     const { register: register1, handleSubmit: handleSubmit1, formState: { errors: errors1 } } = useForm();
 
 
@@ -34,7 +34,10 @@ const ElderProfile = () => {
 
         setShow(false)
         addMessage(relative.id, data)
-        .then(mes => console.log("mensaje enviado"))
+        .then(mes => {
+            reset({title:"", message:""})
+            
+        })
         .catch(e => console.log(e))
     }
 
@@ -116,7 +119,7 @@ const ElderProfile = () => {
             {/* IMAGE TOAST */}
             
             {elders ? 
-            <div className="container-fluid  p__area__wrapper">
+            <div className="container-fluid  p__elderprofile__wrapper">
                 <div className="container px-1 py-5 my-5 border box__color">
                 <Toast onClose={() => setShow1(false)} show={show1} delay={5000} autohide 
                     style={{

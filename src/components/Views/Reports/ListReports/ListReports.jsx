@@ -5,7 +5,7 @@ import { getReports, deleteReports } from "../../../../services/ReportsService";
 import { Accordion, Button, Card, Spinner, Modal } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-
+import { getElderInfoById } from '../../../../services/ElderService';
 
 
 
@@ -14,6 +14,7 @@ const ListReports = () => {
     const {id} = useParams()
     const { user } = useContext(UserContext);
     const [reports, setReports] = useState(null);
+    const [elder, setElder] = useState(null);
     const [reportId, setReportId] = useState(null);
 
     const [show, setShow] = useState(false);
@@ -40,6 +41,11 @@ const ListReports = () => {
         .catch(error => console.log(error))
     }, [user, id]);
 
+    useEffect(() => {
+        getElderInfoById(id)
+        .then(res => setElder(res))
+        .catch(error => console.log(error))
+    }, [ id]);
 
     return (
         <div className="container my-5">
@@ -63,7 +69,7 @@ const ListReports = () => {
                 <div className="col-12">
                     <h1 className='text-center main__title'>
                         <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
-                        Mis informes
+                        {id ? elder ? <h1>Informes de {elder.firstname} {elder.lastname} </h1> : <Spinner animation="border" variant="info" /> : <h1>Mis informes</h1>}
                     </h1>
                 </div>
             </div>
