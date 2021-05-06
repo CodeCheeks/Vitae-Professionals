@@ -68,7 +68,7 @@ const MyMessages = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <div className=" col-md-12  col-lg-6">
+            <div className=" col-12">
             <div className="row mb-5 mb-3">
                 <div className="col-12">
                     <h2 className='text-center main__title'>
@@ -82,8 +82,9 @@ const MyMessages = () => {
                     received.length > 0 ?
                     (received.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt)}).map(mes => {
                         return(
+                            
                             <Accordion key = {mes.id}>
-                                <Card>
+                                <Card className='container'>
                                     <Card.Header className="row justify-content-between align-items-center">
                                         <div className="col-1">
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
@@ -97,7 +98,7 @@ const MyMessages = () => {
                                             {<h6>De: {mes.sender.firstname} </h6>}
                                         </div>
                                         <div className="col-2">
-                                            {<Link to={`/elders/${mes.sender.elder.id}`} className='col l__bar__item'><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
+                                            {<Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
@@ -119,6 +120,7 @@ const MyMessages = () => {
                                     </Accordion.Collapse>
                                 </Card>
                             </Accordion>
+                            
                         )
                     })) 
                     :
@@ -127,11 +129,11 @@ const MyMessages = () => {
                 }
             </div>
             
-            <div className=" col-md-12  col-lg-6">
-            <div className="row mb-5 mb-3">
+            <div className=" col-12  ">
+            <div className="row">
                 <div className="col-12">
                     <h2 className='text-center main__title'>
-                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034723/Vitae/iconos/charla_ufydrz.png" className='mx-2  ' alt="reports" width='60'/>
+                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034723/Vitae/iconos/charla_ufydrz.png" className='mx-2 my-5 ' alt="reports" width='60'/>
                             Mensajes Enviados
                     </h2>
                 </div>
@@ -143,7 +145,7 @@ const MyMessages = () => {
                     (sent.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt)}).map(mes => {
                         return(
                             <Accordion key = {mes.id}>
-                                <Card>
+                                <Card className='container'>
                                     <Card.Header className="row justify-content-between align-items-center">
                                         <div className="col-1">
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
