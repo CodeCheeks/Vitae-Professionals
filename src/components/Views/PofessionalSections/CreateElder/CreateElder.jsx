@@ -76,8 +76,18 @@ const CreateElder = () => {
                                     {errors.email && <div className="invalid-feedback">Rellene este campo</div>}
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="phonenumber">
-                                    <Form.Control className={errors.email && "is-invalid"} placeholder="Teléfono" defaultValue={elder_id && elderData.relative.phonenumber} type="string" {...register("phonenumber", { required: true })}/>
-                                    {errors.phonenumber && <div className="invalid-feedback">Rellene este campo</div>}
+                                <Form.Control className={errors.phoneNumber && "is-invalid"} 
+                                type="string" 
+                                placeholder="Teléfono"
+                                defaultValue={elder_id && elderData.relative.phonenumber}
+                                {...register("phoneNumber", {
+                                    required: true ,
+                                    validate: {
+                                        numberLength: (value) => value.length === 9,
+                                    }
+                                })}/>
+                                    {errors.phoneNumber && errors.phoneNumber.type !=="numberLength" && <div className="invalid-feedback">Rellene este campo</div>}
+                                    {errors.phoneNumber && errors.phoneNumber.type ==="numberLength" && <div className="invalid-feedback">Número de teléfono incorrecto</div>}
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
