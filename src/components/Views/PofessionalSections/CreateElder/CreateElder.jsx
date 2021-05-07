@@ -107,7 +107,7 @@ const CreateElder = () => {
                                     {errors.dni && <div className="invalid-feedback">Rellene este campo</div>}
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="birth">
-                                    <Form.Control className={errors.birth && "is-invalid"} placeholder="birth" defaultValue={elder_id && (elderData.dateOfBirth.split('T')[0].split("-").join("-").toString())} type="date" {...register("birth", { required: true })} />
+                                    <Form.Control className={errors.birth && "is-invalid"} placeholder="birth" defaultValue={elder_id && (elderData.dateOfBirth)} type="date" {...register("birth", { required: true })} />
                                     {errors.birth && <div className="invalid-feedback">Rellene este campo</div>}
                                 </Form.Group>
                             </Form.Row>
