@@ -89,7 +89,7 @@ const AddActivity = () => {
 
                             <div className="col">
                                 <Form.Group controlId="formBasictitle">    
-                                    <Form.Control className={(errors.title) && "is-invalid"} type="date" defaultValue={activity_id && dataActivity.startDate} {...register("startDate", { required: true })}/>
+                                    <Form.Control className={(errors.title) && "is-invalid"} type="date" defaultValue={activity_id && dataActivity.startDate.split('T')[0].split("-").join("-").toDateString()} {...register("startDate", { required: true })}/>
                                     {errors.title && <div className="invalid-feedback">Introduzca fecha</div>}
                                 </Form.Group>
                             </div>
