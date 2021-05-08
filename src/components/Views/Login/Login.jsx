@@ -48,7 +48,7 @@ const Login = () => {
                                 Si no recuerda sus credenciales contacte con su administrador.
                                 </Form.Text>
                             </Form.Group>
-                            <Button variant="primary" className='mt-2' type="submit" >Submit</Button>
+                            <Button variant="info" className='mt-2' type="submit" >Submit</Button>
 
                         </Form>
                     </div>

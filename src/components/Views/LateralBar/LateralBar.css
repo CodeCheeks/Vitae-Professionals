@@ -10,9 +10,9 @@
 .LateralBar{
     background-color: var(--light-transparent-blue-color);
     height: 100%;
-    padding-top:50%;
-    /* padding-bottom: 250%; */
-    
+    padding-top:5%;
+    position: fixed;
+    min-width: 230px;
 }
 
 .l__bar__item{
