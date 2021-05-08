@@ -81,7 +81,7 @@ const CreateElder = () => {
                                 placeholder="Teléfono"
                                 defaultValue={elder_id && elderData.relative.phonenumber}
                                 {...register("phoneNumber", {
-                                    required: true ,
+                                    required: true,
                                     validate: {
                                         numberLength: (value) => value.length === 9,
                                     }
@@ -113,8 +113,15 @@ const CreateElder = () => {
                             </Form.Row>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="dni">
-                                    <Form.Control className={errors.dni && "is-invalid"} placeholder="dni"  defaultValue={elder_id && elderData.dni}type="dni" {...register("dni", { required: true })} />
-                                    {errors.dni && <div className="invalid-feedback">Rellene este campo</div>}
+                                    <Form.Control className={errors.dni && "is-invalid"} placeholder="dni"  defaultValue={elder_id && elderData.dni}type="dni" {...register("dni", { 
+                                        required: true,
+                                        validate: {
+                                            dniValidator: (value) => value.match === 9
+                                        }
+
+                                        })} />
+                                    {errors.dni && errors.dni.type !=="dniValidator" && <div className="invalid-feedback">Rellene este campo</div>}
+                                    {errors.dni && errors.dni.type ==="dniValidator" && <div className="invalid-feedback">DNI incorrecto</div>}
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="birth">
                                     <Form.Control className={errors.birth && "is-invalid"} placeholder="birth" defaultValue={elder_id && elderData.dateOfBirth &&(elderData.dateOfBirth.split('T')[0].split("-").join("-"))} type="date" {...register("birth", { required: true })} />

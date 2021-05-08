@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ElderProfile.css'
 import { useParams } from 'react-router';
-import { ElderContext } from "../../../../contexts/ElderContext"
 import { Button, Collapse, Form, Modal, Spinner, Toast } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { elderImages } from '../../../../services/ElderService';
+import { elderImages, getElderInfoById } from '../../../../services/ElderService';
 import { addMessage } from '../../../../services/messageService';
 import { UserContext } from '../../../../contexts/UserContext';
 
@@ -13,14 +12,12 @@ const ElderProfile = () => {
     const [open, setOpen] = useState(false);
     const { register, handleSubmit,reset, formState: { errors } } = useForm({ defaultValues: { title: "", message:""} });
     const { register: register1, handleSubmit: handleSubmit1, formState: { errors: errors1 } } = useForm();
-
-
     const {id} = useParams()
-    const { elders } = useContext(ElderContext)
     const { user } = useContext(UserContext);
-    let selectedElder={};
+    const [elder, setElder] = useState(null);
 
     
+    const [show1, setShow1] = useState(false)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -28,12 +25,12 @@ const ElderProfile = () => {
 
     const messageHandler = (data) => {
         Object.assign(data, {
-            receiver: relative.id,
+            receiver: elder.relative.id,
             sender: user.id
         });
 
         setShow(false)
-        addMessage(relative.id, data)
+        addMessage(elder.relative.id, data)
         .then(mes => {
             reset({title:"", message:""})
             
@@ -41,7 +38,15 @@ const ElderProfile = () => {
         .catch(e => console.log(e))
     }
 
-    const [show1, setShow1] = useState(false)
+    useEffect(() => {
+        getElderInfoById(id)
+        .then(res => {
+            setElder(res)
+        })
+        .catch(error => console.log(error))
+
+    }, [id]);
+
     const imageHandler = (data) => {
         data.picture = data.picture[0]
         const formData = new FormData();
@@ -54,15 +59,6 @@ const ElderProfile = () => {
         .catch(e => console.log(e))
     }
 
-    elders ? 
-     selectedElder = elders.find(eld => eld.id === id.toString())
-    :
-    <Spinner className="m-5" animation="border" role="status" variant="info">
-        <span className="sr-only">Loading...</span>
-    </Spinner>
-    const {firstname, lastname, gender, dateOfBirth, address, group, diet, relative, therapies, profilepicture, age} = selectedElder
-    
-    
 
     const groupColor = (group) => {
         if(group === 'Rojo'){
@@ -83,11 +79,11 @@ const ElderProfile = () => {
                 <Modal.Title>Enviar mensaje</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                {elders ?
+                {elder ?
                     <Form onSubmit={handleSubmit(messageHandler)}>
                         <div className="row mt-5">
                             <div className="col mx-3">
-                                    <Form.Control type="string" placeholder= {`Destinatario:${ relative.firstname} `} disabled/>
+                                    <Form.Control type="string" placeholder= {`Destinatario: ${ elder.relative.firstname} `} disabled/>
                                     <Form.Group controlId="formBasictitle">
                                     <Form.Control className={(errors.title) && "is-invalid"} type="title" placeholder="Título" {...register("title", { required: true })}/>
                                     {errors.title && <div className="invalid-feedback">Introduzca Título</div>}
@@ -118,7 +114,7 @@ const ElderProfile = () => {
             
             {/* IMAGE TOAST */}
             
-            {elders ? 
+            {elder ? 
             <div className="container-fluid  p__elderprofile__wrapper">
                 <div className="container px-1 py-5 my-5 border box__color">
                 <Toast onClose={() => setShow1(false)} show={show1} delay={5000} autohide 
@@ -144,30 +140,30 @@ const ElderProfile = () => {
                 </Toast>
                     <div className="row justify-content-center ">
                         <div className="col-4">
-                            <img src={profilepicture} width="150px" alt="avatar"/>
+                            <img src={elder.profilepicture} width="150px" alt="avatar"/>
                             <div className="col-12 my-2">
-                                <h1>{firstname} {lastname}</h1>
+                                <h1>{elder.firstname} {elder.lastname}</h1>
                             </div>
                         </div>
                         <div className="col-12 col-md-3 d-flex flex-column justify-content-center align-content-center text-md-left">
-                            <h6 >Grupo:<span className={groupColor(group)}>{group}</span> </h6>
-                            <h6 >Género: {gender} </h6>
-                            <h6>Nacimiento: {dateOfBirth.split('T')[0].split("-").reverse().join("-")} </h6>
-                            <h6>Edad: {age}</h6>
+                            <h6 >Grupo:<span className={groupColor(elder.group)}>{elder.group}</span> </h6>
+                            <h6 >Género: {elder.gender} </h6>
+                            <h6>Nacimiento: {elder.dateOfBirth.split('T')[0].split("-").reverse().join("-")} </h6>
+                            <h6>Edad: {elder.age}</h6>
                         </div>
                         <div className="col-12 col-md-5  d-flex flex-column justify-content-center align-content-center text-md-left">
-                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {diet}</h6>
-                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546183/Vitae/iconos/pngwing.com_afyg5o.png" alt="" width="25"/>Dirección: {address} </h6>
-                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546583/Vitae/iconos/klipartz.com_p3aao4.png" alt="" width="25"/>Familiar: {relative.firstname} </h6>
-                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619547020/Vitae/iconos/klipartz.com_1_zf01wx.png" alt="" width="25"/>Contactar: {relative.phonenumber}</h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546680/Vitae/iconos/food_dt4d5r.png" alt="" width="25"/> Dieta: {elder.diet}</h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546183/Vitae/iconos/pngwing.com_afyg5o.png" alt="" width="25"/>Dirección: {elder.address} </h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619546583/Vitae/iconos/klipartz.com_p3aao4.png" alt="" width="25"/>Familiar: {elder.relative.firstname} </h6>
+                            <h6><img className="mx-1" src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619547020/Vitae/iconos/klipartz.com_1_zf01wx.png" alt="" width="25"/>Contactar: {elder.relative.phonenumber}</h6>
                         </div>
                     </div>
                     <div className="container px-1 py-3 d-flex justify-content-center">
                         <div className='d-flex flex-column justify-content-center align-items-left btns__wrapper'>
                             <NavLink to={`/elders/${id}/add-reports`} className='py-2 my-3 btn-info'>Añadir informe</NavLink>
                             <NavLink to={`/elders/${id}/reports`} className='py-2 my-3 btn-info'>Ver informes</NavLink>
-                            <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-info' therapies = {therapies}>Ver actividades</NavLink> 
-                            <Button className="my-1" onClick={handleShow} variant="info" type="submit">Enviar mensaje a {relative.firstname}</Button>
+                            <NavLink to={`/elders/actividades/${id}`} className='py-2 my-3 btn-info' therapies = {elder.therapies}>Ver actividades</NavLink> 
+                            <Button className="my-1" onClick={handleShow} variant="info" type="submit">Enviar mensaje a {elder.relative.firstname}</Button>
                             <Button className="my-3" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}variant="info">Añadir imagen</Button>{' '}
                             <Collapse in={open}> 
                                 <div className="container">
