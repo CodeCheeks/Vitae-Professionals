@@ -98,7 +98,7 @@ const MyMessages = () => {
                                             {<h6>De: {mes.sender.firstname} </h6>}
                                         </div>
                                         <div className="col-2">
-                                            {<Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
+                                            {mes.sender.elder && <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
@@ -156,7 +156,7 @@ const MyMessages = () => {
                                             {<h6>{mes.title}</h6>}
                                         </div>
                                         <div className="col-3">
-                                            {<h6>Para: {mes.receiver.firstname} {mes.receiver.lastname} </h6>}
+                                            {mes.reciver ? <h6>Para: {mes.receiver.firstname} {mes.receiver.lastname} </h6> : <h6>Baja</h6>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
