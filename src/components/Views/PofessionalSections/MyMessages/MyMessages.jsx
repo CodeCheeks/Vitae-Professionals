@@ -81,8 +81,7 @@ const MyMessages = () => {
                     received ? 
                     received.length > 0 ?
                     (received.sort(function(a,b){return new Date(b.createdAt) - new Date(a.createdAt)}).map(mes => {
-                        return(
-                            
+                        return( 
                             <Accordion key = {mes.id}>
                                 <Card className='container'>
                                     <Card.Header className="row justify-content-between align-items-center">
@@ -98,7 +97,9 @@ const MyMessages = () => {
                                             {<h6>De: {mes.sender.firstname} </h6>}
                                         </div>
                                         <div className="col-2">
-                                            {mes.sender.elder && <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
+                                            {mes.sender.elder ? 
+                                            <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>:
+                                            <h6>Profesional: {mes.sender.professional.firstname}</h6>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
@@ -120,7 +121,6 @@ const MyMessages = () => {
                                     </Accordion.Collapse>
                                 </Card>
                             </Accordion>
-                            
                         )
                     })) 
                     :
