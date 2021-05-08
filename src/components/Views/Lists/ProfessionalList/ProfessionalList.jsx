@@ -51,7 +51,7 @@ const UsersList = () => {
                 <td>{user.phonenumber}</td>
                 <td>
                 <NavLink className='link__style'to={`/personal-area/adminProfessional/editProfessional/${user.id}`}>
-                <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={user.id} alt="edit" className="mx-3 custom__img" width="20px" />
+                    <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/editar_u5y3fw.png" id={user.id} alt="edit" className="mx-3 custom__img" width="20px" />
                 </NavLink>
                 </td>
                 <td><img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={user.id} alt="delete" className="mx-3 custom__img" width="20px" onClick={handleShow}/></td>

@@ -3,7 +3,6 @@ import "./MyMessages.css"
 import { UserContext } from "../../../../contexts/UserContext";
 import { receivedMessages, sentMessages, deleteMessage } from '../../../../services/messageService';
 import { Accordion, Button, Card, Spinner, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const MyMessages = () => {
     const { user } = useContext(UserContext);
@@ -94,17 +93,13 @@ const MyMessages = () => {
                                             {<h6>Título: {mes.title}</h6>}
                                         </div>
                                         <div className="col-2">
-                                            {mes.sender && <h6>De: {mes.sender.firstname} </h6>}
+                                            {mes.sender && <h6>De: {mes.sender.firstname} {mes.sender.lastname} </h6>}
                                         </div>
-                                        <div className="col-2">
-                                            {mes.sender && mes.sender.elder ? <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>:
-                                            <h6>Profesional: {mes.sender && mes.sender.professional.firstname}</h6>
-                                            }
-                                        </div>
+
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
                                         </div>
-                                        <div className="col-1">
+                                        <div className="col-2">
                                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1619462590/Vitae/iconos/borrar_eoyvyu.png" id={mes.id} alt="delete" className="mx-3 custom__img" width="20px"  height="20" onClick={handleShow}/>
                                         </div>
                                     </Card.Header>
