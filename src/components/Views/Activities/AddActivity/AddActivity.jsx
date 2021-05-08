@@ -3,18 +3,19 @@ import { Form, Button, Spinner, Table } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from 'react-router';
 import { UserContext } from '../../../../contexts/UserContext';
-import { ElderContext } from "../../../../contexts/ElderContext"
 import {addActivity, getDataActivity, editActivity, deleteParticipants } from '../../../../services/activitiesService'
 import { Link } from 'react-router-dom';
+import { getEldersInfo } from '../../../../services/ElderService';
 
 
 
 const AddActivity = () => {
     const { activity_id} = useParams()
     const { user } = useContext(UserContext);
-    const { elders } = useContext(ElderContext);
+
     const { push } = useHistory();
     const [dataActivity, setdataActivity] = useState(null);
+    const [elders, setElders] = useState(null);
     
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -51,10 +52,15 @@ const AddActivity = () => {
     
     useEffect(() => {
         activity_id && getDataActivity(activity_id)
-        .then(data => {
-            console.log(data)
-            setdataActivity(data)})
+        .then(data => setdataActivity(data))
         .catch(e => console.log(e)) 
+
+        getEldersInfo()
+        .then(res => {
+            setElders(res)
+        })
+        .catch(error => console.log(error))
+
     }, [activity_id]);
     
     const getForm = () => {
