@@ -35,29 +35,24 @@ const AddReport = () => {
         report_id && getDataReport(report_id)
         .then(data => setdataReport(data))
         .catch(e => console.log(e)) 
-    }, [report_id]);
 
-    useEffect(() => {
         getElderInfoById(elder_id)
         .then(res => setElder(res))
         .catch(error => console.log(error))
-    }, [ elder_id]);
+        
+    }, [report_id, elder_id]);
 
     const getForm = () => {
         return(
             <div className="container">
                 <div className="row py-2 my-5">
                     <div className="col-12">
-                    {report_id ? 
+
                         <h1 className='text-center main__title'>
                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
-                            { elder ? <h1>Editar Informe de {elder.firstname} {elder.lastname}</h1> : <div></div>}
-                        </h1> :
-                        <h1 className='text-center main__title'>
-                            <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
-                            { elder ? <h1>Añadir Informe de {elder.firstname} {elder.lastname}</h1> : <div></div>}
+                            {dataReport ?  <h1>Editar Informe de {dataReport.elder.firstname} {dataReport.elder.lastname}</h1>  : elder ? <h1>Añadir Informe de {elder.firstname} {elder.lastname}</h1> : <div></div> }
                         </h1>
-                    }
+                        
                     </div>
                 </div>
             <div className="row justify-content-center">
