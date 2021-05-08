@@ -49,7 +49,7 @@ const ProfessionalSection = (props) => {
     const getUsers =() => {
         let usersRow = []
         users.forEach(user => {
-            if (user.occupation===props.department){
+            if (user.occupation===props.department && user.active){
             usersRow.push(<tr key={user.id}>
                 <td>{user.firstname} {user.lastname}</td>
                 <td>{user.occupation}</td>
