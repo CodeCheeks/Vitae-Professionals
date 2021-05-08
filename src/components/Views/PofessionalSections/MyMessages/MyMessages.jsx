@@ -91,15 +91,13 @@ const MyMessages = () => {
                                             </Accordion.Toggle>
                                         </div>
                                         <div className="col-3">
-                                            {<h6>{mes.title}</h6>}
+                                            {<h6>Título: {mes.title}</h6>}
                                         </div>
                                         <div className="col-2">
-                                            {<h6>De: {mes.sender.firstname} </h6>}
+                                            {mes.sender && <h6>De: {mes.sender.firstname} </h6>}
                                         </div>
                                         <div className="col-2">
-                                            {mes.sender.elder ? 
-                                            <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>:
-                                            <h6>Profesional: {mes.sender.professional.firstname}</h6>}
+                                            {mes.sender.elder && <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
@@ -129,7 +127,7 @@ const MyMessages = () => {
                 }
             </div>
             
-            <div className=" col-12  ">
+            <div className=" col-12">
             <div className="row">
                 <div className="col-12">
                     <h2 className='text-center main__title'>
@@ -153,10 +151,10 @@ const MyMessages = () => {
                                             </Accordion.Toggle>
                                         </div>
                                         <div className="col-3">
-                                            {<h6>{mes.title}</h6>}
+                                            <h6>Título: {mes.title}</h6>
                                         </div>
                                         <div className="col-3">
-                                            {mes.reciver ? <h6>Para: {mes.receiver.firstname} {mes.receiver.lastname} </h6> : <h6>Baja</h6>}
+                                            {mes.receiver && <h6>Para: {mes.receiver.firstname} {mes.receiver.lastname} </h6>}
                                         </div>
                                         <div className="col-2">
                                             <h6>{(mes.createdAt).split('T')[0].split("-").reverse().join("-")}</h6>
