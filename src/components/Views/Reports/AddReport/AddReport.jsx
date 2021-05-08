@@ -51,11 +51,11 @@ const AddReport = () => {
                     {report_id ? 
                         <h1 className='text-center main__title'>
                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
-                            { elder ? <h1>Editar Informe de {elder.firstname} {elder.lastname}</h1> : <Spinner animation="border" variant="info" />}
+                            { elder ? <h1>Editar Informe de {elder.firstname} {elder.lastname}</h1> : <div></div>}
                         </h1> :
                         <h1 className='text-center main__title'>
                             <img src="https://res.cloudinary.com/dv7hswrot/image/upload/v1620034340/Vitae/iconos/document_f08uxb.png" className='mx-2  ' alt="reports" width='80'/>
-                            { elder ? <h1>Añadir Informe de {elder.firstname} {elder.lastname}</h1> : <Spinner animation="border" variant="info" />}
+                            { elder ? <h1>Añadir Informe de {elder.firstname} {elder.lastname}</h1> : <div></div>}
                         </h1>
                     }
                     </div>
@@ -65,7 +65,7 @@ const AddReport = () => {
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row justify-content-between mt-3">
                             <div className="col-7">
-                                {elder ? <h6>{`Informe de ${elder.firstname}`}</h6> : <Spinner animation="border" variant="info" /> }
+                                {elder ? <h6>{`Informe de ${elder.firstname}`}</h6> : <div></div> }
                                 <h6>{`${user.firstname} ${user.lastname}, ${user.occupation}  `}</h6>
                             </div>
                             <div className="col-3">
@@ -99,7 +99,8 @@ const AddReport = () => {
     }
 
     return (
-        report_id ? dataReport ?
+        report_id ? 
+        dataReport ?
         getForm()
         :
         (<Spinner className="m-5" animation="border" role="status" variant="info">
