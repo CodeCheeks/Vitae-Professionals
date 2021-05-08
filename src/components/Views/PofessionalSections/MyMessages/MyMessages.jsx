@@ -97,8 +97,8 @@ const MyMessages = () => {
                                             {mes.sender && <h6>De: {mes.sender.firstname} </h6>}
                                         </div>
                                         <div className="col-2">
-                                            {mes.sender.elder ? <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>:
-                                            <h6>Profesional: {mes.sender.professional.firstname}</h6>
+                                            {mes.sender && mes.sender.elder ? <Link to={`/elders/${mes.sender.elder.id}`} className='col style__m__link '><h6>Usuario: {mes.sender.elder.firstname}</h6></Link>:
+                                            <h6>Profesional: {mes.sender && mes.sender.professional.firstname}</h6>
                                             }
                                         </div>
                                         <div className="col-2">
