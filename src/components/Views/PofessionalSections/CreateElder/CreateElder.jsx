@@ -79,7 +79,7 @@ const CreateElder = () => {
                                 <Form.Control className={errors.phoneNumber && "is-invalid"} 
                                 type="string" 
                                 placeholder="Teléfono"
-                                defaultValue={elder_id && elderData.relative.phonenumber}
+                                defaultValue={elder_id && elderData.relative.phonenumber.replace(/ /g, "")}
                                 {...register("phoneNumber", {
                                     required: true,
                                     validate: {
@@ -116,8 +116,9 @@ const CreateElder = () => {
                                     <Form.Control className={errors.dni && "is-invalid"} placeholder="dni"  defaultValue={elder_id && elderData.dni}type="dni" {...register("dni", { 
                                         required: true,
                                         validate: {
-                                            dniValidator: (value) => value.match === 9
+                                            dniValidator: (value) => value.length === 9 
                                         }
+                                        
 
                                         })} />
                                     {errors.dni && errors.dni.type !=="dniValidator" && <div className="invalid-feedback">Rellene este campo</div>}
